@@ -92,19 +92,27 @@
 
         /* Slider de Logos Professionnel */
         .logo-box {
-            background: rgba(255, 255, 255, 0.04);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            flex-shrink: 0;
-            width: 14rem;
-            height: 9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            text-decoration: none;
+            flex-direction: column;
+            gap: 0.75rem;
+            height: auto; /* Permet l'expansion pour le texte */
+            min-height: 10rem;
+            padding: 1.5rem 1rem;
+        }
+
+        .company-label {
+            color: var(--bdc-white);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .logo-box:hover .company-label {
+            opacity: 1;
+            color: var(--bdc-red);
         }
         
         .logo-box:hover {
@@ -265,27 +273,52 @@
         </section>
 
         <!-- Trajectoire Professionnelle : Logos Interactifs -->
-        <section class="mb-32 scroll-reveal">
-            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label">Trajectoire Professionnelle</h3>
-            <div class="relative group/slider">
-                <!-- Contrôles de Navigation -->
-                <button onclick="scrollSlider(-1)" class="scroll-btn -left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
-                <button onclick="scrollSlider(1)" class="scroll-btn -right-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
+       <section class="mb-32 scroll-reveal">
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label">Trajectoire Professionnelle</h3>
+        <div class="relative group/slider">
+            <button onclick="scrollSlider(-1)" class="scroll-btn -left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
+            <button onclick="scrollSlider(1)" class="scroll-btn -right-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
 
-                <!-- Slider avec Logos Standardisés : Cliquez pour ouvrir le panel -->
-                <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
-                    <div class="logo-box snap-center" onclick="openExp('exp1')"><img src="logo1.png" alt="Dassault Systèmes" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp2')"><img src="logo2.png" alt="Autodesk" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp3')"><img src="logo3.png" alt="Graitec" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp4')"><img src="logo4.png" alt="Pourvoirie" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp5')"><img src="logo5.png" alt="SolidXperts" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp6')"><img src="logo6.png" alt="Bolloré" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp7')"><img src="logo7.png" alt="Mecachrome" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp8')"><img src="logo8.png" alt="Construction PL" class="logo-img"></div>
-                    <div class="logo-box snap-center" onclick="openExp('exp9')"><img src="logo9.png" alt="EMICA" class="logo-img"></div>
+            <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
+                <div class="logo-box snap-center" onclick="openExp('exp1')">
+                    <img src="logo1.png" alt="Dassault Systèmes" class="logo-img">
+                    <span class="company-label">Dassault Systèmes</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp2')">
+                    <img src="logo2.png" alt="Autodesk" class="logo-img">
+                    <span class="company-label">Autodesk</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp3')">
+                    <img src="logo3.png" alt="Graitec" class="logo-img">
+                    <span class="company-label">Graitec Group</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp4')">
+                    <img src="logo4.png" alt="Pourvoirie" class="logo-img">
+                    <span class="company-label">Vent de la Savane</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp5')">
+                    <img src="logo5.png" alt="SolidXperts" class="logo-img">
+                    <span class="company-label">SolidXperts</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp6')">
+                    <img src="logo6.png" alt="Bolloré" class="logo-img">
+                    <span class="company-label">Bolloré Logistics</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp7')">
+                    <img src="logo7.png" alt="Mecachrome" class="logo-img">
+                    <span class="company-label">Mecachrome</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp8')">
+                    <img src="logo8.png" alt="Construction PL" class="logo-img">
+                    <span class="company-label">Construction PL</span>
+                </div>
+                <div class="logo-box snap-center" onclick="openExp('exp9')">
+                    <img src="logo9.png" alt="EMICA" class="logo-img">
+                    <span class="company-label">EMICA</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <!-- Leadership de Pensée : Expertise Sectorielle -->
         <section id="articles" class="mb-40 scroll-reveal">
@@ -461,24 +494,21 @@
 
         function scrollSlider(direction) {
             const slider = document.getElementById('logo-slider');
-            const amount = 350;
-            slider.scrollBy({ left: direction * amount, behavior: 'smooth' });
+            const cardWidth = slider.querySelector('.logo-box').offsetWidth + 24; // Largeur + Gap
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+            // Logique de boucle (Loop)
+            if (direction === 1 && slider.scrollLeft >= maxScroll - 10) {
+                // Si on est au bout à droite, retour au début
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direction === -1 && slider.scrollLeft <= 10) {
+                // Si on est au début à gauche, saut à la fin
+                slider.scrollTo({ left: maxScroll, behavior: 'smooth' });
+            } else {
+                // Défilement normal
+                slider.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+            }
         }
-
-        window.addEventListener('scroll', () => {
-            const scroll = window.scrollY;
-            const zoomBg = document.getElementById('zoom-bg');
-            const scale = 1 + (scroll * 0.00035);
-            zoomBg.style.transform = `scale(${scale})`;
-
-            document.querySelectorAll('section').forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.88) {
-                    section.classList.add('visible');
-                }
-            });
-        });
-
         window.dispatchEvent(new Event('scroll'));
         toggleLanguage(); 
     </script>
