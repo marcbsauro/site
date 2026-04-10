@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Palette Institutionnelle BDC préservée */
             --bdc-blue: #0b1a30;
             --bdc-red: #ee3124;
             --bdc-white: #ffffff;
@@ -234,7 +235,7 @@
     <div id="reader-overlay">
         <button class="reader-close" onclick="closeReader()" data-key="close-reader">Fermer</button>
         <article class="reader-content prose prose-slate max-w-none">
-            <h1 id="reader-title" class="text-4xl font-extrabold mb-4 text-bdc-blue"></h1>
+            <h1 id="reader-title" class="text-4xl font-extrabold mb-4 text-bdc-blue tracking-tight"></h1>
             <p id="reader-meta" class="text-xs font-bold text-red-600 mb-8 uppercase tracking-[0.2em] border-b border-gray-100 pb-4"></p>
             <div id="reader-body" class="text-gray-800 leading-relaxed text-lg space-y-6"></div>
             <div id="reader-footer"></div>
@@ -264,6 +265,7 @@
             </div>
         </section>
 
+        <!-- Trajectoire Professionnelle : Carrousel Loop Sans Rewind -->
         <section class="mb-32 scroll-reveal">
             <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label">Trajectoire Professionnelle</h3>
             <div class="relative group/slider">
@@ -344,18 +346,21 @@
     <script>
         const translations = {
             fr: {
-                name: "Marc B. Sauro<span class='text-accent'>.</span>",
+                name: "Marc B. Sauro",
                 title: "Partenaire Client Senior | Services-Conseils aux PME",
                 "hero-p": "Traduire les ambitions des chefs de direction en feuilles de route opérationnelles génératrices de valeur pour les entrepreneurs canadiens.",
                 "about-label": "Profil Stratégique",
                 "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expérience spécialisé dans la traduction des ambitions des chefs de direction en feuilles de route opérationnelles génératrices de valeur. Actuellement au MBA en conseil en management (C.M.C.) à l'ESG UQAM, je comble le fossé entre l'architecture de solutions et la valeur stratégique pour les entrepreneurs canadiens.",
                 "skill1": "Développement des Affaires et Croissance", "skill2": "Diagnostic Stratégique PME", "skill3": "Conception de Solutions (SOW)", "skill4": "Intelligence Émotionnelle",
                 "exp-label": "Trajectoire Professionnelle", "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif",
+                
                 "exp1-title": "Dassault Systèmes", "exp1-role": "3DEXPERIENCE ITEROP (BPM) | Sales & Enablement Lead (NAM & LATAM)", "exp1-full": "<p>Diriger la stratégie de vente nord-américaine et l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM), en orchestrant les initiatives de mise en marché pour stimuler l'adoption des plateformes d'interopérabilité d'entreprise.</p>", "exp1-url": "https://www.3ds.com",
+                
                 "exp2-title": "Autodesk", 
                 "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Spécialiste des ventes techniques", 
                 "exp2-full": "<p>Diriger une organisation mondiale d'habilitation technique, supervisant une structure de leadership multiniveaux pour assurer la cohérence des méthodologies de vente et la réalisation des revenus à travers quatre régions internationales.</p><p>Définir les stratégies mondiales de mise en marché (GTM) pour le portefeuille Conception et Fabrication, faisant le pont entre l'ingénierie produit et l'exécution des ventes pour accélérer l'adoption.</p><p>Exécuter des campagnes de ventes techniques complexes pour des comptes stratégiques, agissant comme liaison technique principale pour stimuler l'adoption de solutions de fabrication avancées.</p>", 
                 "exp2-url": "https://www.autodesk.com",
+                
                 "exp3-title": "Graitec", "exp3-role": "Architecte de Solutions", "exp3-full": "<p>Optimisation des infrastructures Cloud et dépôts de données.</p>", "exp3-url": "https://www.graitec.com",
                 "exp4-title": "Pourvoirie Vent de la Savane", "exp4-role": "Directeur des Opérations", "exp4-full": "<p>Croissance de 8x du chiffre d'affaires en 3 ans.</p>", "exp4-url": "https://www.ventdelasavane.com",
                 "exp5-title": "SolidXperts", "exp5-role": "Directeur Technique", "exp5-full": "<p>Mise en œuvre PLM et PDM pour le secteur manufacturier.</p>", "exp5-url": "https://www.solidxperts.com",
@@ -363,22 +368,30 @@
                 "exp7-title": "Mecachrome", "exp7-role": "Ingénierie Aéronautique", "exp7-full": "<p>Soutien technique pour l'usinage de haute précision.</p>", "exp7-url": "https://www.mecachrome.com",
                 "exp8-title": "Construction Pascal Lanoue", "exp8-role": "Gestion d'Infrastructure", "exp8-full": "<p>Opérations complexes et redressement de projets.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Expert Conseil Technologie", "exp9-full": "<p>Intégration technologique dans le réseau de formation professionnelle.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
-                "art1-cat": "Stratégie", "art1-title": "Le ROI de l'IA", "art1-desc": "Éliminer le gaspillage opérationnel.", "art1-full": "<h3>Analyse ROI</h3><p>Méthodologie pour PME.</p>",
-                "art2-cat": "Croissance", "art2-title": "Roadmaps 2026", "art2-desc": "Architectures résilientes.", "art2-full": "<h3>Vision 2026</h3><p>Stratégie de long terme.</p>"
+                
+                "art1-cat": "Management & Stratégie", 
+                "art1-title": "Du canevas à la boussole", 
+                "art1-desc": "Comment transformer un modèle d'affaires statique en un outil d'exécution opérationnelle agile.", 
+                "art1-full": "<h3>Le Fossé entre Design et Exécution</h3><p>Le Business Model Canvas (BMC) est un outil de design universel, mais il souffre d'un défaut majeur dans la pratique : il est souvent traité comme une destination statique plutôt que comme un guide de navigation. Pour un leader stratégique, le défi n'est pas de remplir des cases, mais de connecter ces intentions à la réalité opérationnelle quotidienne.</p><h3>La Boussole de Valeur</h3><p>Transformer le canevas en boussole signifie utiliser chaque segment pour orienter les décisions tactiques. La proposition de valeur ne doit pas être un slogan, mais le filtre de chaque processus interne. Si une activité ne renforce pas directement la valeur promise, elle devient un gaspillage opérationnel qu'il faut éliminer avant toute automatisation.</p><h3>L'Alignement des Résultats</h3><p>La pérennité d'une PME repose sur sa capacité à lier ses flux de revenus à l'excellence de son exécution. En utilisant le modèle d'affaires comme outil de pilotage continu, le chef de direction s'assure que l'innovation n'est pas une parenthèse, mais le moteur même de la croissance.</p>",
+                
+                "art2-cat": "Croissance", "art2-title": "Roadmaps 2026", "art2-desc": "Architectures résilientes pour les marchés volatiles.", "art2-full": "<h3>Vision 2026</h3><p>Stratégie de long terme basée sur la modularité technologique.</p>"
             },
             en: {
-                name: "Marc B. Sauro<span class='text-accent'>.</span>",
+                name: "Marc B. Sauro",
                 title: "Senior Client Partner | SME Advisory Services",
                 "hero-p": "Translating C-Suite ambitions into value generating operational roadmaps for Canadian entrepreneurs.",
                 "about-label": "Strategic Profile",
                 "summary": "Bilingual consulting leader with over 20 years of experience. MBA candidate at ESG UQAM, bridging the gap between solution architecture and strategic business value.",
                 "skill1": "Business Development & Growth", "skill2": "Strategic SME Diagnosis", "skill3": "Solution Design (SOW)", "skill4": "Emotional Intelligence",
                 "exp-label": "Professional Trajectory", "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website",
+                
                 "exp1-title": "Dassault Systèmes", "exp1-role": "NAMER Sales Lead", "exp1-full": "<p>North American strategy for BPM solutions.</p>", "exp1-url": "https://www.3ds.com",
+                
                 "exp2-title": "Autodesk", 
                 "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Technical Sales Specialist", 
                 "exp2-full": "<p>Commanded a global technical enablement organization, overseeing a tiered leadership structure to drive consistency in sales methodology and revenue realization.</p><p>Defined global go-to-market strategies for the Design & Manufacturing portfolio, bridging product engineering and sales execution.</p><p>Executed complex technical sales campaigns for strategic accounts, driving adoption of advanced manufacturing solutions.</p>", 
                 "exp2-url": "https://www.autodesk.com",
+                
                 "exp3-title": "Graitec", "exp3-role": "Solutions Architect", "exp3-full": "<p>Cloud infrastructure and data repository optimization.</p>", "exp3-url": "https://www.graitec.com",
                 "exp4-title": "Vent de la Savane Outfitters", "exp4-role": "Operations Director", "exp4-full": "<p>8x revenue growth in 3 years.</p>", "exp4-url": "https://www.ventdelasavane.com",
                 "exp5-title": "SolidXperts", "exp5-role": "Technical Director", "exp5-full": "<p>PLM and PDM implementation lead.</p>", "exp5-url": "https://www.solidxperts.com",
@@ -386,23 +399,25 @@
                 "exp7-title": "Mecachrome", "exp7-role": "Aerospace Engineering", "exp7-full": "<p>Precision machining technical support.</p>", "exp7-url": "https://www.mecachrome.com",
                 "exp8-title": "Pascal Lanoue Construction", "exp8-role": "Infrastructure Management", "exp8-full": "<p>Complex project management and turnaround.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Technology Consultant", "exp9-full": "<p>Technology integration in vocational training.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
-                "art1-cat": "Strategy", "art1-title": "AI ROI", "art1-desc": "Eliminating operational waste.", "art1-full": "<h3>ROI Analysis</h3><p>Methodology for SMEs.</p>",
-                "art2-cat": "Growth", "art2-title": "2026 Roadmaps", "art2-desc": "Resilient architectures.", "art2-full": "<h3>2026 Vision</h3><p>Long term planning.</p>"
+                
+                "art1-cat": "Management & Strategy", 
+                "art1-title": "From Canvas to Compass", 
+                "art1-desc": "How to turn a static business model into an agile operational execution tool.", 
+                "art1-full": "<h3>The Gap Between Design and Execution</h3><p>The Business Model Canvas (BMC) is a universal design tool, but it often fails in practice by being treated as a static destination rather than a navigation guide. For a strategic leader, the challenge is not to fill boxes, but to connect these intentions to daily operational reality.</p><h3>The Value Compass</h3><p>Turning the canvas into a compass means using each segment to drive tactical decisions. The value proposition must not be a slogan, but the filter for every internal process. If an activity does not directly reinforce the promised value, it becomes operational waste that must be eliminated before any automation.</p><h3>Aligning Results</h3><p>An SME's sustainability depends on its ability to link its revenue streams to operational excellence. By using the business model as a continuous steering tool, the CEO ensures that innovation is not a sidebar, but the very engine of growth.</p>",
+
+                "art2-cat": "Growth", "art2-title": "2026 Roadmaps", "art2-desc": "Resilient architectures for volatile markets.", "art2-full": "<h3>2026 Vision</h3><p>Long term planning strategy based on technological modularity.</p>"
             }
         };
 
         let currentLang = 'en';
 
-        // INITIALISATION DU CLONAGE POUR LA BOUCLE INFINIE
         function initInfiniteSlider() {
             const slider = document.getElementById('logo-slider');
             if (!slider) return;
             const items = Array.from(slider.children);
-            // On triple les items pour garantir que le scroll est toujours couvert peu importe le sens
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             
-            // On positionne au milieu pour permettre le scroll gauche/droite immédiat
             const oneThird = slider.scrollWidth / 3;
             slider.scrollLeft = oneThird;
         }
@@ -443,7 +458,6 @@
             document.body.classList.remove('modal-open');
         }
 
-        // NAVIGATION CIRCULAIRE SANS REWIND
         function scrollSlider(direction) {
             const slider = document.getElementById('logo-slider');
             const firstChild = slider.querySelector('.logo-box');
@@ -453,13 +467,11 @@
             const oneThird = slider.scrollWidth / 3;
 
             if (direction === 1) {
-                // Si on approche de la fin, saut instantané au tiers central
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                     slider.scrollTo({ left: slider.scrollLeft - oneThird, behavior: 'auto' });
                 }
                 slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
             } else {
-                // Si on approche du début, saut instantané au tiers central
                 if (slider.scrollLeft <= 100) {
                     slider.scrollTo({ left: slider.scrollLeft + oneThird, behavior: 'auto' });
                 }
@@ -479,7 +491,7 @@
         window.onload = function() {
             initInfiniteSlider();
             window.dispatchEvent(new Event('scroll'));
-            toggleLanguage(); // Démarrage automatique
+            toggleLanguage(); 
         };
     </script>
 </body>
