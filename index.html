@@ -186,7 +186,6 @@
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
         }
 
-        /* Styles spécifiques pour le contenu de l'article */
         .article-body h3 {
             font-weight: 700;
             color: var(--bdc-blue);
@@ -282,14 +281,12 @@
         
         <section id="hero" class="mb-48 visible">
             <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]" data-key="name"></h1>
-            <h2 class="text-xl md:text-2xl font-light text-accent tracking-[0.15em] mb-10 uppercase" data-key="title">Partenaire Client Senior | Services-Conseils aux PME</h2>
-            <p class="text-lg md:text-2xl text-blue-50 max-w-2xl leading-relaxed opacity-80 font-light" data-key="hero-p">
-                Traduire les ambitions des chefs de direction en feuilles de route opérationnelles génératrices de valeur pour les entrepreneurs canadiens.
-            </p>
+            <h2 class="text-xl md:text-2xl font-light text-accent tracking-[0.15em] mb-10 uppercase" data-key="title"></h2>
+            <p class="text-lg md:text-2xl text-blue-50 max-w-2xl leading-relaxed opacity-80 font-light" data-key="hero-p"></p>
         </section>
 
         <section class="glass p-10 md:p-14 mb-32 scroll-reveal">
-            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-8 opacity-50" data-key="about-label">Profil Stratégique</h3>
+            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-8 opacity-50" data-key="about-label"></h3>
             <div class="accent-border pl-8">
                 <p class="text-xl md:text-2xl font-light leading-relaxed mb-10" data-key="summary"></p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-100/60">
@@ -302,7 +299,7 @@
         </section>
 
         <section class="mb-32 scroll-reveal">
-            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label">Trajectoire Professionnelle</h3>
+            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label"></h3>
             <div class="relative group/slider">
                 <button onclick="scrollSlider(-1)" class="scroll-btn -left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
                 <button onclick="scrollSlider(1)" class="scroll-btn -right-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -349,20 +346,9 @@
         </section>
 
         <section id="articles" class="mb-40 scroll-reveal">
-            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-14 opacity-50" data-key="articles-label">Leadership de Pensée</h3>
+            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-14 opacity-50" data-key="articles-label"></h3>
             <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glass p-10 cursor-pointer hover:bg-white/5 transition-all group" onclick="openReader('art1')">
-                    <span class="text-[10px] text-accent font-bold uppercase tracking-widest mb-6 block" data-key="art1-cat"></span>
-                    <h4 class="text-2xl font-bold mb-5 group-hover:text-accent transition-colors leading-tight" data-key="art1-title"></h4>
-                    <p class="text-blue-100/60 mb-8 leading-relaxed font-light" data-key="art1-desc"></p>
-                    <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 group-hover:border-accent transition-all" data-key="read-more"></span>
-                </div>
-                <div class="glass p-10 cursor-pointer hover:bg-white/5 transition-all group" onclick="openReader('art2')">
-                    <span class="text-[10px] text-accent font-bold uppercase tracking-widest mb-6 block" data-key="art2-cat"></span>
-                    <h4 class="text-2xl font-bold mb-5 group-hover:text-accent transition-colors leading-tight" data-key="art2-title"></h4>
-                    <p class="text-blue-100/60 mb-8 leading-relaxed font-light" data-key="art2-desc"></p>
-                    <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 group-hover:border-accent transition-all" data-key="read-more"></span>
-                </div>
+                <!-- Génération dynamique via renderArticles() -->
             </div>
         </section>
 
@@ -390,27 +376,33 @@
                 "exp-label": "Trajectoire Professionnelle", "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif",
                 
                 "exp1-title": "Dassault Systèmes", "exp1-role": "3DEXPERIENCE ITEROP (BPM) | Sales & Enablement Lead (NAM & LATAM)", "exp1-full": "<p>Diriger la stratégie de vente nord-américaine et l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM), en orchestrant les initiatives de mise en marché pour stimuler l'adoption des plateformes d'interopérabilité d'entreprise.</p>", "exp1-url": "https://www.3ds.com",
-                
-                "exp2-title": "Autodesk", 
-                "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Spécialiste des ventes techniques", 
-                "exp2-full": "<p>Diriger une organisation mondiale d'habilitation technique, supervisant une structure de leadership multiniveaux pour assurer la cohérence des méthodologies de vente et la réalisation des revenus à travers quatre régions internationales.</p><p>Définir les stratégies mondiales de mise en marché (GTM) pour le portefeuille Conception et Fabrication, faisant le pont entre l'ingénierie produit et l'exécution des ventes pour accélérer l'adoption.</p><p>Exécuter des campagnes de ventes techniques complexes pour des comptes stratégiques, agissant comme liaison technique principale pour stimuler l'adoption de solutions de fabrication avancées.</p>", 
-                "exp2-url": "https://www.autodesk.com",
-                
+                "exp2-title": "Autodesk", "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Spécialiste des ventes techniques", "exp2-full": "<p>Diriger une organisation mondiale d'habilitation technique, supervisant une structure de leadership multiniveaux pour assurer la cohérence des méthodologies de vente et la réalisation des revenus à travers quatre régions internationales.</p><p>Définir les stratégies mondiales de mise en marché (GTM) pour le portefeuille Conception et Fabrication, faisant le pont entre l'ingénierie produit et l'exécution des ventes pour accélérer l'adoption.</p><p>Exécuter des campagnes de ventes techniques complexes pour des comptes stratégiques, agissant comme liaison technique principale pour stimuler l'adoption de solutions de fabrication avancées.</p>", "exp2-url": "https://www.autodesk.com",
                 "exp3-title": "Graitec", "exp3-role": "Architecte de Solutions", "exp3-full": "<p>Optimisation des infrastructures Cloud et dépôts de données.</p>", "exp3-url": "https://www.graitec.com",
-                "exp4-title": "Pourvoirie Vent de la Savane", "exp4-role": "Directeur des Opérations", "exp4-full": "<p>Croissance de 8x du chiffre d'affaires en 3 ans.</p>", "exp4-url": "https://www.ventdelasavane.com",
+                "exp4-title": "Pourvoirie Vent de la Savane", "exp4-role": "Directeur des Opérations", "exp4-full": "<p>Croissance de 8x du chiffre d'affaires en 3 ans via une refonte opérationnelle totale.</p>", "exp4-url": "https://www.ventdelasavane.com",
                 "exp5-title": "SolidXperts", "exp5-role": "Directeur Technique", "exp5-full": "<p>Mise en œuvre PLM et PDM pour le secteur manufacturier.</p>", "exp5-url": "https://www.solidxperts.com",
                 "exp6-title": "Bolloré", "exp6-role": "Gestion de Projet Logistique", "exp6-full": "<p>Optimisation des flux opérationnels internationaux.</p>", "exp6-url": "https://www.bollore.com",
                 "exp7-title": "Mecachrome", "exp7-role": "Ingénierie Aéronautique", "exp7-full": "<p>Soutien technique pour l'usinage de haute précision.</p>", "exp7-url": "https://www.mecachrome.com",
                 "exp8-title": "Construction Pascal Lanoue", "exp8-role": "Gestion d'Infrastructure", "exp8-full": "<p>Opérations complexes et redressement de projets.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Expert Conseil Technologie", "exp9-full": "<p>Intégration technologique dans le réseau de formation professionnelle.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
-                
-                // Article COMPLET : Du Canevas à la Boussole
-                "art1-cat": "Management & Stratégie", 
-                "art1-title": "Du Canevas à la Boussole", 
-                "art1-desc": "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.", 
-                "art1-full": "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis. Je m'en servais principalement comme un outil d'alignement pour les Ventes, afin de cartographier la proposition de valeur et les segments de clientèle à un instant précis. Pour le rendre véritablement opérationnel, je l'ai adapté en y ajoutant trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p><h3>La Limite du Statique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p><h3>L'Intégration des Trois Horizons</h3><p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company. Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li></ul><h3>Conclusion Tactique</h3><p>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>",
-                
-                "art2-cat": "Croissance", "art2-title": "Roadmaps 2026", "art2-desc": "Architectures résilientes pour les marchés volatiles.", "art2-full": "<h3>Vision 2026</h3><p>Stratégie de long terme basée sur la modularité technologique et l'agilité organisationnelle.</p>"
+
+                // BIBLIOTHÈQUE D'ARTICLES : FRANÇAIS
+                articles: [
+                    {
+                        id: "art1",
+                        cat: "Management & Stratégie",
+                        title: "Du Canevas à la Boussole",
+                        desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.",
+                        full: "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis. Je m'en servais principalement comme un outil d'alignement pour les Ventes, afin de cartographier la proposition de valeur et les segments de clientèle à un instant précis. Pour le rendre véritablement opérationnel, je l'ai adapté en y ajoutant trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p><h3>La Limite du Statique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p><h3>L'Intégration des Trois Horizons</h3><p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company. Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li></ul><h3>Conclusion Tactique</h3><p>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>"
+                    },
+                    {
+                        id: "art2",
+                        cat: "Croissance",
+                        title: "Roadmaps 2026",
+                        desc: "Architectures résilientes pour les marchés volatiles.",
+                        full: "<h3>Vision 2026</h3><p>Contenu en cours de rédaction basé sur la modularité technologique et l'agilité organisationnelle.</p>"
+                    }
+                    // Ajoutez vos 5 prochains articles ici sous le même format
+                ]
             },
             en: {
                 name: "Marc B. Sauro",
@@ -422,42 +414,67 @@
                 "exp-label": "Professional Trajectory", "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website",
                 
                 "exp1-title": "Dassault Systèmes", "exp1-role": "NAMER Sales Lead", "exp1-full": "<p>North American strategy for BPM solutions.</p>", "exp1-url": "https://www.3ds.com",
-                
-                "exp2-title": "Autodesk", 
-                "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Technical Sales Specialist", 
-                "exp2-full": "<p>Commanded a global technical enablement organization, overseeing a tiered leadership structure to drive consistency in sales methodology and revenue realization.</p><p>Defined global go-to-market strategies for the Design & Manufacturing portfolio, bridging product engineering and sales execution.</p><p>Executed complex technical sales campaigns for strategic accounts, driving adoption of advanced manufacturing solutions.</p>", 
-                "exp2-url": "https://www.autodesk.com",
-                
+                "exp2-title": "Autodesk", "exp2-role": "Global Knowledge Manager", "exp2-full": "<p>Commanded a global technical enablement organization, overseeing a tiered leadership structure.</p><p>Defined global go-to-market strategies for the Design & Manufacturing portfolio.</p><p>Executed complex technical sales campaigns for strategic accounts.</p>", "exp2-url": "https://www.autodesk.com",
                 "exp3-title": "Graitec", "exp3-role": "Solutions Architect", "exp3-full": "<p>Cloud infrastructure and data repository optimization.</p>", "exp3-url": "https://www.graitec.com",
-                "exp4-title": "Vent de la Savane Outfitters", "exp4-role": "Operations Director", "exp4-full": "<p>8x revenue growth in 3 years.</p>", "exp4-url": "https://www.ventdelasavane.com",
+                "exp4-title": "Vent de la Savane Outfitters", "exp4-role": "Operations Director", "exp4-full": "<p>8x revenue growth in 3 years through total operational overhaul.</p>", "exp4-url": "https://www.ventdelasavane.com",
                 "exp5-title": "SolidXperts", "exp5-role": "Technical Director", "exp5-full": "<p>PLM and PDM implementation lead.</p>", "exp5-url": "https://www.solidxperts.com",
                 "exp6-title": "Bolloré", "exp6-role": "Logistics Project Manager", "exp6-full": "<p>International operational flow optimization.</p>", "exp6-url": "https://www.bollore.com",
                 "exp7-title": "Mecachrome", "exp7-role": "Aerospace Engineering", "exp7-full": "<p>Precision machining technical support.</p>", "exp7-url": "https://www.mecachrome.com",
                 "exp8-title": "Pascal Lanoue Construction", "exp8-role": "Infrastructure Management", "exp8-full": "<p>Complex project management and turnaround.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Technology Consultant", "exp9-full": "<p>Technology integration in vocational training.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
-                
-                // Converted FULL Article : From Canvas to Compass
-                "art1-cat": "Management & Strategy", 
-                "art1-title": "From Canvas to Compass", 
-                "art1-desc": "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", 
-                "art1-full": "<p>Recently, I had an excellent discussion with a BDC contact. Our exchange quickly converged on a fundamental tool: the Business Model Canvas (BMC).</p><p>For a long time, I used this canvas from a very specific angle. I used it primarily as an alignment tool for Sales, to map the value proposition and customer segments at a precise point in time. To make it truly operational, I adapted it by adding three critical blocks: The Pain (the real problem), The Solution (the idea they have of it), and I systematically started the entire exercise with Vision and Mission. It is a powerful structure for capturing the present moment.</p><h3>The Limit of the Static</h3><p>However, a business model is never static. As soon as you attempt to project this canvas through time, the need for a roadmap becomes obvious. You must plan how your distribution channels and revenue streams will evolve over the quarters.</p><h3>Integrating the Three Horizons</h3><p>In seeking to structure this temporal evolution, my reflection inevitably led me to the framework of choice: McKinsey & Company's Three Horizons of Growth. When you connect these tools, you obtain a complete strategic operating system based on three phases:</p><ul><li><strong>Horizon 1 is Stabilization</strong>: The Business Model Canvas defines what your core business does today to secure and defend your current margins.</li><li><strong>Horizon 2 is Optimization</strong>: The roadmap dictates how you will build your emerging opportunities into your next revenue engines.</li><li><strong>Horizon 3 is Propulsion</strong>: The McKinsey framework forces you to look beyond the roadmap and fund the disruptive bets necessary to propel your future survival.</li></ul><h3>Tactical Conclusion</h3><p>Strategic planning is not a collection of isolated tools. The Canvas secures your base, the roadmap optimizes your growth, and the Three Horizons propel your future.</p>",
 
-                "art2-cat": "Growth", "art2-title": "2026 Roadmaps", "art2-desc": "Resilient architectures for volatile markets.", "art2-full": "<h3>2026 Vision</h3><p>Long term planning strategy based on technological modularity and organizational agility.</p>"
+                // ARTICLE LIBRARY : ENGLISH
+                articles: [
+                    {
+                        id: "art1",
+                        cat: "Management & Strategy",
+                        title: "From Canvas to Compass",
+                        desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.",
+                        full: "<p>Recently, I had an excellent discussion with a BDC contact. Our exchange quickly converged on a fundamental tool: the Business Model Canvas (BMC).</p><p>For a long time, I used this canvas from a very specific angle: as a Sales alignment tool. To make it truly operational, I adapted it by adding three critical blocks: The Pain (the real problem), The Solution (the idea they have of it), and I systematically started the entire exercise with Vision and Mission. It is a powerful structure for capturing the present moment.</p><h3>The Limit of the Static</h3><p>However, a business model is never static. As soon as you attempt to project this canvas through time, the need for a roadmap becomes obvious. You must plan how your distribution channels and revenue streams will evolve over the quarters.</p><h3>Integrating the Three Horizons</h3><p>In seeking to structure this temporal evolution, my reflection inevitably led me to the framework of choice: McKinsey & Company's Three Horizons of Growth. When you connect these tools, you obtain a complete strategic operating system based on three phases:</p><ul><li><strong>Horizon 1 is Stabilization</strong>: The Business Model Canvas defines what your core business does today to secure and defend your current margins.</li><li><strong>Horizon 2 is Optimization</strong>: The roadmap dictates how you will build your emerging opportunities into your next revenue engines.</li><li><strong>Horizon 3 is Propulsion</strong>: The McKinsey framework forces you to look beyond the roadmap and fund the disruptive bets necessary to propel your future survival.</li></ul><h3>Tactical Conclusion</h3><p>Strategic planning is not a collection of isolated tools. The Canvas secures your base, the roadmap optimizes your growth, and the Three Horizons propel your future.</p>"
+                    },
+                    {
+                        id: "art2",
+                        cat: "Growth",
+                        title: "2026 Roadmaps",
+                        desc: "Resilient architectures for volatile markets.",
+                        full: "<h3>2026 Vision</h3><p>Content in development based on technological modularity and organizational agility.</p>"
+                    }
+                    // Add your 5 next articles here
+                ]
             }
         };
 
         let currentLang = 'en';
 
-        // INITIALISATION DU CLONAGE POUR LA BOUCLE INFINIE
+        // MOTEUR DE GÉNÉRATION DYNAMIQUE DES ARTICLES
+        function renderArticles() {
+            const grid = document.getElementById('articles-grid');
+            const data = translations[currentLang].articles;
+            grid.innerHTML = '';
+
+            data.forEach(art => {
+                const card = document.createElement('div');
+                card.className = "glass p-10 cursor-pointer hover:bg-white/5 transition-all group";
+                card.onclick = () => openReader(art.id);
+                
+                card.innerHTML = `
+                    <span class="text-[10px] text-accent font-bold uppercase tracking-widest mb-6 block">${art.cat}</span>
+                    <h4 class="text-2xl font-bold mb-5 group-hover:text-accent transition-colors leading-tight">${art.title}</h4>
+                    <p class="text-blue-100/60 mb-8 leading-relaxed font-light">${art.desc}</p>
+                    <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 group-hover:border-accent transition-all">
+                        ${translations[currentLang]['read-more']}
+                    </span>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
         function initInfiniteSlider() {
             const slider = document.getElementById('logo-slider');
             if (!slider) return;
             const items = Array.from(slider.children);
-            // On triple les items pour garantir que le scroll est toujours couvert peu importe le sens
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            
-            // Position initiale au centre
             const oneThird = slider.scrollWidth / 3;
             slider.scrollLeft = oneThird;
         }
@@ -466,10 +483,15 @@
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
             const toggleBtn = document.getElementById('lang-toggle');
             if (toggleBtn) toggleBtn.innerText = currentLang === 'fr' ? 'EN' : 'FR';
+            
+            // Mise à jour des textes statiques
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
             });
+
+            // Re-génération de la grille d'articles
+            renderArticles();
         }
 
         function openExp(id) {
@@ -484,10 +506,13 @@
         }
 
         function openReader(id) {
+            const art = translations[currentLang].articles.find(a => a.id === id);
+            if (!art) return;
+
             const overlay = document.getElementById('reader-overlay');
-            document.getElementById('reader-title').innerText = translations[currentLang][id + '-title'];
-            document.getElementById('reader-meta').innerText = translations[currentLang][id + '-cat'];
-            document.getElementById('reader-body').innerHTML = translations[currentLang][id + '-full'];
+            document.getElementById('reader-title').innerText = art.title;
+            document.getElementById('reader-meta').innerText = art.cat;
+            document.getElementById('reader-body').innerHTML = art.full;
             document.getElementById('reader-footer').innerHTML = '';
             overlay.style.display = 'block';
             document.body.classList.add('modal-open');
@@ -502,18 +527,15 @@
             const slider = document.getElementById('logo-slider');
             const firstChild = slider.querySelector('.logo-box');
             if (!firstChild) return;
-
             const cardWidth = firstChild.offsetWidth + 24;
             const oneThird = slider.scrollWidth / 3;
 
             if (direction === 1) {
-                // Si on approche de la fin, saut instantané au tiers central
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                     slider.scrollTo({ left: slider.scrollLeft - oneThird, behavior: 'auto' });
                 }
                 slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
             } else {
-                // Si on approche du début, saut instantané au tiers central
                 if (slider.scrollLeft <= 100) {
                     slider.scrollTo({ left: slider.scrollLeft + oneThird, behavior: 'auto' });
                 }
