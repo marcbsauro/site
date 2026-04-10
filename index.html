@@ -186,6 +186,42 @@
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
         }
 
+        /* Styles spécifiques pour le contenu de l'article */
+        .article-body h3 {
+            font-weight: 700;
+            color: var(--bdc-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .article-body p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .article-body ul {
+            margin-bottom: 1.5rem;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .article-body li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .article-body li::before {
+            content: "•";
+            color: var(--bdc-red);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         .reader-close {
             position: fixed;
             top: 2.5rem;
@@ -234,10 +270,10 @@
 
     <div id="reader-overlay">
         <button class="reader-close" onclick="closeReader()" data-key="close-reader">Fermer</button>
-        <article class="reader-content prose prose-slate max-w-none">
-            <h1 id="reader-title" class="text-4xl font-extrabold mb-4 text-bdc-blue tracking-tight"></h1>
+        <article class="reader-content max-w-none">
+            <h1 id="reader-title" class="text-4xl font-extrabold mb-4 text-[#0b1a30] tracking-tight"></h1>
             <p id="reader-meta" class="text-xs font-bold text-red-600 mb-8 uppercase tracking-[0.2em] border-b border-gray-100 pb-4"></p>
-            <div id="reader-body" class="text-gray-800 leading-relaxed text-lg space-y-6"></div>
+            <div id="reader-body" class="article-body text-gray-800 text-lg"></div>
             <div id="reader-footer"></div>
         </article>
     </div>
@@ -265,7 +301,6 @@
             </div>
         </section>
 
-        <!-- Trajectoire Professionnelle : Carrousel Loop Sans Rewind -->
         <section class="mb-32 scroll-reveal">
             <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label">Trajectoire Professionnelle</h3>
             <div class="relative group/slider">
@@ -369,13 +404,13 @@
                 "exp8-title": "Construction Pascal Lanoue", "exp8-role": "Gestion d'Infrastructure", "exp8-full": "<p>Opérations complexes et redressement de projets.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Expert Conseil Technologie", "exp9-full": "<p>Intégration technologique dans le réseau de formation professionnelle.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
                 
-                // Article complet : Du Canevas à la Boussole
+                // Article COMPLET : Du Canevas à la Boussole
                 "art1-cat": "Management & Stratégie", 
                 "art1-title": "Du Canevas à la Boussole", 
                 "art1-desc": "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.", 
-                "art1-full": "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><h3>La Structure du Moment Présent</h3><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis : un outil d'alignement pour les Ventes. Pour le rendre véritablement opérationnel, j'y ajoute systématiquement trois blocs critiques : La Douleur (le problème réel), La Solution (la perception du client), le tout ancré par La Vision et La Mission dès le départ.</p><h3>La Nécessité d'une Boussole Dynamique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que l'on tente de le projeter dans le temps, le besoin d'une feuille de route devient évident. C'est ici que ma réflexion m'a mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company.</p><h3>L'Intégration Stratégique</h3><p>Lorsque vous connectez ces outils, vous obtenez un système d'exploitation complet :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Canevas définit votre cœur de métier actuel pour sécuriser vos marges.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment bâtir les opportunités émergentes.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey force à financer les paris disruptifs nécessaires à votre survie future.</li></ul><p>En somme, le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>",
+                "art1-full": "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis. Je m'en servais principalement comme un outil d'alignement pour les Ventes, afin de cartographier la proposition de valeur et les segments de clientèle à un instant précis. Pour le rendre véritablement opérationnel, je l'ai adapté en y ajoutant trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p><h3>La Limite du Statique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p><h3>L'Intégration des Trois Horizons</h3><p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company. Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li></ul><h3>Conclusion Tactique</h3><p>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>",
                 
-                "art2-cat": "Croissance", "art2-title": "Roadmaps 2026", "art2-desc": "Architectures résilientes pour les marchés volatiles.", "art2-full": "<h3>Vision 2026</h3><p>Stratégie de long terme basée sur la modularité technologique.</p>"
+                "art2-cat": "Croissance", "art2-title": "Roadmaps 2026", "art2-desc": "Architectures résilientes pour les marchés volatiles.", "art2-full": "<h3>Vision 2026</h3><p>Stratégie de long terme basée sur la modularité technologique et l'agilité organisationnelle.</p>"
             },
             en: {
                 name: "Marc B. Sauro",
@@ -401,13 +436,13 @@
                 "exp8-title": "Pascal Lanoue Construction", "exp8-role": "Infrastructure Management", "exp8-full": "<p>Complex project management and turnaround.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Technology Consultant", "exp9-full": "<p>Technology integration in vocational training.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
                 
-                // Converted Article : From Canvas to Compass
+                // Converted FULL Article : From Canvas to Compass
                 "art1-cat": "Management & Strategy", 
                 "art1-title": "From Canvas to Compass", 
                 "art1-desc": "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", 
-                "art1-full": "<p>Recently, I had an excellent discussion with a BDC contact. Our exchange quickly converged on a fundamental tool: the Business Model Canvas (BMC).</p><h3>Capturing the Present Moment</h3><p>For a long time, I used this canvas from a very specific angle: as a Sales alignment tool. To make it truly operational, I systematically add three critical blocks: The Pain (the real problem), The Solution (the client's perception), all anchored by Vision and Mission from the start.</p><h3>The Need for a Dynamic Compass</h3><p>However, a business model is never static. As soon as you try to project this canvas through time, the need for a roadmap becomes evident. This led me to the ultimate reference framework: McKinsey & Company's Three Horizons of Growth.</p><h3>Strategic Integration</h3><p>By connecting these tools, you obtain a complete strategic operating system:</p><ul><li><strong>Horizon 1 is Stabilization</strong>: The Canvas defines your core business to secure margins today.</li><li><strong>Horizon 2 is Optimization</strong>: The roadmap dictates how to build emerging opportunities.</li><li><strong>Horizon 3 is Propulsion</strong>: The McKinsey framework forces you to look beyond and fund the disruptive bets necessary for future survival.</li></ul><p>The Canvas secures your base, the roadmap optimizes your growth, and the Three Horizons propel your future.</p>",
+                "art1-full": "<p>Recently, I had an excellent discussion with a BDC contact. Our exchange quickly converged on a fundamental tool: the Business Model Canvas (BMC).</p><p>For a long time, I used this canvas from a very specific angle. I used it primarily as an alignment tool for Sales, to map the value proposition and customer segments at a precise point in time. To make it truly operational, I adapted it by adding three critical blocks: The Pain (the real problem), The Solution (the idea they have of it), and I systematically started the entire exercise with Vision and Mission. It is a powerful structure for capturing the present moment.</p><h3>The Limit of the Static</h3><p>However, a business model is never static. As soon as you attempt to project this canvas through time, the need for a roadmap becomes obvious. You must plan how your distribution channels and revenue streams will evolve over the quarters.</p><h3>Integrating the Three Horizons</h3><p>In seeking to structure this temporal evolution, my reflection inevitably led me to the framework of choice: McKinsey & Company's Three Horizons of Growth. When you connect these tools, you obtain a complete strategic operating system based on three phases:</p><ul><li><strong>Horizon 1 is Stabilization</strong>: The Business Model Canvas defines what your core business does today to secure and defend your current margins.</li><li><strong>Horizon 2 is Optimization</strong>: The roadmap dictates how you will build your emerging opportunities into your next revenue engines.</li><li><strong>Horizon 3 is Propulsion</strong>: The McKinsey framework forces you to look beyond the roadmap and fund the disruptive bets necessary to propel your future survival.</li></ul><h3>Tactical Conclusion</h3><p>Strategic planning is not a collection of isolated tools. The Canvas secures your base, the roadmap optimizes your growth, and the Three Horizons propel your future.</p>",
 
-                "art2-cat": "Growth", "art2-title": "2026 Roadmaps", "art2-desc": "Resilient architectures for volatile markets.", "art2-full": "<h3>2026 Vision</h3><p>Long term planning strategy based on technological modularity.</p>"
+                "art2-cat": "Growth", "art2-title": "2026 Roadmaps", "art2-desc": "Resilient architectures for volatile markets.", "art2-full": "<h3>2026 Vision</h3><p>Long term planning strategy based on technological modularity and organizational agility.</p>"
             }
         };
 
@@ -418,7 +453,7 @@
             const slider = document.getElementById('logo-slider');
             if (!slider) return;
             const items = Array.from(slider.children);
-            // On triple les items pour garantir que le scroll est toujours couvert
+            // On triple les items pour garantir que le scroll est toujours couvert peu importe le sens
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             
@@ -472,11 +507,13 @@
             const oneThird = slider.scrollWidth / 3;
 
             if (direction === 1) {
+                // Si on approche de la fin, saut instantané au tiers central
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                     slider.scrollTo({ left: slider.scrollLeft - oneThird, behavior: 'auto' });
                 }
                 slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
             } else {
+                // Si on approche du début, saut instantané au tiers central
                 if (slider.scrollLeft <= 100) {
                     slider.scrollTo({ left: slider.scrollLeft + oneThird, behavior: 'auto' });
                 }
