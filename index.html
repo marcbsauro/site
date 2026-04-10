@@ -352,8 +352,11 @@
                 "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expérience spécialisé dans la traduction des ambitions des chefs de direction en feuilles de route opérationnelles génératrices de valeur. Actuellement au MBA en conseil en management (C.M.C.) à l'ESG UQAM, je comble le fossé entre l'architecture de solutions et la valeur stratégique pour les entrepreneurs canadiens.",
                 "skill1": "Développement des Affaires et Croissance", "skill2": "Diagnostic Stratégique PME", "skill3": "Conception de Solutions (SOW)", "skill4": "Intelligence Émotionnelle",
                 "exp-label": "Trajectoire Professionnelle", "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif",
-                "exp1-title": "Dassault Systèmes", "exp1-role": "NAMER Sales Lead", "exp1-full": "<p>Stratégie nord-américaine pour les solutions de gestion des processus (BPM).</p>", "exp1-url": "https://www.3ds.com",
-                "exp2-title": "Autodesk", "exp2-role": "Global Knowledge Manager", "exp2-full": "<p>Habilitation technique mondiale et mise en marché stratégique.</p>", "exp2-url": "https://www.autodesk.com",
+                "exp1-title": "Dassault Systèmes", "exp1-role": "3DEXPERIENCE ITEROP (BPM) | Sales & Enablement Lead (NAM & LATAM)", "exp1-full": "<p>Diriger la stratégie de vente nord-américaine et l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM), en orchestrant les initiatives de mise en marché pour stimuler l'adoption des plateformes d'interopérabilité d'entreprise.</p>", "exp1-url": "https://www.3ds.com",
+                "exp2-title": "Autodesk", 
+                "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Spécialiste des ventes techniques", 
+                "exp2-full": "<p>Diriger une organisation mondiale d'habilitation technique, supervisant une structure de leadership multiniveaux pour assurer la cohérence des méthodologies de vente et la réalisation des revenus à travers quatre régions internationales.</p><p>Définir les stratégies mondiales de mise en marché (GTM) pour le portefeuille Conception et Fabrication, faisant le pont entre l'ingénierie produit et l'exécution des ventes pour accélérer l'adoption.</p><p>Exécuter des campagnes de ventes techniques complexes pour des comptes stratégiques, agissant comme liaison technique principale pour stimuler l'adoption de solutions de fabrication avancées.</p>", 
+                "exp2-url": "https://www.autodesk.com",
                 "exp3-title": "Graitec", "exp3-role": "Architecte de Solutions", "exp3-full": "<p>Optimisation des infrastructures Cloud et dépôts de données.</p>", "exp3-url": "https://www.graitec.com",
                 "exp4-title": "Pourvoirie", "exp4-role": "Directeur des Opérations", "exp4-full": "<p>Croissance de 8x du chiffre d'affaires en 3 ans.</p>", "exp4-url": "https://www.ventdelasavane.com",
                 "exp5-title": "SolidXperts", "exp5-role": "Directeur Technique", "exp5-full": "<p>Mise en œuvre PLM et PDM pour le secteur manufacturier.</p>", "exp5-url": "https://www.solidxperts.com",
@@ -388,12 +391,10 @@
 
         let currentLang = 'en';
 
-        // CLONAGE POUR DÉFILEMENT INFINI
         function initInfiniteSlider() {
             const slider = document.getElementById('logo-slider');
             if (!slider) return;
             const items = Array.from(slider.children);
-            // On triple les items pour garantir que le scroll est toujours couvert
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
         }
@@ -434,7 +435,6 @@
             document.body.classList.remove('modal-open');
         }
 
-        // NAVIGATION CIRCULAIRE SANS REWIND
         function scrollSlider(direction) {
             const slider = document.getElementById('logo-slider');
             const firstChild = slider.querySelector('.logo-box');
@@ -444,13 +444,11 @@
             const oneThird = slider.scrollWidth / 3;
 
             if (direction === 1) {
-                // Si on approche de la fin, saut instantané au tiers central
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                     slider.scrollTo({ left: oneThird, behavior: 'auto' });
                 }
                 slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
             } else {
-                // Si on approche du début, saut instantané au tiers central
                 if (slider.scrollLeft <= 100) {
                     slider.scrollTo({ left: oneThird * 2, behavior: 'auto' });
                 }
@@ -470,7 +468,7 @@
         window.onload = function() {
             initInfiniteSlider();
             window.dispatchEvent(new Event('scroll'));
-            toggleLanguage(); // Démarrage automatique
+            toggleLanguage(); 
         };
     </script>
 </body>
