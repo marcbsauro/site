@@ -244,7 +244,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 3rem;
+            margin-top: 2rem;
             border: 2px solid #0077b5;
             color: #0077b5;
             padding: 0.8rem 1.5rem;
@@ -261,7 +261,6 @@
             color: white;
         }
 
-        /* Styles pour le Portrait en Navigation */
         .nav-identity {
             display: flex;
             align-items: center;
@@ -297,7 +296,6 @@
     <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/10">
         <div class="max-w-6xl mx-auto px-8 h-20 flex justify-between items-center">
             <div class="nav-identity">
-                <!-- Portrait circulaire stratégique -->
                 <div class="avatar-container">
                     <img src="portrait.jpg" alt="Marc B. Sauro" class="avatar-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\'text-[10px] font-bold\'>MBS</span>'">
                 </div>
@@ -329,6 +327,7 @@
             <p class="text-lg md:text-2xl text-blue-50 max-w-2xl leading-relaxed opacity-80 font-light" data-key="hero-p"></p>
         </section>
 
+        <!-- Profil Stratégique -->
         <section class="glass p-10 md:p-14 mb-32 scroll-reveal">
             <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-8 opacity-50" data-key="about-label"></h3>
             <div class="accent-border pl-8">
@@ -342,8 +341,27 @@
             </div>
         </section>
 
-        <!-- Trajectoire Professionnelle : Carrousel + CTA LinkedIn -->
-        <section class="mb-32 scroll-reveal">
+        <!-- NOUVELLE SECTION : Axes d'Intervention -->
+        <section class="mb-48 scroll-reveal">
+            <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-14 opacity-50" data-key="services-label"></h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="space-y-4">
+                    <h4 class="text-accent font-bold text-lg" data-key="srv1-title"></h4>
+                    <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv1-desc"></p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-accent font-bold text-lg" data-key="srv2-title"></h4>
+                    <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv2-desc"></p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-accent font-bold text-lg" data-key="srv3-title"></h4>
+                    <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv3-desc"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trajectoire Professionnelle -->
+        <section class="mb-48 scroll-reveal">
             <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-10 opacity-50" data-key="exp-label"></h3>
             <div class="relative group/slider">
                 <button onclick="scrollSlider(-1)" class="scroll-btn -left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
@@ -364,7 +382,7 @@
                     </div>
                     <div class="logo-box snap-center" onclick="openExp('exp4')">
                         <img src="logo4.png" alt="Pourvoirie" class="logo-img">
-                        <span class="company-label">Pourvoirie<br>Vent de la Savane</span>
+                        <span class="company-label">Pourvoirie Vent de la Savane</span>
                     </div>
                     <div class="logo-box snap-center" onclick="openExp('exp5')">
                         <img src="logo5.png" alt="SolidXperts" class="logo-img">
@@ -380,7 +398,7 @@
                     </div>
                     <div class="logo-box snap-center" onclick="openExp('exp8')">
                         <img src="logo8.png" alt="Construction PL" class="logo-img">
-                        <span class="company-label">Construction<br>Pascal Lanoue</span>
+                        <span class="company-label">Construction Pascal Lanoue</span>
                     </div>
                     <div class="logo-box snap-center" onclick="openExp('exp9')">
                         <img src="logo9.png" alt="EMICA" class="logo-img">
@@ -389,20 +407,24 @@
                 </div>
             </div>
             
-            <!-- Lien LinkedIn pour la trajectoire -->
-            <div class="mt-4 text-center">
-                <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social !mt-8" data-key="exp-linkedin">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="inline-block mr-2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    Vérifier mon parcours complet sur LinkedIn
-                </a>
+            <div class="mt-8 text-center">
+                <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" data-key="exp-linkedin"></a>
             </div>
         </section>
 
-        <section id="articles" class="mb-40 scroll-reveal">
+        <!-- Leadership de Pensée -->
+        <section id="articles" class="mb-48 scroll-reveal">
             <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-14 opacity-50" data-key="articles-label"></h3>
             <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Rendu dynamique via renderArticles() -->
             </div>
+        </section>
+
+        <!-- NOUVELLE SECTION : Appel à l'action final -->
+        <section class="glass p-10 md:p-20 mb-48 text-center scroll-reveal">
+            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-8" data-key="cta-title"></h3>
+            <p class="text-blue-100/60 max-w-xl mx-auto mb-12" data-key="cta-desc"></p>
+            <a href="mailto:msauro@gmail.com" class="inline-block bg-accent text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
         </section>
 
         <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10">
@@ -426,8 +448,17 @@
                 "about-label": "Profil Stratégique",
                 "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expérience spécialisé dans la traduction des ambitions des chefs de direction en feuilles de route opérationnelles génératrices de valeur. Actuellement au MBA en conseil en management (C.M.C.) à l'ESG UQAM, je comble le fossé entre l'architecture de solutions et la valeur stratégique pour les entrepreneurs canadiens.",
                 "skill1": "Développement des Affaires et Croissance", "skill2": "Diagnostic Stratégique PME", "skill3": "Conception de Solutions (SOW)", "skill4": "Intelligence Émotionnelle",
-                "exp-label": "Trajectoire Professionnelle", "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif", "discuss-social": "Discuter sur LinkedIn", "exp-linkedin": "Vérifier mon parcours complet sur LinkedIn",
                 
+                "services-label": "Axes d'Intervention",
+                "srv1-title": "Diagnostic Stratégique", "srv1-desc": "Analyse rigoureuse des modèles d'affaires et identification des points de friction opérationnels pour sécuriser la rentabilité immédiate.",
+                "srv2-title": "Architecture de Solutions", "srv2-desc": "Conception de structures SOW (Statement of Work) alignées sur les objectifs de croissance et les impératifs technologiques.",
+                "srv3-title": "Accompagnement Exécutif", "srv3-desc": "Traduction de la vision stratégique en plans d'exécution tactiques pour les leaders de PME en phase de transformation.",
+                
+                "exp-label": "Trajectoire Professionnelle", "exp-linkedin": "Vérifier mon parcours complet sur LinkedIn",
+                "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif", "discuss-social": "Discuter sur LinkedIn",
+                
+                "cta-title": "Prêt à faire un BID ?", "cta-desc": "Discutons de la manière de transformer votre structure de gouvernance pour protéger votre présent tout en propulsant votre avenir.", "cta-btn": "Initier une discussion",
+
                 "exp1-title": "Dassault Systèmes", "exp1-role": "3DEXPERIENCE ITEROP (BPM) | Sales & Enablement Lead (NAM & LATAM)", "exp1-full": "<p>Diriger la stratégie de vente nord-américaine et l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM), en orchestrant les initiatives de mise en marché pour stimuler l'adoption des plateformes d'interopérabilité d'entreprise.</p>", "exp1-url": "https://www.3ds.com",
                 "exp2-title": "Autodesk", "exp2-role": "Technical Sales Knowledge Transfer Manager (Global) | Product & Industry Marketing Manager | Spécialiste des ventes techniques", "exp2-full": "<p>Diriger une organisation mondiale d'habilitation technique, supervisant une structure de leadership multiniveaux pour assurer la cohérence des méthodologies de vente et la réalisation des revenus à travers quatre régions internationales.</p><p>Définir les stratégies mondiales de mise en marché (GTM) pour le portefeuille Conception et Fabrication, faisant le pont entre l'ingénierie produit et l'exécution des ventes pour accélérer l'adoption.</p><p>Exécuter des campagnes de ventes techniques complexes pour des comptes stratégiques, agissant comme liaison technique principale pour stimuler l'adoption de solutions de fabrication avancées.</p>", "exp2-url": "https://www.autodesk.com",
                 "exp3-title": "Graitec", "exp3-role": "Architecte de Solutions", "exp3-full": "<p>Optimisation des infrastructures Cloud et dépôts de données.</p>", "exp3-url": "https://www.graitec.com",
@@ -438,7 +469,6 @@
                 "exp8-title": "Construction Pascal Lanoue", "exp8-role": "Gestion d'Infrastructure", "exp8-full": "<p>Opérations complexes et redressement de projets.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Expert Conseil Technologie", "exp9-full": "<p>Intégration technologique dans le réseau de formation professionnelle.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
 
-                // BIBLIOTHÈQUE D'ARTICLES : FRANÇAIS
                 articles: [
                     {
                         id: "art1",
@@ -454,7 +484,7 @@
                         title: "Bâtissez votre Skunkworks",
                         desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.",
                         socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit (Start-ups, Skunkworks, and Your Next Big Product). Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier.</p><h3>L'Autonomie et la Structure</h3><p>Mais l'autonomie sans structure mène à l'échec. Dans son article pour Fast Company, Matthew E. May rappelle \"The Rules Of Successful Skunk Works Projects\". Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif très coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse.</p><p>Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat et un BAIIA trimestriel. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, les métriques financières entrent violemment en collision. L'équipe de vente ne sait pas le positionner. Le directeur financier refuse de le financer car cela dilue la marge actuelle. La machine corporative rejette naturellement le nouvel organe.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p><h3>Conclusion Stratégique</h3><p>Si vous voulez disrupter votre industrie, bâtissez absolument un Skunkworks. Mais pour que ces inventions survivent à la machine corporative, assurez-vous que votre propre équipe prenne la première bouchée.</p>"
+                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit. Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier.</p><h3>L'Autonomie et la Structure</h3><p>Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif très coûteux. Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse.</p><p>Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat et un BAIIA trimestriel. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, les métriques financières entrent violemment en collision. L'équipe de vente ne sait pas le positionner. Le directeur financier refuse de le financer car cela dilue la marge actuelle. La machine corporative rejette naturellement le nouvel organe.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p><h3>Conclusion Stratégique</h3><p>Si vous voulez disrupter votre industrie, bâtissez absolument un Skunkworks. Mais pour que ces inventions survivent à la machine corporative, assurez-vous que votre propre équipe prenne la première bouchée.</p>"
                     },
                     {
                         id: "art3",
@@ -462,15 +492,15 @@
                         title: "Le Pari du 1 %",
                         desc: "Gérer le Capital Impatient en utilisant la règle du 99/1 pour financer Adam Smith sans effrayer Milton Friedman.",
                         socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier, ce qui signifie qu'ils refusent fondamentalement de placer des capitaux dans un projet parallèle qui pourrait ne pas être rentable avant trois ou quatre ans. Mais une fois le choc initial passé, je leur ai dit autre chose. Ce n'est absolument pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI, le BAIIA (EBITDA) et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. Lorsque vous appliquez les métriques de Friedman à l'Avant-Poste de Smith, l'Avant-Poste se fait écraser. Si vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet.</p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman. Vous promettez aux marchés que cette Forteresse sera gérée impitoyablement. Ensuite, vous isolez 1 % pour Smith. Mais vous n'appelez pas une Option d'achat asymétrique (Asymmetric Call Option). Le risque annuel de perte est plafonné à 1 %. Mais le potentiel de gain est asymétrique. Si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street ha cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement à Bay Street/Wall Street à quel jeu vous jouez.</p>"
+                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier, ce qui signifie qu'ils refusent fondamentalement de placer des capitaux dans un projet parallèle qui pourrait ne pas être rentable avant trois ou quatre ans. Mais une fois le choc initial passé, je leur ai dit autre chose. Ce n'est absolument pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI, le BAIIA (EBITDA) et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. Lorsque vous appliquez les métriques de Friedman à l'Avant-Poste de Smith, l'Avant-Poste se fait écraser. Si vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet. </p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman. Vous promettez aux marchés que cette Forteresse sera gérée impitoyablement. Ensuite, vous isolez 1 % pour Smith. Mais vous n'appelez pas une Option d'achat asymétrique (Asymmetric Call Option). Le risque annuel de perte est plafonné à 1 %. Mais le potentiel de gain est asymétrique. Si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street ha cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement à Bay Street/Wall Street à quel jeu vous jouez.</p>"
                     },
                     {
                         id: "art4",
                         cat: "Innovation & Gouvernance",
                         title: "Bâtir des Ponts, pas seulement des Labos",
                         desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas : l'intégration est la clé du succès stratégique.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-glv1c/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Dans la Partie 1 de cette série, j'ai critiqué une entreprise de machines à café pour avoir lancé de la \"Nouveauté\" (un réservoir d'eau rotatif) en l'appelant Innovation. Je vous ai dit que la Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Mais la maison-mère a vu juste. Et ils ne l'ont pas fait en construisant une meilleure machine. Ils l'ont fait en construisant un meilleur Modèle de Gouvernance.</p><h3>L'Origine de la Forteresse</h3><p>Pour comprendre Nespresso, il faut d'abord comprendre la puissance brute de Nescafé. L'histoire commence avec Nestlé résolvant une crise de surplus de grains au Brésil en 1929. Max Morgenthaler a mis sept ans pour trouver la solution. En 1986, Nescafé était la Forteresse : efficace, massif et une véritable planche à billets.</p><h3>Le Paradoxe Nespresso</h3><p>Puis, Eric Favre a inventé Nespresso. Techniquement brillant, mais stratégiquement un désastre pour la Forteresse : c'était cher, nécessitait une machine et cannibalisait les pots. Si Nestlé l'avait traité comme un projet normal, la Forteresse l'aurait tué. C'est là que la plupart des entreprises échouent : elles essaient d'être « Ambidextres ». Vous ne pouvez pas demander à un poisson de grimper à un arbre.</p><h3>Le Pont Stratégique</h3><p>Nestlé n'a pas essayé d'intégrer Nespresso immédiatement. Ils l'ont exilé en créant une entité légale distincte : l'Avant-Poste. Mais l'isolement est facile. L'intégration, c'est la guerre. Nespresso a réussi parce que Nestlé a su quand construire le Pont. Une fois le modèle prouvé, Nestlé a déclenché toute la puissance de sa chaîne d'approvisionnement. Ils ont utilisé leur pouvoir d'achat pour forcer le marché à exister.</p><h3>Conclusion BID</h3><p>Le problème n'est pas le manque d'idées, mais le manque de Pont. Vous essayez de gérer le Futur avec les métriques du Passé. La Forteresse fonctionne à l'Efficacité. L'Avant-Poste fonctionne à la Découverte. Le Pont fonctionne à la Traduction. Il protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au « Kill Switch ».</p><h3>Le Pari Final</h3><p>Si vous pouvez apprendre à construire le Pont, si vous pouvez protéger l'Avant-Poste sans abandonner la Forteresse, vous ne gagnerez pas seulement la main. Vous maîtriserez le jeu.</p>"
+                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
+                        full: "<p>Dans la Partie 1 de cette série, j'ai critiqué une entreprise de machines à café pour avoir lancé de la \"Nouveauté\" (un réservoir d'eau rotatif) en l'appelant Innovation. Je vous ai dit que la Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Mais la maison-mère a vu juste. Et ils ne l'ont pas fait en construisant une meilleure machine. Ils l'ont fait en construisant un meilleur Modèle de Gouvernance.</p><h3>L'Origine de la Forteresse</h3><p>Pour comprendre Nespresso, il faut d'abord comprendre la puissance brute de Nescafé. L'histoire commence avec Nestlé résolvant une crise de surplus de grains au Brésil en 1929. Max Morgenthaler a mis sept ans pour trouver la solution. En 1986, Nescafé était la Forteresse : efficace, massif et une véritable planche à billets.</p><h3>Le Paradoxe Nespresso</h3><p>Puis, Eric Favre a inventé Nespresso. Techniquement brillant, mais stratégiquement un désastre pour la Forteresse : c'était cher, nécessitait une machine et cannibalisait les pots. Si Nestlé l'avait traité comme un projet normal, la Forteresse l'aurait tué. C'est là que la plupart des entreprises échouent : elles essaient d'être « Ambidextres ». Vous ne pouvez pas demander à un poisson de grimper à un arbre.</p><h3>Le Pont Stratégique</h3><p>Nestlé n'a pas essayé d'intégrer Nespresso immédiatement. Ils l'ont exilé en créant une entité légale distincte : l'Avant-Poste. Mais l'isolement est facile. L'intégration, c'est la guerre. Nespresso a réussi parce que Nestlé a su quand construire le Pont. Une fois le modèle prouvé, Nestlé a déclenché toute la puissance de sa chaîne d'approvisionnement. Ils ont utilisé leur pouvoir d'achat pour forcer le marché à exister. Ils n'ont pas laissé la Forteresse tuer l'idée : ils ont attendu que l'idée devienne un géant, puis ils ont laissé le géant diriger la Forteresse.</p><h3>Conclusion BID</h3><p>Le problème n'est pas le manque d'idées, mais le manque de Pont. Vous essayez de gérer le Futur avec les métriques du Passé. La Forteresse fonctionne à l'Efficacité. L'Avant-Poste fonctionne à la Découverte. Le Pont fonctionne à la Traduction. Il protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au « Kill Switch ».</p>"
                     },
                     {
                         id: "art5",
@@ -505,19 +535,17 @@
                 "about-label": "Strategic Profile",
                 "summary": "Bilingual consulting leader with over 20 years of experience. MBA candidate at ESG UQAM, bridging the gap between solution architecture and strategic business value.",
                 "skill1": "Business Development & Growth", "skill2": "Strategic SME Diagnosis", "skill3": "Solution Design (SOW)", "skill4": "Emotional Intelligence",
-                "exp-label": "Professional Trajectory", "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website", "discuss-social": "Discuss on LinkedIn", "exp-linkedin": "View my complete trajectory on LinkedIn",
                 
-                "exp1-title": "Dassault Systèmes", "exp1-role": "NAMER Sales Lead", "exp1-full": "<p>North American strategy for BPM solutions.</p>", "exp1-url": "https://www.3ds.com",
-                "exp2-title": "Autodesk", "exp2-role": "Global Knowledge Manager", "exp2-full": "<p>Commanded a global technical enablement organization, overseeing a tiered leadership structure.</p><p>Defined global go-to-market strategies for the Design & Manufacturing portfolio.</p><p>Executed complex technical sales campaigns for strategic accounts.</p>", "exp2-url": "https://www.autodesk.com",
-                "exp3-title": "Graitec", "exp3-role": "Solutions Architect", "exp3-full": "<p>Cloud infrastructure and data repository optimization.</p>", "exp3-url": "https://www.graitec.com",
-                "exp4-title": "Vent de la Savane Outfitters", "exp4-role": "Operations Director", "exp4-full": "<p>8x revenue growth in 3 years through total operational overhaul.</p>", "exp4-url": "https://www.ventdelasavane.com",
-                "exp5-title": "SolidXperts", "exp5-role": "Technical Director", "exp5-full": "<p>PLM and PDM implementation lead.</p>", "exp5-url": "https://www.solidxperts.com",
-                "exp6-title": "Bolloré", "exp6-role": "Logistics Project Manager", "exp6-full": "<p>International operational flow optimization.</p>", "exp6-url": "https://www.bollore.com",
-                "exp7-title": "Mecachrome", "exp7-role": "Aerospace Engineering", "exp7-full": "<p>Precision machining technical support.</p>", "exp7-url": "https://www.mecachrome.com",
-                "exp8-title": "Pascal Lanoue Construction", "exp8-role": "Infrastructure Management", "exp8-full": "<p>Complex project management and turnaround.</p>", "exp8-url": "#",
-                "exp9-title": "EMICA", "exp9-role": "Technology Consultant", "exp9-full": "<p>Technology integration in vocational training.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
+                "services-label": "Core Expertise",
+                "srv1-title": "Strategic Diagnosis", "srv1-desc": "Rigorous analysis of business models and identification of operational friction points to secure immediate profitability.",
+                "srv2-title": "Solution Architecture", "srv2-desc": "Design of Statement of Work (SOW) structures aligned with growth objectives and technological imperatives.",
+                "srv3-title": "Executive Advisory", "srv3-desc": "Translating strategic vision into tactical execution plans for SME leaders in transformation phases.",
+                
+                "exp-label": "Professional Trajectory", "exp-linkedin": "View my complete trajectory on LinkedIn",
+                "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website", "discuss-social": "Discuss on LinkedIn",
+                
+                "cta-title": "Ready to make a BID?", "cta-desc": "Let's discuss how to transform your governance structure to protect your present while propelling your future.", "cta-btn": "Initiate a discussion",
 
-                // ARTICLE LIBRARY : ENGLISH
                 articles: [
                     {
                         id: "art1",
@@ -581,7 +609,6 @@
 
         let currentLang = 'en';
 
-        // MOTEUR DE GÉNÉRATION DYNAMIQUE DES ARTICLES
         function renderArticles() {
             const grid = document.getElementById('articles-grid');
             const data = translations[currentLang].articles;
@@ -609,11 +636,8 @@
             const slider = document.getElementById('logo-slider');
             if (!slider) return;
             const items = Array.from(slider.children);
-            // On triple les items pour garantir que le scroll est toujours couvert peu importe le sens
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            
-            // Position initiale au centre
             const oneThird = slider.scrollWidth / 3;
             slider.scrollLeft = oneThird;
         }
@@ -638,7 +662,7 @@
             document.getElementById('reader-body').innerHTML = translations[currentLang][id + '-full'];
             const url = translations[currentLang][id + '-url'];
             const footer = document.getElementById('reader-footer');
-            footer.innerHTML = (url && url !== '#') ? `<a href="${url}" target="_blank" class="btn-visit">${translations[currentLang]['visit-site']}</a>` : '';
+            footer.innerHTML = (url && url !== '#') ? `<a href="${url}" target="_blank" class="btn-social !border-bdc-blue !text-bdc-blue hover:!bg-bdc-blue hover:!text-white">${translations[currentLang]['visit-site']}</a>` : '';
             overlay.style.display = 'block';
             document.body.classList.add('modal-open');
         }
@@ -682,13 +706,11 @@
             const oneThird = slider.scrollWidth / 3;
 
             if (direction === 1) {
-                // Si on approche de la fin, saut instantané au tiers central
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                     slider.scrollTo({ left: slider.scrollLeft - oneThird, behavior: 'auto' });
                 }
                 slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
             } else {
-                // Si on approche du début, saut instantané au tiers central
                 if (slider.scrollLeft <= 100) {
                     slider.scrollTo({ left: slider.scrollLeft + oneThird, behavior: 'auto' });
                 }
