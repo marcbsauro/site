@@ -42,8 +42,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.1s ease-out;
-            /* Filtre ajusté : brightness augmenté de 0.45 à 0.60 pour plus de clarté */
-            filter: brightness(0.60) contrast(1.05) saturate(0.9) hue-rotate(190deg);
+            /* Correction 1: Luminosité augmentée à 0.75 pour plus de lisibilité */
+            filter: brightness(0.75) contrast(1.05) saturate(0.9) hue-rotate(190deg);
         }
 
         .overlay {
@@ -96,9 +96,10 @@
             gap: 0.75rem;
             min-height: 11rem;
             width: 14rem;
-            background: rgba(255, 255, 255, 0.04);
+            /* Correction 2: Opacité augmentée pour détacher la carte du fond sombre */
+            background: rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             flex-shrink: 0;
             padding: 1.5rem 1rem;
             border-radius: 0.25rem;
@@ -106,7 +107,7 @@
         }
 
         .logo-box:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.15);
             border-color: var(--bdc-red);
             transform: translateY(-5px);
         }
@@ -117,7 +118,8 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            opacity: 0.6;
+            /* Correction 3: Opacité augmentée pour le texte */
+            opacity: 0.9;
             transition: all 0.3s ease;
             text-align: center;
             line-height: 1.4;
@@ -132,18 +134,19 @@
             max-height: 60px;
             max-width: 100%;
             object-fit: contain;
-            filter: grayscale(1) opacity(0.4);
+            /* Correction 4: On force la luminosité des logos pour les rendre visibles sur le noir */
+            filter: grayscale(1) brightness(3) opacity(0.8);
             transition: all 0.6s ease;
         }
 
         .logo-box:hover .logo-img {
-            filter: grayscale(0) opacity(1);
+            filter: grayscale(0) brightness(1) opacity(1);
         }
 
         .scroll-btn {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             width: 50px;
             height: 50px;
             display: flex;
@@ -161,7 +164,7 @@
 
         .scroll-btn:hover {
             background: var(--bdc-red);
-            box-shadow: 0 0 20px rgba(238, 49, 36, 0.3);
+            box-shadow: 0 0 20px rgba(238, 49, 36, 0.4);
         }
 
         #reader-overlay {
@@ -362,8 +365,7 @@
         <section id="articles" class="mb-40 scroll-reveal">
             <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-200 mb-14 opacity-50" data-key="articles-label"></h3>
             <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Rendu dynamique via renderArticles() -->
-            </div>
+                </div>
         </section>
 
         <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10">
@@ -399,7 +401,6 @@
                 "exp8-title": "Construction Pascal Lanoue", "exp8-role": "Gestion d'Infrastructure", "exp8-full": "<p>Opérations complexes et redressement de projets.</p>", "exp8-url": "#",
                 "exp9-title": "EMICA", "exp9-role": "Expert Conseil Technologie", "exp9-full": "<p>Intégration technologique dans le réseau de formation professionnelle.</p>", "exp9-url": "https://emica.cssdm.gouv.qc.ca",
 
-                // BIBLIOTHÈQUE D'ARTICLES : FRANÇAIS
                 articles: [
                     {
                         id: "art1",
@@ -407,7 +408,7 @@
                         title: "Du Canevas à la Boussole",
                         desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.",
                         socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/",
-                        full: "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis : un outil d'alignement pour les Ventes, afin de cartographier la proposition de valeur et les segments de clientèle à un instant précis. Pour le rendre véritablement opérationnel, j'y ajoute systématiquement trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p><h3>La Limite du Statique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p><h3>L'Intégration des Trois Horizons</h3><p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company. Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li></ul><h3>Conclusion Tactique</h3><p>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>"
+                        full: "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis : un outil d'alignement pour les Ventes. Pour le rendre véritablement opérationnel, j'y ajoute systématiquement trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p><h3>La Limite du Statique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p><h3>L'Intégration des Trois Horizons</h3><p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company. Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li></ul><h3>Conclusion Tactique</h3><p>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>"
                     },
                     {
                         id: "art2",
@@ -423,15 +424,15 @@
                         title: "Le Pari du 1 %",
                         desc: "Gérer le Capital Impatient en utilisant la règle du 99/1 pour financer Adam Smith sans effrayer Milton Friedman.",
                         socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier, ce qui signifie qu'ils refusent fondamentalement de placer des capitaux dans un projet parallèle qui pourrait ne pas être rentable avant trois ou quatre ans. Mais une fois le choc initial passé, je leur ai dit autre chose. Ce n'est absolument pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. Bay Street/Wall Street ha interprété cela comme signifiant les profits d'aujourd'hui. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI, le BAIIA (EBITDA) et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. Lorsque vous appliquez les métriques de Friedman à l'Avant-Poste de Smith, l'Avant-Poste se fait écraser. Si vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet.</p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman. Vous promettez aux marchés que cette Forteresse sera gérée impitoyablement. Ensuite, vous isolez 1 % pour Smith. Mais vous n'appelez pas une Option d'achat asymétrique (Asymmetric Call Option). Le risque annuel de perte est plafonné à 1 %. Mais le potentiel de gain est asymétrique. Si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street a cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement à Bay Street/Wall Street à quel jeu vous jouez.</p>"
+                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier, ce qui signifie qu'ils refusent fondamentalement de placer des capitaux dans un projet parallèle qui pourrait ne pas être rentable avant trois ou quatre ans. Mais une fois le choc initial passé, je leur ai dit autre chose. Ce n'est absolument pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI, le BAIIA (EBITDA) et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. Lorsque vous appliquez les métriques de Friedman à l'Avant-Poste de Smith, l'Avant-Poste se fait écraser. Si vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet. </p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman. Vous promettez aux marchés que cette Forteresse sera gérée impitoyablement. Ensuite, vous isolez 1 % pour Smith. Mais vous ne l'appelez pas un \"Lab d'Innovation\". Vous l'appelez une Option d'achat asymétrique (Asymmetric Call Option). Le risque annuel de perte est plafonné à 1 %. Mais le potentiel de gain est asymétrique. Si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street a cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement à Bay Street/Wall Street à quel jeu vous jouez.</p>"
                     },
                     {
                         id: "art4",
                         cat: "Innovation & Gouvernance",
                         title: "Bâtir des Ponts, pas seulement des Labos",
                         desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas : l'intégration est la clé du succès stratégique.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-glv1c/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Dans la Partie 1 de cette série, j'ai critiqué une entreprise de machines à café pour avoir lancé de la \"Nouveauté\" (un réservoir d'eau rotatif) en l'appelant Innovation. Je vous ai dit que la Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Mais la maison-mère a vu juste. Et ils ne l'ont pas fait en construisant une meilleure machine. Ils l'ont fait en construisant un meilleur Modèle de Gouvernance.</p><h3>L'Origine de la Forteresse</h3><p>Pour comprendre Nespresso, il faut d'abord comprendre la puissance brute de Nescafé. L'histoire commence avec Nestlé résolvant une crise de surplus de grains au Brésil en 1929. Max Morgenthaler a mis sept ans pour trouver la solution. En 1986, Nescafé était la Forteresse : efficace, massif et une véritable planche à billets.</p><h3>Le Paradoxe Nespresso</h3><p>Puis, Eric Favre a inventé Nespresso. Techniquement brillant, mais stratégiquement un désastre pour la Forteresse : c'était cher, nécessitait une machine et cannibalisait les pots. Si Nestlé l'avait traité comme un projet normal, la Forteresse l'aurait tué. C'est là que la plupart des entreprises échouent : elles essaient d'être « Ambidextres ». Vous ne pouvez pas demander à un poisson de grimper à un arbre.</p><h3>Le Pont Stratégique</h3><p>Nestlé n'a pas essayé d'intégrer Nespresso immédiatement. Ils l'ont exilé en créant une entité légale distincte : l'Avant-Poste. Mais l'isolement est facile. L'intégration, c'est la guerre. Nespresso a réussi parce que Nestlé a su quand construire le Pont. Une fois le modèle prouvé, Nestlé a déclenché toute la puissance de sa chaîne d'approvisionnement. Ils ont utilisé leur pouvoir d'achat pour forcer le marché à exister.</p><h3>Conclusion BID</h3><p>Le problème n'est pas le manque d'idées, mais le manque de Pont. Vous essayez de gérer le Futur avec les métriques du Passé. La Forteresse fonctionne à l'Efficacité. L'Avant-Poste fonctionne à la Découverte. Le Pont fonctionne à la Traduction. Il protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au « Kill Switch ».</p>"
+                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
+                        full: "<p>Dans la Partie 1 de cette série, j'ai critiqué une entreprise de machines à café pour avoir lancé de la \"Nouveauté\" (un réservoir d'eau rotatif) en l'appelant Innovation. Je vous ai dit que la Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Mais la maison-mère a vu juste. Et ils ne l'ont pas fait en construisant une meilleure machine. Ils l'ont fait en construisant un meilleur Modèle de Gouvernance.</p><h3>L'Origine de la Forteresse</h3><p>Pour comprendre Nespresso, il faut d'abord comprendre la puissance brute de Nescafé. L'histoire commence avec Nestlé résolvant une crise de surplus de grains au Brésil en 1929. Max Morgenthaler a mis sept ans pour trouver la solution. En 1986, Nescafé était la Forteresse : efficace, massif et une véritable planche à billets.</p><h3>Le Paradoxe Nespresso</h3><p>Puis, Eric Favre a inventé Nespresso. Techniquement brillant, mais stratégiquement un désastre pour la Forteresse : c'était cher, nécessitait une machine et cannibalisait les pots. Si Nestlé l'avait traité comme un projet normal, la Forteresse l'aurait tué. C'est là que la plupart des entreprises échouent : elles essaient d'être « Ambidextres ». Vous ne pouvez pas demander à un poisson de grimper à un arbre.</p><h3>Le Pont Stratégique</h3><p>Nestlé n'a pas essayé d'intégrer Nespresso immédiatement. Ils l'ont exilé en créant une entité légale distincte : l'Avant-Poste. Mais l'isolement est facile. L'intégration, c'est la guerre. Nespresso a réussi parce que Nestlé a su quand construire le Pont. Une fois le modèle prouvé, Nestlé a déclenché toute la puissance de sa chaîne d'approvisionnement. Ils ont utilisé leur pouvoir d'achat pour forcer le marché à exister.</p><h3>Conclusion BID</h3><p>Le problème n'est pas le manque d'idées, mais le manque de Pont. Vous essayez de gérer le Futur avec les métriques du Passé. La Forteresse fonctionne à l'Efficacité. L'Avant-Poste fonctionne à la Découverte. Le Pont fonctionne à la Traduction. Il protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au « Kill Switch ».</p><h3>Le Pari Final</h3><p>Si vous pouvez apprendre à construire le Pont, si vous pouvez protéger l'Avant-Poste sans abandonner la Forteresse, vous ne gagnerez pas seulement la main. Vous maîtriserez le jeu.</p>"
                     },
                     {
                         id: "art5",
@@ -439,7 +440,7 @@
                         title: "Pourquoi le CFO tue vos meilleures idées",
                         desc: "Le problème du Vilain Petit Canard en stratégie corporative : comment la gouvernance de la Forteresse étouffe l'innovation.",
                         socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Le problème du \"Vilain Petit Canard\" en stratégie corporative.</p><p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé quelque chose qui m'a ramené 25 ans en arrière. Presque tous les athlètes sur le parcours utilisaient des skis à fixations centrées (center-mounted). Pour le spectateur moyen, ce n'est que de l'équipement. Pour un stratège, c'est la fin d'une guerre qui a commencé dans un garage du Vermont en 1995.</p><p>À la fin des années 90, l'industrie du ski traversait une crise d'identité. Salomon, le géant de l'industrie, a réagi comme une véritable Forteresse. Ils ont pris leur ski de course le plus vendu, l'ont peint rapidement en jaune \"cool\", et ont courbé le tail du ski vers le haut. C'était une solution de \"Nouveauté\". C'était sûr. C'était efficace. Et c'était tellement ennuyant.</p><p>La raison ? Line Skis, un minuscule startup fondé par Jason Levinthal, a réagi comme un Avant-Poste. Il a redimensionné un snowboard. Ils ont complètement détruit le ski traditionnel pour correspondre au comportement des nouveaux riders. Salomon ne pouvait pas faire ça. Si un ingénieur de Salomon avait proposé cela en 1997, la structure de gouvernance l'aurait tué immédiatement. Salomon avait le capital, les usines et le talent. Mais ils avaient la mauvaise Gouvernance.</p><h3>Le Problème du Vilain Petit Canard</h3><p>C'est ce que j'appelle le Fossé de Gouvernance. Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse : ROI, EBITDA et Scale. Lorsque vous appliquez ces métriques à une idée d' \"Avant-Poste\", l'idée ressemble toujours à un Vilain Petit Canard. Elle est trop petite, trop risquée et inefficace comparée au cœur de métier. Alors, le Directeur Financier la tue. Intel a fait cela en 2006 en refusant le contrat pour la puce iPhone car le fichier Excel a dit \"Non\".</p><h3>Le Kill Switch</h3><p>Nous avons construit une machine corporative conçue pour traquer et détruire la variance. Nous appelons cela \"Six Sigma\". Nous appelons cela \"Optimisation\". Mais l'innovation est diversité. Si vous optimisez votre entreprise pour l'efficacité, vous l'optimisez par inadvertance pour la stérilité. La solution n'est pas de renvoyer votre Directeur Financier, mais de changer les règles du pari via un Double Système d'Exploitation.</p><h3>Conclusion</h3><p>Si vous jugez un poisson par sa capacité à grimper à un arbre, il passera toute sa vie à croire qu'il est stupide. Vos équipes ont les idées. La question est : Votre structure de gouvernance les laissera-t-elle lancer le produit ? Ou les forcerez-vous à les peindre jaune \"cool\" ?</p>"
+                        full: "<p>Le problème du \"Vilain Petit Canard\" en stratégie corporative.</p><p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé quelque chose qui m'a ramené 25 ans en arrière. Presque tous les athlètes sur le parcours utilisaient des skis à fixations centrées (center-mounted). Pour le spectateur moyen, ce n'est que de l'équipement. Pour un stratège, c'est la fin d'une guerre qui a commencé dans un garage du Vermont en 1995.</p><p>À la fin des années 90, l'industrie du ski traversait une crise d'identité. Salomon, le géant de l'industrie, a réagi comme une véritable Forteresse. Ils ont pris leur ski de course le plus vendu, l'ont peint rapidement en jaune \"cool\", et ont courbé le tail du ski vers le haut. C'était une solution de \"Nouveauté\". C'était sûr. C'était efficace. Et c'était tellement ennuyant.</p><p>La raison ? Line Skis, un minuscule startup fondé par Jason Levinthal, a réagi comme un Avant-Poste. Il a redimensionné un snowboard. Ils ont complètement détruit le ski traditionnel pour correspondre au comportement des nouveaux riders. Salomon ne pouvait pas faire ça. Si un ingénieur de Salomon avait proposé cela en 1997, la structure de gouvernance l'aurait tué immédiatement. Salomon avait le capital, les usines et le talent. Mais ils avaient la mauvaise Gouvernance.</p><h3>Le Problème du Vilain Petit Canard</h3><p>C'est ce que j'appelle le Fossé de Gouvernance. Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse : ROI, EBITDA et Scale. Lorsque vous appliquez ces métriques à une idée d' \"Avant-Poste\", l'idée ressemble toujours à un Vilain Petit Canard. Elle est trop petite, trop risquée et inefficace comparée au cœur de métier. Alors, le Directeur Financier la tue. Intel a fait cela en 2006 en refusant le contrat pour la puce iPhone car le fichier Excel a dit \"Non\".</p><h3>Le Kill Switch</h3><p>Nous avons construit une machine corporative conçue pour traquer et détruire la variance. Nous appelons cela \"Six Sigma\". Mais l'innovation est diversité. Si vous optimisez votre entreprise pour l'efficacité, vous l'optimisez par inadvertance pour la stérilité. La solution n'est pas de renvoyer votre Directeur Financier, mais de changer les règles du pari via un Double Système d'Exploitation.</p><h3>Conclusion</h3><p>Si vous jugez un poisson par sa capacité à grimper à un arbre, il passera toute sa vie à croire qu'il est stupide. Vos équipes ont les idées. La question est : Votre structure de gouvernance les laissera-t-elle lancer le produit ? Ou les forcerez-vous à les peindre jaune \"cool\" ?</p>"
                     },
                     {
                         id: "art6",
@@ -515,10 +516,10 @@
                     {
                         id: "art6",
                         cat: "Strategy & Leadership",
-                        title: "Strategy is a Bet, Not a Science",
+                        title: "Strategy is a Wager, Not a Science",
                         desc: "The illusion of scientific certainty vs the reality of the corporate casino: why most leaders are betting on a game that no longer exists.",
                         socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Board meeting agendas are filled with words like \"Optimization\" and \"Forecasting.\" These words are designed to sound scientific, suggesting that precise manipulation will produce predicted results. But it is an illusion. The modern corporation is not a lab; it is a casino.</p><p>Every financial year, you must come to the table with your chips (revenue, talent, time) and place a bet. This bet is your BID. The problem is not that established companies refuse to bet; it is that they are betting on a game that no longer exists. Meanwhile, the startup next door is All-In.</p><h3>The Bet: Red vs. Black</h3><p>In this casino, there are two colors. Red is the Core Business: the Fortress. You bet on efficiency and current customers. Black is Innovation: the Outpost. You bet on discovery and an unborn future. Standard corporate strategy is to bet 99% on Red and cover slightly with an \"Innovation Lab.\" This works... until the wheel stops turning.</p><h3>The Twin Cemeteries</h3><p>Companies die in two ways:</p><ul><li><strong>1. Death by Order (The BlackBerry Trap)</strong> : BlackBerry was the ultimate Fortress. They optimized for the present while the world shifted. They optimized themselves to extinction.</li><li><strong>2. Death by Chaos (The Jawbone Trap)</strong> : Jawbone was a pure \"Black\" bettor. They had no Fortress, no operational discipline. They innovated themselves into bankruptcy.</li></ul><h3>The BID: The Central Paradox</h3><p>To survive this quarter, you must be BlackBerry. To survive the decade, you must be the Anti-BlackBerry. Efficiency kills Discovery, and Discovery wastes Efficiency. The solution is not to mix them, but to recognize the gap and build the bridge. The wheel is turning. It is time to make a BID.</p>"
+                        full: "<p>Board meeting agendas are filled with words like \"Optimization\" and \"Forecasting.\" These words are designed to sound scientific, suggesting that precise manipulation will produce predicted results. But it is an illusion. The modern corporation is not a lab; it is a casino.</p><p>Every financial year, you must come to the table with your chips (revenue, talent, time) and place a bet. This bet is your BID. The problem is not that established companies refuse to bet; it is that they are betting on a game that no longer exists. Meanwhile, the startup next door is All-In.</p><h3>The Bet: Red vs. Black</h3><p>In this casino, there are two colors. Red is the Core Business: the Fortress. You bet on efficiency and current customers. Black is Innovation: the Outpost. You bet on discovery and an unborn future. Standard corporate strategy is to bet 99% on Red and cover slightly with an \"Innovation Lab.\" This works... until the wheel stops turning.</p><h3>The Twin Cemeteries</h3><p>Companies die in two ways:</p><ul><li><strong>1. Death by Order (The BlackBerry Trap)</strong>: BlackBerry was the ultimate Fortress. They optimized for the present while the world shifted. They optimized themselves to extinction.</li><li><strong>2. Death by Chaos (The Jawbone Trap)</strong> : Jawbone was a pure \"Black\" bettor. They had no Fortress, no operational discipline. They innovated themselves into bankruptcy.</li></ul><h3>The BID: The Central Paradox</h3><p>To survive this quarter, you must be BlackBerry. To survive the decade, you must be the Anti-BlackBerry. Efficiency kills Discovery, and Discovery wastes Efficiency. The solution is not to mix them, but to recognize the gap and build the bridge. The wheel is turning. It is time to make a BID.</p>"
                     }
                 ]
             }
@@ -526,6 +527,7 @@
 
         let currentLang = 'en';
 
+        // MOTEUR DE GÉNÉRATION DYNAMIQUE DES ARTICLES
         function renderArticles() {
             const grid = document.getElementById('articles-grid');
             const data = translations[currentLang].articles;
@@ -553,8 +555,11 @@
             const slider = document.getElementById('logo-slider');
             if (!slider) return;
             const items = Array.from(slider.children);
+            // On triple les items pour garantir que le scroll est toujours couvert peu importe le sens
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
+            
+            // Position initiale au centre
             const oneThird = slider.scrollWidth / 3;
             slider.scrollLeft = oneThird;
         }
@@ -618,15 +623,18 @@
             const slider = document.getElementById('logo-slider');
             const firstChild = slider.querySelector('.logo-box');
             if (!firstChild) return;
+
             const cardWidth = firstChild.offsetWidth + 24;
             const oneThird = slider.scrollWidth / 3;
 
             if (direction === 1) {
+                // Si on approche de la fin, saut instantané au tiers central
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                     slider.scrollTo({ left: slider.scrollLeft - oneThird, behavior: 'auto' });
                 }
                 slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
             } else {
+                // Si on approche du début, saut instantané au tiers central
                 if (slider.scrollLeft <= 100) {
                     slider.scrollTo({ left: slider.scrollLeft + oneThird, behavior: 'auto' });
                 }
