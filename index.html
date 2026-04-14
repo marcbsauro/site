@@ -68,15 +68,13 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .accent-border {
+        /* Signature Visuelle Stratégique : La ligne rouge à gauche */
+        .accent-line-title {
             border-left: 4px solid var(--bdc-red);
-        }
-
-        /* Correction 1: Tous les éléments text-accent (rouges) passent en Bold avec ombre portée */
-        .text-accent {
-            color: var(--bdc-red);
+            padding-left: 1.5rem;
+            color: var(--bdc-white);
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         section {
@@ -289,7 +287,6 @@
             object-fit: cover;
         }
 
-        /* Correction 2: Libellés de sections (small text) forcés en Gras et plus lisibles */
         .section-label {
             font-size: 10px;
             font-weight: 800;
@@ -315,7 +312,7 @@
                 <div class="avatar-container">
                     <img src="portrait.jpg" alt="Marc B. Sauro" class="avatar-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\'text-[10px] font-bold\'>MBS</span>'">
                 </div>
-                <div class="text-xl font-bold tracking-tighter">MBS<span class="text-accent">.</span></div>
+                <div class="text-xl font-bold tracking-tighter">MBS<span class="text-accent !shadow-none">.</span></div>
             </div>
             <div class="flex items-center gap-8">
                 <button id="lang-toggle" onclick="toggleLanguage()" class="text-xs font-bold tracking-widest border border-white/15 px-5 py-2 rounded-sm hover:bg-white hover:text-black transition-all">
@@ -337,23 +334,25 @@
 
     <main class="relative z-10 max-w-4xl mx-auto px-8 pt-48 pb-24">
         
-        <!-- Section Hero -->
+        <!-- Section Hero : Blanc Gras avec Ligne Rouge -->
         <section id="hero" class="mb-48 visible">
-            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]" data-key="name" style="text-shadow: 0 4px 15px rgba(0,0,0,0.6);"></h1>
-            <h2 class="text-xl md:text-2xl font-bold text-accent tracking-[0.12em] uppercase" data-key="title"></h2>
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]" data-key="name" style="text-shadow: 0 4px 15px rgba(0,0,0,0.6);"></h1>
+            <div class="accent-line-title">
+                <h2 class="text-xl md:text-2xl tracking-[0.12em] uppercase" data-key="title"></h2>
+            </div>
             <p class="text-lg md:text-2xl text-blue-50 max-w-2xl mt-12 leading-relaxed opacity-90 font-light" data-key="hero-p" style="text-shadow: 0 2px 8px rgba(0,0,0,0.4);"></p>
         </section>
 
         <!-- Profil Stratégique -->
         <section class="glass p-10 md:p-14 mb-32 scroll-reveal">
             <h3 class="section-label" data-key="about-label"></h3>
-            <div class="accent-border pl-8">
+            <div class="border-l-4 border-bdc-red pl-8">
                 <p class="text-xl md:text-2xl font-light leading-relaxed mb-10" data-key="summary"></p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-100/60">
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span><span data-key="skill1"></span></div>
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span><span data-key="skill2"></span></div>
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span><span data-key="skill3"></span></div>
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span><span data-key="skill4"></span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill2"></span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill3"></span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill4"></span></div>
                 </div>
             </div>
         </section>
@@ -362,17 +361,16 @@
         <section class="mb-48 scroll-reveal">
             <h3 class="section-label" data-key="services-label"></h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="space-y-4">
-                    <!-- Correction 3: Titres de services en Gras Accent -->
-                    <h4 class="text-accent font-bold text-lg" data-key="srv1-title"></h4>
+                <div class="space-y-4 border-l-2 border-bdc-red pl-6">
+                    <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
                     <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv1-desc"></p>
                 </div>
-                <div class="space-y-4">
-                    <h4 class="text-accent font-bold text-lg" data-key="srv2-title"></h4>
+                <div class="space-y-4 border-l-2 border-bdc-red pl-6">
+                    <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
                     <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv2-desc"></p>
                 </div>
-                <div class="space-y-4">
-                    <h4 class="text-accent font-bold text-lg" data-key="srv3-title"></h4>
+                <div class="space-y-4 border-l-2 border-bdc-red pl-6">
+                    <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
                     <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv3-desc"></p>
                 </div>
             </div>
@@ -494,7 +492,7 @@
                         title: "Bâtissez votre Skunkworks",
                         desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.",
                         socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit. Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
+                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit (Start-ups, Skunkworks, and Your Next Big Product). Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
                     },
                     {
                         id: "art3",
@@ -568,7 +566,7 @@
                         title: "Build Your Skunkworks",
                         desc: "Stop talking about innovation and finally close the Governance Gap.",
                         socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers in a rented circus tent, eliminated all corporate bureaucracy, and ordered them to build a revolutionary fighter jet. The result was legendary.</p><h3>Innovation Theatre</h3><p>The corporate world has a dangerous obsession with \"innovation theatre.\" As Aaron Shapiro wrote in Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It.\" To take action, ambitious CEOs turn to the Skunkworks model. They offer your best minds the autonomy of an Outpost, free from the rigid metrics of the core business. But beware: autonomy without structure leads to failure. Without strict governance, a secret lab is just an expensive corporate hobby.</p>"
+                        full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers in a rented circus tent, eliminated all corporate bureaucracy, and ordered them to build a revolutionary fighter jet. The result was legendary.</p><h3>Innovation Theatre</h3><p>The corporate world has a dangerous obsession with \"innovation theatre.\" As Aaron Shapiro wrote in Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It.\" To take action, ambitious CEOs turn to the Skunkworks model. In the Harvard Business Review, Colin Raney correctly identifies that startups and Skunkworks are the definitive engines for your next big product. They offer your best minds the autonomy of an Outpost, free from the rigid metrics of the core business. But beware: autonomy without structure leads to failure. Without strict governance, a secret lab is just an expensive corporate hobby.</p>"
                     },
                     {
                         id: "art3",
@@ -628,7 +626,7 @@
                 card.onclick = () => openReader(art.id);
                 
                 card.innerHTML = `
-                    <span class="text-[10px] text-accent font-bold uppercase tracking-widest mb-6 block">${art.cat}</span>
+                    <span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block border-l-2 border-bdc-red pl-3">${art.cat}</span>
                     <h4 class="text-2xl font-bold mb-5 group-hover:text-accent transition-colors leading-tight">${art.title}</h4>
                     <p class="text-blue-100/60 mb-8 leading-relaxed font-light line-clamp-3">${art.desc}</p>
                     <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 group-hover:border-accent transition-all">
