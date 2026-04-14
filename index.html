@@ -68,7 +68,6 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Classes de Bordures Rouges Unifiées */
         .red-line-major {
             border-left: 4px solid var(--bdc-red);
         }
@@ -310,6 +309,40 @@
             opacity: 0.7;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
+
+        /* Styles pour le bandeau Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-cols: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .metrics-grid {
+                grid-template-cols: repeat(3, 1fr);
+            }
+        }
+
+        .metric-item {
+            border-left: 2px solid var(--bdc-red);
+            padding-left: 1rem;
+        }
+
+        .metric-value {
+            color: var(--bdc-white);
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -348,12 +381,42 @@
     <main class="relative z-10 max-w-4xl mx-auto px-8 pt-48 pb-24">
         
         <!-- Section Hero -->
-        <section id="hero" class="mb-48 visible">
+        <section id="hero" class="mb-24 visible">
             <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]" data-key="name" style="text-shadow: 0 4px 15px rgba(0,0,0,0.6);"></h1>
             <div class="accent-line-title">
                 <h2 class="text-xl md:text-2xl tracking-[0.12em] uppercase" data-key="title"></h2>
             </div>
             <p class="text-lg md:text-2xl text-blue-50 max-w-2xl mt-12 leading-relaxed opacity-90 font-light" data-key="hero-p" style="text-shadow: 0 2px 8px rgba(0,0,0,0.4);"></p>
+        </section>
+
+        <!-- NOUVEAU BANDEAU DE PERFORMANCE (Metrics) -->
+        <section class="mb-48 visible">
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" data-key="met1-v"></div>
+                    <div class="metric-label" data-key="met1-l"></div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" data-key="met2-v"></div>
+                    <div class="metric-label" data-key="met2-l"></div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" data-key="met3-v"></div>
+                    <div class="metric-label" data-key="met3-l"></div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" data-key="met4-v"></div>
+                    <div class="metric-label" data-key="met4-l"></div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" data-key="met5-v"></div>
+                    <div class="metric-label" data-key="met5-l"></div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" data-key="met6-v"></div>
+                    <div class="metric-label" data-key="met6-l"></div>
+                </div>
+            </div>
         </section>
 
         <!-- Profil Stratégique -->
@@ -489,6 +552,14 @@
                 "exp-label": "Trajectoire Professionnelle", "exp-linkedin": "Vérifier mon parcours complet sur LinkedIn",
                 "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif", "discuss-social": "Discuter sur LinkedIn",
                 "cta-title": "Prêt à faire un BID ?", "cta-desc": "Discutons de la manière de transformer votre structure de gouvernance pour protéger votre présent tout en propulsant votre avenir.", "cta-btn": "Initier une discussion",
+                
+                /* Metrics FR */
+                "met1-v": "8x Croissance · Turnaround", "met1-l": "Performance Opérationnelle",
+                "met2-v": "55 M$ Quota · Tech Sales", "met2-l": "Gestion de Portefeuille",
+                "met3-v": "Top 5 % · Leadership Stratégique", "met3-l": "Positionnement Marché",
+                "met4-v": "20 ans+ Expertise · Transformation", "met4-l": "Écosystème Digital",
+                "met5-v": "Architecture IA · Gouvernance", "met5-l": "Actifs Technologiques",
+                "met6-v": "MBA · Adm.A · C.M.C.", "met6-l": "Certification Conseil",
 
                 articles: [
                     {
@@ -505,7 +576,7 @@
                         title: "Bâtissez votre Skunkworks",
                         desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.",
                         socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit. Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
+                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit (Start-ups, Skunkworks, and Your Next Big Product). Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
                     },
                     {
                         id: "art3",
@@ -564,6 +635,14 @@
                 "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website", "discuss-social": "Discuss on LinkedIn",
                 "cta-title": "Ready to make a BID?", "cta-desc": "Let's discuss how to transform your governance structure to protect your present while propelling your future.", "cta-btn": "Initiate a discussion",
 
+                /* Metrics EN */
+                "met1-v": "8x Revenue Growth · Turnaround", "met1-l": "Operational Performance",
+                "met2-v": "$55M Quota Managed · Strategic Portfolio", "met2-l": "Revenue Realization",
+                "met3-v": "Top 5% Strategic Leader · NOVA Profile", "met3-l": "Executive Presence",
+                "met4-v": "20+ Years Experience · Digital Transformation", "met4-l": "Business Agility",
+                "met5-v": "AI Architecture · Data Governance", "met5-l": "Tech Foundations",
+                "met6-v": "MBA · Adm.A · C.M.C. · Management Consulting", "met6-l": "Professional Standing",
+
                 articles: [
                     {
                         id: "art1",
@@ -579,7 +658,7 @@
                         title: "Build Your Skunkworks",
                         desc: "Stop talking about innovation and finally close the Governance Gap.",
                         socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers in a rented circus tent, eliminated all corporate bureaucracy, and ordered them to build a revolutionary fighter jet. The result was legendary.</p><h3>Innovation Theatre</h3><p>The corporate world has a dangerous obsession with \"innovation theatre.\" As Aaron Shapiro wrote in Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It.\" To take action, ambitious CEOs turn to the Skunkworks model. In the Harvard Business Review, Colin Raney correctly identifies that startups and Skunkworks are the definitive engines for your next big product. They offer your best minds the autonomy of an Outpost, free from the rigid metrics of the core business. But beware: autonomy without structure leads to failure. Without strict governance, a secret lab is just an expensive corporate hobby.</p>"
+                        full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers in a rented circus tent, eliminated all corporate bureaucracy, and ordered them to build a revolutionary fighter jet. The result was legendary.</p><h3>Innovation Theatre</h3><p>The corporate world has a dangerous obsession with \"innovation theatre.\" As Aaron Shapiro wrote in Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It.\" To take action, ambitious CEOs turn to the Skunkworks model. They offer your best minds the autonomy of an Outpost, free from the rigid metrics of the core business. But beware: autonomy without structure leads to failure. Without strict governance, a secret lab is just an expensive corporate hobby.</p>"
                     },
                     {
                         id: "art3",
