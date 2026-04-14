@@ -100,6 +100,51 @@
             transform: translateY(0);
         }
 
+        /* --- DESIGN DU BANDEAU DÉFILANT (EXECUTIVE TICKER) --- */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.25rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            /* Allure moyenne : 45 secondes pour un cycle complet */
+            animation: ticker-animation 45s linear infinite;
+        }
+
+        .ticker:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes ticker-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .ticker-segment {
+            border-left: 3px solid var(--bdc-red);
+            padding-left: 1.25rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            color: var(--bdc-white);
+            text-transform: uppercase;
+        }
+
+        /* --- LOGO BOXES --- */
         .logo-box {
             display: flex;
             flex-direction: column;
@@ -309,40 +354,6 @@
             opacity: 0.7;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-
-        /* Styles pour le bandeau Metrics */
-        .metrics-grid {
-            display: grid;
-            grid-template-cols: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .metrics-grid {
-                grid-template-cols: repeat(3, 1fr);
-            }
-        }
-
-        .metric-item {
-            border-left: 2px solid var(--bdc-red);
-            padding-left: 1rem;
-        }
-
-        .metric-value {
-            color: var(--bdc-white);
-            font-weight: 700;
-            font-size: 1.1rem;
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-label {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
@@ -378,10 +389,10 @@
         </article>
     </div>
 
-    <main class="relative z-10 max-w-4xl mx-auto px-8 pt-48 pb-24">
+    <main class="relative z-10 pt-48 pb-24">
         
-        <!-- Section Hero -->
-        <section id="hero" class="mb-24 visible">
+        <!-- Hero Section -->
+        <section id="hero" class="max-w-4xl mx-auto px-8 mb-24 visible">
             <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]" data-key="name" style="text-shadow: 0 4px 15px rgba(0,0,0,0.6);"></h1>
             <div class="accent-line-title">
                 <h2 class="text-xl md:text-2xl tracking-[0.12em] uppercase" data-key="title"></h2>
@@ -389,151 +400,130 @@
             <p class="text-lg md:text-2xl text-blue-50 max-w-2xl mt-12 leading-relaxed opacity-90 font-light" data-key="hero-p" style="text-shadow: 0 2px 8px rgba(0,0,0,0.4);"></p>
         </section>
 
-        <!-- NOUVEAU BANDEAU DE PERFORMANCE (Metrics) -->
-        <section class="mb-48 visible">
-            <div class="metrics-grid">
-                <div class="metric-item">
-                    <div class="metric-value" data-key="met1-v"></div>
-                    <div class="metric-label" data-key="met1-l"></div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value" data-key="met2-v"></div>
-                    <div class="metric-label" data-key="met2-l"></div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value" data-key="met3-v"></div>
-                    <div class="metric-label" data-key="met3-l"></div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value" data-key="met4-v"></div>
-                    <div class="metric-label" data-key="met4-l"></div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value" data-key="met5-v"></div>
-                    <div class="metric-label" data-key="met5-l"></div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value" data-key="met6-v"></div>
-                    <div class="metric-label" data-key="met6-l"></div>
-                </div>
+        <!-- BANDEAU DÉFILANT EXÉCUTIF (TICKER) -->
+        <section class="ticker-wrap mb-48 visible">
+            <div id="ticker-container" class="ticker">
+                <!-- Contenu injecté dynamiquement par JS -->
             </div>
         </section>
 
-        <!-- Profil Stratégique -->
-        <section class="glass p-10 md:p-14 mb-32 scroll-reveal">
-            <h3 class="section-label" data-key="about-label"></h3>
-            <div class="red-line-major pl-8">
-                <p class="text-xl md:text-2xl font-light leading-relaxed mb-10" data-key="summary"></p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-100/60">
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill2"></span></div>
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill3"></span></div>
-                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill4"></span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Axes d'Intervention -->
-        <section class="mb-48 scroll-reveal">
-            <h3 class="section-label" data-key="services-label"></h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="space-y-4 red-line-minor pl-6">
-                    <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
-                    <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv1-desc"></p>
-                </div>
-                <div class="space-y-4 red-line-minor pl-6">
-                    <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
-                    <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv2-desc"></p>
-                </div>
-                <div class="space-y-4 red-line-minor pl-6">
-                    <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
-                    <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv3-desc"></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trajectoire Professionnelle -->
-        <section class="mb-48 scroll-reveal">
-            <h3 class="section-label" data-key="exp-label"></h3>
-            <div class="relative group/slider">
-                <button onclick="scrollSlider(-1)" class="scroll-btn -left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
-                <button onclick="scrollSlider(1)" class="scroll-btn -right-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
-
-                <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
-                    <div class="logo-box snap-center" onclick="openExp('exp1')">
-                        <img src="logo1.png" alt="Dassault Systèmes" class="logo-img">
-                        <span class="company-label">Dassault Systèmes</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp2')">
-                        <img src="logo2.png" alt="Autodesk" class="logo-img">
-                        <span class="company-label">Autodesk</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp3')">
-                        <img src="logo3.png" alt="Graitec" class="logo-img">
-                        <span class="company-label">Graitec Group</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp4')">
-                        <img src="logo4.png" alt="Pourvoirie" class="logo-img">
-                        <span class="company-label">Pourvoirie Vent de la Savane</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp5')">
-                        <img src="logo5.png" alt="SolidXperts" class="logo-img">
-                        <span class="company-label">SolidXperts</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp6')">
-                        <img src="logo6.png" alt="Bolloré" class="logo-img">
-                        <span class="company-label">Groupe Bolloré</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp7')">
-                        <img src="logo7.png" alt="Mecachrome" class="logo-img">
-                        <span class="company-label">Mecachrome</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp8')">
-                        <img src="logo8.png" alt="Construction PL" class="logo-img">
-                        <span class="company-label">Construction Pascal Lanoue</span>
-                    </div>
-                    <div class="logo-box snap-center" onclick="openExp('exp9')">
-                        <img src="logo9.png" alt="EMICA" class="logo-img">
-                        <span class="company-label">EMICA</span>
+        <div class="max-w-4xl mx-auto px-8">
+            <!-- Profil Stratégique -->
+            <section class="glass p-10 md:p-14 mb-32 scroll-reveal">
+                <h3 class="section-label" data-key="about-label"></h3>
+                <div class="red-line-major pl-8">
+                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-10" data-key="summary"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-100/60">
+                        <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
+                        <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill2"></span></div>
+                        <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill3"></span></div>
+                        <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill4"></span></div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" data-key="exp-linkedin"></a>
-            </div>
-        </section>
+            </section>
 
-        <!-- Leadership de Pensée -->
-        <section id="articles" class="mb-48 scroll-reveal">
-            <h3 class="section-label" data-key="articles-label"></h3>
-            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Rendu dynamique via renderArticles() -->
-            </div>
-        </section>
-
-        <!-- Appel à l'action final -->
-        <section class="glass p-10 md:p-20 mb-48 text-center scroll-reveal">
-            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-8" data-key="cta-title"></h3>
-            <p class="text-blue-100/60 max-w-xl mx-auto mb-12" data-key="cta-desc"></p>
-            <a href="mailto:msauro@gmail.com" class="inline-block bg-accent text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
-        </section>
-
-        <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10">
-            <div>
-                <p class="text-3xl font-bold tracking-tighter mb-2">marcbsauro<span class="text-accent">.ca</span></p>
-                <div class="flex flex-col gap-1">
-                    <p class="text-[10px] text-blue-100/30 uppercase tracking-[0.4em]">© 2026 Marc B. Sauro</p>
-                    <p class="text-[9px] text-blue-100/20 uppercase tracking-widest">
-                        Photo <a href="https://unsplash.com/@rockcyp1?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" class="hover:text-blue-100/40 underline decoration-blue-100/10 transition-colors">Cyprien Da Silva</a> | <a href="https://unsplash.com/photos/city-skyline-lit-up-at-night-kNbuhVeCJrE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" class="hover:text-blue-100/40 underline decoration-blue-100/10 transition-colors">Unsplash</a>
-                    </p>
+            <!-- Axes d'Intervention -->
+            <section class="mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="services-label"></h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="space-y-4 red-line-minor pl-6">
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
+                        <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv1-desc"></p>
+                    </div>
+                    <div class="space-y-4 red-line-minor pl-6">
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
+                        <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv2-desc"></p>
+                    </div>
+                    <div class="space-y-4 red-line-minor pl-6">
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
+                        <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv3-desc"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="flex gap-10">
-                <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-blue-100/60 hover:text-white transition-colors">LinkedIn</a>
-                <a href="mailto:msauro@gmail.com" class="text-xs font-bold uppercase tracking-widest text-blue-100/60 hover:text-white transition-colors">Contact</a>
-            </div>
-        </footer>
+            </section>
+
+            <!-- Trajectoire Professionnelle -->
+            <section class="mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="exp-label"></h3>
+                <div class="relative group/slider">
+                    <button onclick="scrollSlider(-1)" class="scroll-btn -left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
+                    <button onclick="scrollSlider(1)" class="scroll-btn -right-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
+
+                    <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
+                        <div class="logo-box snap-center" onclick="openExp('exp1')">
+                            <img src="logo1.png" alt="Dassault Systèmes" class="logo-img">
+                            <span class="company-label">Dassault Systèmes</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp2')">
+                            <img src="logo2.png" alt="Autodesk" class="logo-img">
+                            <span class="company-label">Autodesk</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp3')">
+                            <img src="logo3.png" alt="Graitec" class="logo-img">
+                            <span class="company-label">Graitec Group</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp4')">
+                            <img src="logo4.png" alt="Pourvoirie" class="logo-img">
+                            <span class="company-label">Pourvoirie Vent de la Savane</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp5')">
+                            <img src="logo5.png" alt="SolidXperts" class="logo-img">
+                            <span class="company-label">SolidXperts</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp6')">
+                            <img src="logo6.png" alt="Bolloré" class="logo-img">
+                            <span class="company-label">Groupe Bolloré</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp7')">
+                            <img src="logo7.png" alt="Mecachrome" class="logo-img">
+                            <span class="company-label">Mecachrome</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp8')">
+                            <img src="logo8.png" alt="Construction PL" class="logo-img">
+                            <span class="company-label">Construction Pascal Lanoue</span>
+                        </div>
+                        <div class="logo-box snap-center" onclick="openExp('exp9')">
+                            <img src="logo9.png" alt="EMICA" class="logo-img">
+                            <span class="company-label">EMICA</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" data-key="exp-linkedin"></a>
+                </div>
+            </section>
+
+            <!-- Leadership de Pensée -->
+            <section id="articles" class="mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="articles-label"></h3>
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Rendu dynamique via renderArticles() -->
+                </div>
+            </section>
+
+            <!-- Appel à l'action final -->
+            <section class="glass p-10 md:p-20 mb-48 text-center scroll-reveal">
+                <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-8" data-key="cta-title"></h3>
+                <p class="text-blue-100/60 max-w-xl mx-auto mb-12" data-key="cta-desc"></p>
+                <a href="mailto:msauro@gmail.com" class="inline-block bg-accent text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
+            </section>
+
+            <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10">
+                <div>
+                    <p class="text-3xl font-bold tracking-tighter mb-2">marcbsauro<span class="text-accent">.ca</span></p>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-[10px] text-blue-100/30 uppercase tracking-[0.4em]">© 2026 Marc B. Sauro</p>
+                        <p class="text-[9px] text-blue-100/20 uppercase tracking-widest">
+                            Photo <a href="https://unsplash.com/@rockcyp1?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" class="hover:text-blue-100/40 underline decoration-blue-100/10 transition-colors">Cyprien Da Silva</a> | <a href="https://unsplash.com/photos/city-skyline-lit-up-at-night-kNbuhVeCJrE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" class="hover:text-blue-100/40 underline decoration-blue-100/10 transition-colors">Unsplash</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-10">
+                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-blue-100/60 hover:text-white transition-colors">LinkedIn</a>
+                    <a href="mailto:msauro@gmail.com" class="text-xs font-bold uppercase tracking-widest text-blue-100/60 hover:text-white transition-colors">Contact</a>
+                </div>
+            </footer>
+        </div>
     </main>
 
     <script>
@@ -553,71 +543,19 @@
                 "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif", "discuss-social": "Discuter sur LinkedIn",
                 "cta-title": "Prêt à faire un BID ?", "cta-desc": "Discutons de la manière de transformer votre structure de gouvernance pour protéger votre présent tout en propulsant votre avenir.", "cta-btn": "Initier une discussion",
                 
-                /* Metrics FR */
-                "met1-v": "8x Croissance · Turnaround", "met1-l": "Performance Opérationnelle",
-                "met2-v": "55 M$ Quota · Tech Sales", "met2-l": "Gestion de Portefeuille",
-                "met3-v": "Top 5 % · Leadership Stratégique", "met3-l": "Positionnement Marché",
-                "met4-v": "20 ans+ Expertise · Transformation", "met4-l": "Écosystème Digital",
-                "met5-v": "Architecture IA · Gouvernance", "met5-l": "Actifs Technologiques",
-                "met6-v": "MBA · Adm.A · C.M.C.", "met6-l": "Certification Conseil",
+                metrics: [
+                    "8x Croissance · Turnaround", "55 M$ Quota · Tech Sales", "Top 5 % · Leadership Stratégique", 
+                    "20 ans+ Expertise · Transformation", "Architecture IA · Gouvernance", "MBA · Adm.A · C.M.C."
+                ],
 
                 articles: [
-                    {
-                        id: "art1",
-                        cat: "Management & Stratégie",
-                        title: "Du Canevas à la Boussole",
-                        desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.",
-                        socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/",
-                        full: "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas (BMC).</p><p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis : un outil d'alignement pour les Ventes, afin de cartographier la proposition de valeur et les segments de clientèle à un instant précis. Pour le rendre véritablement opérationnel, j'y ajoute systématiquement trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p><h3>La Limite du Statique</h3><p>Cependant, un modèle d'affaires n'est jamais statique. Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p><h3>L'Intégration des Trois Horizons</h3><p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey & Company. Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p><ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li></ul><h3>Conclusion Tactique</h3><p>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</p>"
-                    },
-                    {
-                        id: "art2",
-                        cat: "Innovation & Gouvernance",
-                        title: "Bâtissez votre Skunkworks",
-                        desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit (Start-ups, Skunkworks, and Your Next Big Product). Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
-                    },
-                    {
-                        id: "art3",
-                        cat: "Finance & Stratégie",
-                        title: "Le Pari du 1 %",
-                        desc: "Gérer le Capital Impatient en utilisant la règle du 99/1 pour financer Adam Smith sans effrayer Milton Friedman.",
-                        socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier. Mais ce n'est pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut qui crée de nouveaux marchés. Lorsque vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet. </p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman (La Forteresse). Vous optimisez le cœur de métier pour payer le dividende. Ensuite, vous isolez 1 % pour Smith. Mais vous ne l'appelez pas un Lab. Vous l'appelez une Option d'achat asymétrique (Asymmetric Call Option). Le risque est plafonné à 1 %. Le gain est asymétrique : si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street ha cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement au marché à quel jeu vous jouez.</p>"
-                    },
-                    {
-                        id: "art4",
-                        cat: "Innovation & Gouvernance",
-                        title: "Bâtir des Ponts, pas seulement des Labos",
-                        desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas : l'intégration est la clé du succès stratégique.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Dans la Partie 1 de cette série, j'ai critiqué une entreprise de machines à café pour avoir lancé de la \"Nouveauté\" (un réservoir d'eau rotatif) en l'appelant Innovation. La Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Mais la maison-mère a vu juste en construisant un meilleur Modèle de Gouvernance.</p><h3>L'Origine de la Forteresse</h3><p>Pour comprendre Nespresso, il faut comprendre Nescafé. L'histoire commence avec Nestlé résolvant une crise de surplus au Brésil en 1929. En 1986, Nescafé était la Forteresse : efficace, massif et véritable planche à billets. Puis, Eric Favre a inventé Nespresso. Strategiquement, c'était un désastre pour la Forteresse car cela cannibalisait le produit principal. Si Nestlé l'avait traité normalement, la Forteresse l'aurait tué.</p><h3>Le Mythe du Skunkworks</h3><p>Nestlé n'a pas essayé d'intégrer Nespresso immédiatement; ils l'ont exilé en créant une entité légale distincte : l'Avant-Poste. Mais l'isolement est facile. L'intégration, c'est la guerre. Nespresso a réussi parce que Nestlé a su quand construire le Pont. Une fois le modèle prouvé, Nestlé a déclenché toute la puissance de la Forteresse. Ils ont utilisé leur pouvoir d'achat pour forcer le marché à exister.</p><h3>Le Cadre BID</h3><p>Le problème est le manque de Pont. Vous essayez de gérer le Futur avec les métriques du Passé. La Forteresse fonctionne à l'Efficacité. L'Avant-Poste fonctionne à la Découverte. Le Pont fonctionne à la Traduction. C'est l'ensemble spécifique de règles qui protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au « Kill Switch ». Si vous pouvez construire le Pont, vous maîtriserez le jeu.</p>"
-                    },
-                    {
-                        id: "art5",
-                        cat: "Innovation & Gouvernance",
-                        title: "Pourquoi le CFO tue vos meilleures idées",
-                        desc: "Le problème du Vilain Petit Canard en stratégie corporative : comment la gouvernance de la Forteresse étouffe l'innovation.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Le problème du \"Vilain Petit Canard\" en stratégie corporative.</p><p>Je regardais le ski Slopestyle aux Jeux Olympiques, et j'ai réalisé quelque chose : presque tous les athlètes utilisaient des skis à fixations centrées. C'est la fin d'une guerre commencée en 1995. Salomon, le géant, a réagi comme une Forteresse : ils ont peint un ski de course en jaune et courbé le tail. C'était de la Nouveauté. La raison de leur échec ? Line Skis, un startup, a réagi comme un Avant-Poste en redimensionnant un snowboard. Salomon ne pouvait pas faire ça : leur structure de gouvernance l'aurait tué immédiatement.</p><h3>Le Fossé de Gouvernance</h3><p>Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse : ROI et Scale. L'idée d'Avant-Poste ressemble alors toujours à un Vilain Petit Canard. Le CFO la tue pour protéger la Forteresse. Intel a fait cela en 2006 en refusant le contrat pour la puce iPhone car les marges étaient minces.</p><h3>Le Kill Switch</h3><p>Nous avons construit une machine corporative conçue pour traquer et détruire la variance. Mais l'innovation <em>est</em> diversité. Si vous optimisez pour l'efficacité, vous l'optimisez par inadvertance pour la stérilité. La solution est un Double Système d'Exploitation. Vous ne pouvez pas gouverner l'Avant-Poste avec les lois de la Forteresse. Créez une Zone de Sécurité où les Vilains Petits Canards peuvent grandir.</p>"
-                    },
-                    {
-                        id: "art6",
-                        cat: "Stratégie & Leadership",
-                        title: "La Stratégie est un Pari, pas une Science",
-                        desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif : pourquoi la Startup d'à côté est All-In.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>L'entreprise moderne n'a rien à voir avec un laboratoire. C'est plutôt un casino. À chaque exercice financier, il faut se présenter à la table avec vos jetons et miser. Cette mise est votre BID. Le Rouge est le Cœur Métier (la Forteresse). Le Noir est l'Innovation (l'Avant-Poste). Depuis vingt ans, la stratégie standard est de tout miser sur le Rouge et de se couvrir légèrement sur le Noir. Jusqu'à ce que la roue tourne…</p><h3>Les Cimetières Jumeaux</h3><p>Les entreprises meurent généralement de deux façons : 1. Mort par l'Ordre (Le Piège BlackBerry) en s'optimisant jusqu'à l'extinction. 2. Mort par le Chaos (Le Piège Jawbone) en innovant jusqu'à la faillite sans discipline opérationnelle.</p><h3>Le BID Paradox</h3><p>Pour survivre ce trimestre, il faut être BlackBerry (discipline). Pour survivre à la décennie, il faut être l'Anti-BlackBerry (vision). Ces deux systèmes d'exploitation se détestent. La solution est de reconnaître le fossé et de bâtir le pont. La roue tourne. C'est le temps de faire un BID.</p>"
-                    },
-                    {
-                        id: "art7",
-                        cat: "Innovation & Gouvernance",
-                        title: "Avons nous oublié la définition du mot \"Innovation\" ?",
-                        desc: "Pourquoi nous confondons polir le passé avec bâtir l'avenir : la distinction entre Nouveauté et Innovation.",
-                        socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/?trackingId=Q5YfbcUVThyQ8HuAYypCEA%3D%3D",
-                        full: "<p>Ladite « innovation » d'une grande entreprise de café se résumait à un réservoir d'eau rotatif. Il faut arrêter de se mentir : ce n'est pas de l'innovation, c'est de la Nouveauté (Novelty). La Nouveauté rend le produit plus brillant pour une transaction court terme. L'Innovation change les règles du jeu pour une relation long terme. La véritable innovation s'intègre mieux dans la vie humaine, pas simplement sur le comptoir.</p><h3>La Forteresse vs L'Avant-Poste</h3><p>La plupart d'entre nous passons notre carrière à l'intérieur de la Forteresse (Core Business), bâtie sur l'efficacité. Mais on ne peut pas inventer l'avenir à l'intérieur d'une Forteresse. Pour innover, vous avez besoin d'un Avant-Poste (Outpost), un système distinct dont le but est de cannibaliser la Forteresse avant qu'un concurrent ne le fasse. Le diagnostic de Clayton Christensen est clair : l'Efficacité tue la Découverte. Le Business Innovation Dichotomy (The BID) est la solution pour jeter un pont entre ces deux mondes.</p>"
-                    }
+                    { id: "art1", cat: "Management & Stratégie", title: "Du Canevas à la Boussole", desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/", full: "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC...</p>" },
+                    { id: "art2", cat: "Innovation & Gouvernance", title: "Bâtissez votre Skunkworks", desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/", full: "<p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs...</p>" },
+                    { id: "art3", cat: "Finance & Stratégie", title: "Le Pari du 1 %", desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/", full: "<p>La finance corporative est intrinsèquement plus à l'aise avec le statu quo...</p>" },
+                    { id: "art4", cat: "Innovation & Gouvernance", title: "Bâtir des Ponts, pas seulement des Labos", desc: "L'histoire de Nespresso comme preuve stratégique.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/", full: "<p>Nespresso a réussi non pas parce qu'elle était séparée, mais parce que Nestlé a su quand construire le Pont...</p>" },
+                    { id: "art5", cat: "Innovation & Gouvernance", title: "Pourquoi le CFO tue vos meilleures idées", desc: "Le problème du Vilain Petit Canard en stratégie corporative.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree/", full: "<p>Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse...</p>" },
+                    { id: "art6", cat: "Stratégie & Leadership", title: "La Stratégie est un Pari, pas une Science", desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/", full: "<p>À chaque exercice financier, il faut se présenter à la table avec vos jetons et miser...</p>" },
+                    { id: "art7", cat: "Innovation & Gouvernance", title: "Avons nous oublié la définition du mot \"Innovation\" ?", desc: "Pourquoi nous confondons polir le passé avec bâtir l'avenir.", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/", full: "<p>Arrêtons de célébrer le « Nouveau et Amélioré ». Commençons à bâtir le « Différent et Vital »...</p>" }
                 ]
             },
             en: {
@@ -634,77 +572,33 @@
                 "exp-label": "Professional Trajectory", "exp-linkedin": "View my complete trajectory on LinkedIn",
                 "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website", "discuss-social": "Discuss on LinkedIn",
                 "cta-title": "Ready to make a BID?", "cta-desc": "Let's discuss how to transform your governance structure to protect your present while propelling your future.", "cta-btn": "Initiate a discussion",
-
-                /* Metrics EN */
-                "met1-v": "8x Revenue Growth · Turnaround", "met1-l": "Operational Performance",
-                "met2-v": "$55M Quota Managed · Strategic Portfolio", "met2-l": "Revenue Realization",
-                "met3-v": "Top 5% Strategic Leader · NOVA Profile", "met3-l": "Executive Presence",
-                "met4-v": "20+ Years Experience · Digital Transformation", "met4-l": "Business Agility",
-                "met5-v": "AI Architecture · Data Governance", "met5-l": "Tech Foundations",
-                "met6-v": "MBA · Adm.A · C.M.C. · Management Consulting", "met6-l": "Professional Standing",
+                
+                metrics: [
+                    "8x Revenue Growth · Turnaround", "$55M Quota Managed · Strategic Portfolio", "Top 5% Strategic Leader · NOVA Profile", 
+                    "20+ Years Experience · Digital Transformation", "AI Architecture · Data Governance", "MBA · Adm.A · C.M.C."
+                ],
 
                 articles: [
-                    {
-                        id: "art1",
-                        cat: "Management & Strategy",
-                        title: "From Canvas to Compass",
-                        desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.",
-                        socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/",
-                        full: "<p>Recently, I had an excellent discussion with a BDC contact. Our exchange quickly converged on a fundamental tool: the Business Model Canvas (BMC).</p><p>For a long time, I used this canvas as a Sales alignment tool. To make it truly operational, I add three critical blocks: The Pain, The Solution, and anchor the exercise with Vision and Mission. It is a powerful structure for capturing the present moment.</p><h3>The Limit of the Static</h3><p>However, a business model is never static. As soon as you attempt to project this canvas through time, the need for a roadmap becomes obvious. You must plan how your distribution channels and revenue streams will evolve over the quarters.</p><h3>Integrating the Three Horizons</h3><p>This led me to the framework of choice: McKinsey & Company's Three Horizons of Growth. When you connect these tools, you obtain a complete strategic operating system based on three phases:</p><ul><li><strong>Horizon 1 is Stabilization</strong>: The Canvas defines your core business to secure and defend current margins.</li><li><strong>Horizon 2 is Optimization</strong>: The roadmap dictates how you will build emerging opportunities.</li><li><strong>Horizon 3 is Propulsion</strong>: The McKinsey framework forces you to fund the disruptive bets necessary for future survival.</li></ul>"
-                    },
-                    {
-                        id: "art2",
-                        cat: "Innovation & Governance",
-                        title: "Build Your Skunkworks",
-                        desc: "Stop talking about innovation and finally close the Governance Gap.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers in a rented circus tent, eliminated all corporate bureaucracy, and ordered them to build a revolutionary fighter jet. The result was legendary.</p><h3>Innovation Theatre</h3><p>The corporate world has a dangerous obsession with \"innovation theatre.\" As Aaron Shapiro wrote in Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It.\" To take action, ambitious CEOs turn to the Skunkworks model. They offer your best minds the autonomy of an Outpost, free from the rigid metrics of the core business. But beware: autonomy without structure leads to failure. Without strict governance, a secret lab is just an expensive corporate hobby.</p>"
-                    },
-                    {
-                        id: "art3",
-                        cat: "Finance & Strategy",
-                        title: "The 1% Bet",
-                        desc: "Managing Impatient Capital by using the 99/1 rule to fund Adam Smith without scaring Milton Friedman.",
-                        socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>A few weeks ago, I was discussing with two finance friends from my MBA cohort. They had read my recent articles where I called the CFO the \"Kill Switch\" of innovation. They were not amused. \"So, we are innovation killers?\" they asked. I had no choice but to answer with one word: \"Yes.\"</p><p>The hard truth is that corporate finance is inherently more comfortable with the status quo because its return is predictable. They are programmed to protect the core business. But it is not their fault. It is the fault of the philosophy we force them to use.</p><h3>Friedman's Fortress vs. Smith's Outpost</h3><p>My friends are faithful disciples of Milton Friedman. Friedman argued that the only social responsibility of a company is to increase its profits. Today's markets interpret this as today's profits. This is the Fortress operating system. But true innovation requires Adam Smith's capitalism: the raw entrepreneurial risk that creates brand new markets.</p>"
-                    },
-                    {
-                        id: "art4",
-                        cat: "Innovation & Governance",
-                        title: "Build Bridges, Not Just Labs",
-                        desc: "The Nespresso story illustrates why isolation is not enough: integration is the key to strategic success.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-glv1c/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Novelty is about making the past slightly better, while Innovation is about inventing the future. Nestlé got it right not by building a better machine, but by building a better Governance Model. Born from a crisis in 1929, Nescafé became the Fortress: efficient, massive, and a real money printing machine. But when Nespresso was invented, it was a disaster for the Fortress: expensive and cannibalizing. Nestlé succeeded because they knew when to build the Bridge and unleash the full power of its purchasing scale to force the market to exist.</p>"
-                    },
-                    {
-                        id: "art5",
-                        cat: "Innovation & Governance",
-                        title: "Why the CFO Kills Your Best Ideas",
-                        desc: "The Ugly Duckling problem in corporate strategy: how Fortress governance stifles true breakthrough innovation.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>I was watching Slopestyle skiing at the Olympics, and I realized something: almost every athlete used center mounted bindings. It is the end of a war that started in 1995. Salomon, the giant, reacted like a Fortress. They painted a race ski yellow and curved the tail. It was Novelty. It was boring. Line Skis, a startup, reacted like an Outpost. They completely destroyed the traditional ski to match new behaviors. Salomon could not do that because their governance would have killed it immediately.</p>"
-                    },
-                    {
-                        id: "art6",
-                        cat: "Strategy & Leadership",
-                        title: "Strategy is a Bet, Not a Science",
-                        desc: "The illusion of scientific certainty vs the reality of the corporate casino: why most leaders are betting on a game that no longer exists.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Board meeting agendas are filled with words like \"Optimization\" and \"Forecasting.\" These words are designed to sound scientific, suggesting that precise manipulation will produce predicted results. But it is an illusion. The modern corporation is not a lab; it is a casino.</p><p>Every financial year, you must come to the table with your chips (revenue, talent, time) and place a bet. This bet is your BID. The problem is not that established companies refuse to bet; it is that they are betting on a game that no longer exists. Meanwhile, the startup next door is All-In.</p>"
-                    },
-                    {
-                        id: "art7",
-                        cat: "Innovation & Governance",
-                        title: "Have We Forgotten the Definition of the Word \"Innovation\"?",
-                        desc: "Why we confuse polishing the past with building the future: the critical distinction between Novelty and real Innovation.",
-                        socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/?trackingId=Q5YfbcUVThyQ8HuAYypCEA%3D%3D",
-                        full: "<p>I recently came across an ad from a major coffee company that promised to \"reimagine my morning routine\" with their \"newest innovation.\" Naturally, I paused. As a strategist, the word innovation sets off my radar. Instead, the \"innovation\" was a rotating water tank and a 3-second heat-up time. We need to stop lying to ourselves: this is not innovation. This is Novelty. And the difference is critical.</p><h3>The Novelty Trap</h3><p>Novelty is about making the old thing shiny. It creates a short-term transaction. Innovation is about changing the game. It creates a long-term relationship. Gillette added blades (Novelty) while Dollar Shave Club changed the business model (Innovation). Real innovation fits better into human life, not just on the counter.</p>"
-                    }
+                    { id: "art1", cat: "Management & Strategy", title: "From Canvas to Compass", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/", full: "<p>Strategic planning is not a collection of isolated tools...</p>" },
+                    { id: "art2", cat: "Innovation & Governance", title: "Build Your Skunkworks", desc: "Stop talking about innovation and finally close the Governance Gap.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/", full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers...</p>" },
+                    { id: "art3", cat: "Finance & Strategy", title: "The 1% Bet", desc: "Managing Impatient Capital by using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/", full: "<p>Corporate finance is inherently more comfortable with the status quo...</p>" },
+                    { id: "art4", cat: "Innovation & Governance", title: "Build Bridges, Not Just Labs", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/", full: "<p>You cannot ask a fish to climb a tree. Build the Bridge...</p>" },
+                    { id: "art5", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree/", full: "<p>Intel did this in 2006. Apple offered them the contract for the iPhone chip...</p>" },
+                    { id: "art6", cat: "Strategy & Leadership", title: "Strategy is a Bet, Not a Science", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/", full: "<p>The startup next door is already All-In on Black. You have the advantage of capital...</p>" },
+                    { id: "art7", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/", full: "<p>Let's stop celebrating \"New and Improved\" and start building \"Different and Vital\"...</p>" }
                 ]
             }
         };
 
         let currentLang = 'en';
+
+        function renderTicker() {
+            const container = document.getElementById('ticker-container');
+            if (!container) return;
+            const data = translations[currentLang].metrics;
+            const tickerHtml = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
+            container.innerHTML = `<div class="ticker-item">${tickerHtml}</div><div class="ticker-item">${tickerHtml}</div>`;
+        }
 
         function renderArticles() {
             const grid = document.getElementById('articles-grid');
@@ -729,16 +623,6 @@
             });
         }
 
-        function initInfiniteSlider() {
-            const slider = document.getElementById('logo-slider');
-            if (!slider) return;
-            const items = Array.from(slider.children);
-            items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            const oneThird = slider.scrollWidth / 3;
-            slider.scrollLeft = oneThird;
-        }
-
         function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
             const toggleBtn = document.getElementById('lang-toggle');
@@ -750,6 +634,7 @@
             });
 
             renderArticles();
+            renderTicker();
         }
 
         function openExp(id) {
@@ -798,21 +683,8 @@
             const slider = document.getElementById('logo-slider');
             const firstChild = slider.querySelector('.logo-box');
             if (!firstChild) return;
-
             const cardWidth = firstChild.offsetWidth + 24;
-            const oneThird = slider.scrollWidth / 3;
-
-            if (direction === 1) {
-                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
-                    slider.scrollTo({ left: slider.scrollLeft - oneThird, behavior: 'auto' });
-                }
-                slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            } else {
-                if (slider.scrollLeft <= 100) {
-                    slider.scrollTo({ left: slider.scrollLeft + oneThird, behavior: 'auto' });
-                }
-                slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-            }
+            slider.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
         }
 
         window.addEventListener('scroll', () => {
@@ -825,7 +697,13 @@
         });
 
         window.onload = function() {
-            initInfiniteSlider();
+            // Initialisation infinie pour les logos
+            const slider = document.getElementById('logo-slider');
+            const items = Array.from(slider.children);
+            items.forEach(item => slider.appendChild(item.cloneNode(true)));
+            items.forEach(item => slider.appendChild(item.cloneNode(true)));
+            slider.scrollLeft = slider.scrollWidth / 3;
+
             window.dispatchEvent(new Event('scroll'));
             toggleLanguage(); 
         };
