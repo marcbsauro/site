@@ -84,11 +84,6 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
-        .text-accent {
-            color: var(--bdc-red);
-            font-weight: 700;
-        }
-
         section {
             opacity: 0;
             transform: translateY(30px);
@@ -100,7 +95,7 @@
             transform: translateY(0);
         }
 
-        /* --- DESIGN DU BANDEAU DÉFILANT (EXECUTIVE TICKER) --- */
+        /* --- EXECUTIVE TICKER --- */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
@@ -114,8 +109,7 @@
         .ticker {
             display: flex;
             white-space: nowrap;
-            /* Allure moyenne : 15 secondes pour un cycle complet */
-            animation: ticker-animation 15s linear infinite;
+            animation: ticker-animation 45s linear infinite;
         }
 
         .ticker:hover {
@@ -180,22 +174,12 @@
             line-height: 1.4;
         }
 
-        .logo-box:hover .company-label {
-            opacity: 1;
-            color: var(--bdc-red);
-            font-weight: 700;
-        }
-
         .logo-img {
             max-height: 55px;
             max-width: 90%;
             object-fit: contain;
             filter: brightness(0) invert(1) opacity(0.8);
             transition: all 0.6s ease;
-        }
-
-        .logo-box:hover .logo-img {
-            filter: brightness(0) invert(1) opacity(1);
         }
 
         .scroll-btn {
@@ -217,70 +201,28 @@
             color: white;
         }
 
-        .scroll-btn:hover {
-            background: var(--bdc-red);
-            box-shadow: 0 0 25px rgba(238, 49, 36, 0.4);
-        }
-
-        #reader-overlay {
+        /* --- READER & MODAL --- */
+        #reader-overlay, #portrait-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--bdc-blue);
+            background: rgba(11, 26, 48, 0.95);
             z-index: 1000;
             overflow-y: auto;
-            padding: 4rem 1.5rem;
+            backdrop-filter: blur(15px);
         }
 
         .reader-content {
             max-width: 850px;
-            margin: 0 auto;
+            margin: 4rem auto;
             background: var(--bdc-white);
             color: #1a1a1a;
             padding: 4.5rem;
             border-radius: 2px;
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
-        }
-
-        .article-body h3 {
-            font-weight: 700;
-            color: var(--bdc-blue);
-            margin-top: 2.5rem;
-            margin-bottom: 1.25rem;
-            font-size: 1.4rem;
-            letter-spacing: -0.02em;
-            border-left: 4px solid var(--bdc-red);
-            padding-left: 1.25rem;
-        }
-
-        .article-body p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        .article-body ul {
-            margin-bottom: 1.5rem;
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .article-body li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.7;
-        }
-
-        .article-body li::before {
-            content: "•";
-            color: var(--bdc-red);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
         }
 
         .reader-close {
@@ -294,48 +236,40 @@
             font-weight: 700;
             cursor: pointer;
             transition: transform 0.2s;
+            z-index: 1100;
         }
 
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .btn-social {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 2rem;
-            border: 2px solid #0077b5;
-            color: #0077b5;
-            padding: 0.8rem 1.5rem;
-            border-radius: 2px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-        
-        .btn-social:hover {
-            background: #0077b5;
-            color: white;
-        }
-
+        /* --- NAVIGATION IDENTITY --- */
         .nav-identity {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-identity:hover {
+            transform: scale(1.02);
         }
 
         .avatar-container {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.15);
+            /* Correction : Cercle rouge institutionnel BDC */
+            border: 2px solid var(--bdc-red);
             background: var(--bdc-blue);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 15px rgba(238, 49, 36, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-identity:hover .avatar-container {
+            box-shadow: 0 0 20px rgba(238, 49, 36, 0.4);
+            border-width: 3px;
         }
 
         .avatar-img {
@@ -344,12 +278,30 @@
             object-fit: cover;
         }
 
+        /* --- PORTRAIT MODAL STYLES --- */
+        .modal-image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .portrait-large {
+            max-width: 90vw;
+            max-height: 75vh;
+            border-radius: 4px;
+            border: 4px solid var(--bdc-red);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
         .section-label {
             font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            color: #bfdbfe; /* blue-200 */
+            color: #bfdbfe;
             margin-bottom: 2rem;
             opacity: 0.7;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -363,9 +315,10 @@
         <div class="overlay"></div>
     </div>
 
+    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/10">
         <div class="max-w-6xl mx-auto px-8 h-20 flex justify-between items-center">
-            <div class="nav-identity">
+            <div class="nav-identity" onclick="openPortrait()">
                 <div class="avatar-container">
                     <img src="portrait.jpg" alt="Marc B. Sauro" class="avatar-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\'text-[10px] font-bold\'>MBS</span>'">
                 </div>
@@ -379,14 +332,24 @@
         </div>
     </nav>
 
+    <!-- Overlay de Lecture d'Articles -->
     <div id="reader-overlay">
         <button class="reader-close" onclick="closeReader()" data-key="close-reader">Fermer</button>
         <article class="reader-content max-w-none">
             <h1 id="reader-title" class="text-4xl font-extrabold mb-4 text-[#0b1a30] tracking-tight"></h1>
             <p id="reader-meta" class="text-xs font-bold text-red-600 mb-8 uppercase tracking-[0.2em] border-b border-gray-100 pb-4"></p>
             <div id="reader-body" class="article-body text-gray-800 text-lg"></div>
-            <div id="reader-footer" class="flex gap-4"></div>
+            <div id="reader-footer" class="mt-12"></div>
         </article>
+    </div>
+
+    <!-- Modal d'Agrandissement du Portrait -->
+    <div id="portrait-modal">
+        <button class="reader-close" onclick="closePortrait()" data-key="close-reader">Fermer</button>
+        <div class="modal-image-container" onclick="closePortrait()">
+            <img src="portrait.jpg" alt="Marc B. Sauro" class="portrait-large">
+            <p class="mt-6 text-white font-bold uppercase tracking-widest text-sm">Marc B. Sauro</p>
+        </div>
     </div>
 
     <main class="relative z-10 pt-48 pb-24">
@@ -400,11 +363,9 @@
             <p class="text-lg md:text-2xl text-blue-50 max-w-2xl mt-12 leading-relaxed opacity-90 font-light" data-key="hero-p" style="text-shadow: 0 2px 8px rgba(0,0,0,0.4);"></p>
         </section>
 
-        <!-- BANDEAU DÉFILANT EXÉCUTIF (TICKER) -->
+        <!-- Executive Ticker -->
         <section class="ticker-wrap mb-48 visible">
-            <div id="ticker-container" class="ticker">
-                <!-- Contenu injecté dynamiquement par JS -->
-            </div>
+            <div id="ticker-container" class="ticker"></div>
         </section>
 
         <div class="max-w-4xl mx-auto px-8">
@@ -496,9 +457,7 @@
             <!-- Leadership de Pensée -->
             <section id="articles" class="mb-48 scroll-reveal">
                 <h3 class="section-label" data-key="articles-label"></h3>
-                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Rendu dynamique via renderArticles() -->
-                </div>
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
             </section>
 
             <!-- Appel à l'action final -->
@@ -542,20 +501,15 @@
                 "exp-label": "Trajectoire Professionnelle", "exp-linkedin": "Vérifier mon parcours complet sur LinkedIn",
                 "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", "visit-site": "Visiter le site corporatif", "discuss-social": "Discuter sur LinkedIn",
                 "cta-title": "Prêt à faire un BID ?", "cta-desc": "Discutons de la manière de transformer votre structure de gouvernance pour protéger votre présent tout en propulsant votre avenir.", "cta-btn": "Initier une discussion",
-                
-                metrics: [
-                    "8x Croissance · Turnaround", "55 M$ Quota · Tech Sales", "Top 5 % · Leadership Stratégique", 
-                    "20 ans+ Expertise · Transformation", "Architecture IA · Gouvernance", "MBA · Adm.A · C.M.C."
-                ],
-
+                metrics: ["8x Croissance · Turnaround", "55 M$ Quota · Tech Sales", "Top 5 % · Leadership Stratégique", "20 ans+ Expertise · Transformation", "Architecture IA · Gouvernance", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    { id: "art1", cat: "Management & Stratégie", title: "Du Canevas à la Boussole", desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/", full: "<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC...</p>" },
-                    { id: "art2", cat: "Innovation & Gouvernance", title: "Bâtissez votre Skunkworks", desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/", full: "<p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs...</p>" },
-                    { id: "art3", cat: "Finance & Stratégie", title: "Le Pari du 1 %", desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/", full: "<p>La finance corporative est intrinsèquement plus à l'aise avec le statu quo...</p>" },
-                    { id: "art4", cat: "Innovation & Gouvernance", title: "Bâtir des Ponts, pas seulement des Labos", desc: "L'histoire de Nespresso comme preuve stratégique.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/", full: "<p>Nespresso a réussi non pas parce qu'elle était séparée, mais parce que Nestlé a su quand construire le Pont...</p>" },
-                    { id: "art5", cat: "Innovation & Gouvernance", title: "Pourquoi le CFO tue vos meilleures idées", desc: "Le problème du Vilain Petit Canard en stratégie corporative.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree/", full: "<p>Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse...</p>" },
-                    { id: "art6", cat: "Stratégie & Leadership", title: "La Stratégie est un Pari, pas une Science", desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/", full: "<p>À chaque exercice financier, il faut se présenter à la table avec vos jetons et miser...</p>" },
-                    { id: "art7", cat: "Innovation & Gouvernance", title: "Avons nous oublié la définition du mot \"Innovation\" ?", desc: "Pourquoi nous confondons polir le passé avec bâtir l'avenir.", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/", full: "<p>Arrêtons de célébrer le « Nouveau et Amélioré ». Commençons à bâtir le « Différent et Vital »...</p>" }
+                    { id: "art1", cat: "Management & Stratégie", title: "Du Canevas à la Boussole", desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/", full: "<p>Récemment, j'ai eu une excellente discussion...</p>" },
+                    { id: "art2", cat: "Innovation & Gouvernance", title: "Bâtissez votre Skunkworks", desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/", full: "<p>En 1943, Lockheed Martin...</p>" },
+                    { id: "art3", cat: "Finance & Stratégie", title: "Le Pari du 1 %", desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/", full: "<p>La finance corporative...</p>" },
+                    { id: "art4", cat: "Innovation & Gouvernance", title: "Bâtir des Ponts, pas seulement des Labos", desc: "L'histoire de Nespresso comme preuve stratégique.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/", full: "<p>Nespresso a réussi...</p>" },
+                    { id: "art5", cat: "Innovation & Gouvernance", title: "Pourquoi le CFO tue vos meilleures idées", desc: "Le problème du Vilain Petit Canard en stratégie corporative.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree/", full: "<p>Dans la plupart des entreprises...</p>" },
+                    { id: "art6", cat: "Stratégie & Leadership", title: "La Stratégie est un Pari, pas une Science", desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/", full: "<p>À chaque exercice financier...</p>" },
+                    { id: "art7", cat: "Innovation & Gouvernance", title: "Avons nous oublié la définition du mot \"Innovation\" ?", desc: "Pourquoi nous confondons polir le passé avec bâtir l'avenir.", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/", full: "<p>Ladite innovation d'une entreprise de café...</p>" }
                 ]
             },
             en: {
@@ -572,20 +526,15 @@
                 "exp-label": "Professional Trajectory", "exp-linkedin": "View my complete trajectory on LinkedIn",
                 "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", "visit-site": "Visit corporate website", "discuss-social": "Discuss on LinkedIn",
                 "cta-title": "Ready to make a BID?", "cta-desc": "Let's discuss how to transform your governance structure to protect your present while propelling your future.", "cta-btn": "Initiate a discussion",
-                
-                metrics: [
-                    "8x Revenue Growth · Turnaround", "$55M Quota Managed · Strategic Portfolio", "Top 5% Strategic Leader · NOVA Profile", 
-                    "20+ Years Experience · Digital Transformation", "AI Architecture · Data Governance", "MBA · Adm.A · C.M.C."
-                ],
-
+                metrics: ["8x Revenue Growth · Turnaround", "$55M Quota Managed", "Top 5% Strategic Leader", "20+ Years Experience", "AI Architecture · Data Governance", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    { id: "art1", cat: "Management & Strategy", title: "From Canvas to Compass", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/", full: "<p>Strategic planning is not a collection of isolated tools...</p>" },
-                    { id: "art2", cat: "Innovation & Governance", title: "Build Your Skunkworks", desc: "Stop talking about innovation and finally close the Governance Gap.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/", full: "<p>In 1943, Lockheed Martin placed its most brilliant engineers...</p>" },
-                    { id: "art3", cat: "Finance & Strategy", title: "The 1% Bet", desc: "Managing Impatient Capital by using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/", full: "<p>Corporate finance is inherently more comfortable with the status quo...</p>" },
-                    { id: "art4", cat: "Innovation & Governance", title: "Build Bridges, Not Just Labs", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/", full: "<p>You cannot ask a fish to climb a tree. Build the Bridge...</p>" },
-                    { id: "art5", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree/", full: "<p>Intel did this in 2006. Apple offered them the contract for the iPhone chip...</p>" },
-                    { id: "art6", cat: "Strategy & Leadership", title: "Strategy is a Bet, Not a Science", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/", full: "<p>The startup next door is already All-In on Black. You have the advantage of capital...</p>" },
-                    { id: "art7", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/", full: "<p>Let's stop celebrating \"New and Improved\" and start building \"Different and Vital\"...</p>" }
+                    { id: "art1", cat: "Management & Strategy", title: "From Canvas to Compass", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%C3%A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne/", full: "<p>Strategic planning...</p>" },
+                    { id: "art2", cat: "Innovation & Governance", title: "Build Your Skunkworks", desc: "Stop talking about innovation and finally close the Governance Gap.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/", full: "<p>In 1943...</p>" },
+                    { id: "art3", cat: "Finance & Strategy", title: "The 1% Bet", desc: "Managing Impatient Capital by using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/", full: "<p>Corporate finance...</p>" },
+                    { id: "art4", cat: "Innovation & Governance", title: "Build Bridges, Not Just Labs", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc/", full: "<p>You cannot ask a fish...</p>" },
+                    { id: "art5", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree/", full: "<p>Intel did this...</p>" },
+                    { id: "art6", cat: "Strategy & Leadership", title: "Strategy is a Bet, Not a Science", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie/", full: "<p>The startup next door...</p>" },
+                    { id: "art7", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme/", full: "<p>Let's stop celebrating...</p>" }
                 ]
             }
         };
@@ -635,6 +584,16 @@
 
             renderArticles();
             renderTicker();
+        }
+
+        function openPortrait() {
+            document.getElementById('portrait-modal').style.display = 'block';
+            document.body.classList.add('modal-open');
+        }
+
+        function closePortrait() {
+            document.getElementById('portrait-modal').style.display = 'none';
+            document.body.classList.remove('modal-open');
         }
 
         function openExp(id) {
@@ -697,7 +656,6 @@
         });
 
         window.onload = function() {
-            // Initialisation infinie pour les logos
             const slider = document.getElementById('logo-slider');
             const items = Array.from(slider.children);
             items.forEach(item => slider.appendChild(item.cloneNode(true)));
