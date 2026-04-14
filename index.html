@@ -68,13 +68,26 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Signature Visuelle Stratégique : La ligne rouge à gauche */
+        /* Classes de Bordures Rouges Unifiées */
+        .red-line-major {
+            border-left: 4px solid var(--bdc-red);
+        }
+
+        .red-line-minor {
+            border-left: 2px solid var(--bdc-red);
+        }
+
         .accent-line-title {
             border-left: 4px solid var(--bdc-red);
             padding-left: 1.5rem;
             color: var(--bdc-white);
             font-weight: 700;
             text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .text-accent {
+            color: var(--bdc-red);
+            font-weight: 700;
         }
 
         section {
@@ -334,7 +347,7 @@
 
     <main class="relative z-10 max-w-4xl mx-auto px-8 pt-48 pb-24">
         
-        <!-- Section Hero : Blanc Gras avec Ligne Rouge -->
+        <!-- Section Hero -->
         <section id="hero" class="mb-48 visible">
             <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]" data-key="name" style="text-shadow: 0 4px 15px rgba(0,0,0,0.6);"></h1>
             <div class="accent-line-title">
@@ -346,7 +359,7 @@
         <!-- Profil Stratégique -->
         <section class="glass p-10 md:p-14 mb-32 scroll-reveal">
             <h3 class="section-label" data-key="about-label"></h3>
-            <div class="border-l-4 border-bdc-red pl-8">
+            <div class="red-line-major pl-8">
                 <p class="text-xl md:text-2xl font-light leading-relaxed mb-10" data-key="summary"></p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-100/60">
                     <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
@@ -361,15 +374,15 @@
         <section class="mb-48 scroll-reveal">
             <h3 class="section-label" data-key="services-label"></h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="space-y-4 border-l-2 border-bdc-red pl-6">
+                <div class="space-y-4 red-line-minor pl-6">
                     <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
                     <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv1-desc"></p>
                 </div>
-                <div class="space-y-4 border-l-2 border-bdc-red pl-6">
+                <div class="space-y-4 red-line-minor pl-6">
                     <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
                     <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv2-desc"></p>
                 </div>
-                <div class="space-y-4 border-l-2 border-bdc-red pl-6">
+                <div class="space-y-4 red-line-minor pl-6">
                     <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
                     <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv3-desc"></p>
                 </div>
@@ -492,7 +505,7 @@
                         title: "Bâtissez votre Skunkworks",
                         desc: "Arrêtez de parler d'innovation et fermez enfin le Fossé de Gouvernance.",
                         socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e/?trackingId=XCHSydbLRoC5HqIbZHg7lw%3D%3D",
-                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit (Start-ups, Skunkworks, and Your Next Big Product). Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
+                        full: "<p>Arrêtez de parler d'innovation, bâtissez votre Skunkworks et fermez le Fossé de Gouvernance.</p><p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p><h3>Le Théâtre de l'Innovation</h3><p>Le monde corporatif a une dangereuse obsession pour le \"théâtre de l'innovation\". Comme Aaron Shapiro l'a si bien écrit dans Fast Company: \"Stop Blabbing About Innovation And Start Actually Doing It\". Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit. Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier. Mais l'autonomie sans structure mène à l'échec. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif coûteux.</p><h3>Le Fossé de Gouvernance</h3><p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, la machine corporative rejette naturellement le nouvel organe car il dilue les marges actuelles.</p><h3>Bâtir le Pont par le Dogfooding</h3><p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont. La règle secrète du succès continu chez Lockheed Martin est le dogfooding. Lorsqu'ils inventent une nouvelle technologie, ils sont obligés d'être leurs propres premiers clients. Les équipes internes sont forcées d'utiliser cette invention pour résoudre leurs propres problèmes quotidiens. Ils deviennent leur propre client le plus exigeant.</p><h3>Le Test de Résistance Ultime</h3><p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>!"
                     },
                     {
                         id: "art3",
@@ -500,7 +513,7 @@
                         title: "Le Pari du 1 %",
                         desc: "Gérer le Capital Impatient en utilisant la règle du 99/1 pour financer Adam Smith sans effrayer Milton Friedman.",
                         socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc/?trackingId=lHbHRlGcQ82MV9wTvCwZqw%3D%3D",
-                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier. Mais ce n'est pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut qui crée de nouveaux marchés. Lorsque vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet. </p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman (La Forteresse). Vous optimisez le cœur de métier pour payer le dividende. Ensuite, vous isolez 1 % pour Smith. Mais vous ne l'appelez pas un Lab. Vous l'appelez une Option d'achat asymétrique (Asymmetric Call Option). Le risque est plafonné à 1 %. Le gain est asymétrique : si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street a cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement au marché à quel jeu vous jouez.</p>"
+                        full: "<p>Il y a quelques semaines, je discutais deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de \"Kill Switch\" de l'innovation. Ils n'étaient pas amusés. \"Alors, nous sommes des tueurs d'innovation ?\" m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés. Je n'ai pas eu d'autre choix que de leur répondre en un mot : \"Oui.\"</p><p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier. Mais ce n'est pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p><h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3><p>Mes amis ne sont pas les méchants. Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI et le rendement immédiat. Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut qui crée de nouveaux marchés. Lorsque vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier tuera le projet. </p><h3>Le Problème du Capital Impatient</h3><p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer via deux règles stratégiques.</p><h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3><p>Vous engagez publiquement 99 % de votre capital envers Friedman (La Forteresse). Vous optimisez le cœur de métier pour payer le dividende. Ensuite, vous isolez 1 % pour Smith. Mais vous ne l'appelez pas un Lab. Vous l'appelez une Option d'achat asymétrique (Asymmetric Call Option). Le risque est plafonné à 1 %. Le gain est asymétrique : si nous avons raison, nous possédons la prochaine décennie.</p><h3>2. La Transparence Radicale (La Quarantaine)</h3><p>Si vous mélangez les coûts, vos marges globales auront l'air de décliner. Google a résolu cela avec Alphabet. Ils ont séparé les finances : Segment A (Google) pour la Forteresse et Segment B (Autres Paris) pour l'Avant-Poste. En isolant l'Avant-Poste, Wall Street ha cessé de punir la marge principale.</p><h3>Conclusion</h3><p>Quand vous cachez l'innovation, cela ressemble à de l'inefficacité. Quand vous l'isolez et le rapportez séparément, cela ressemble à de la Stratégie. Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement au marché à quel jeu vous jouez.</p>"
                     },
                     {
                         id: "art4",
@@ -626,7 +639,7 @@
                 card.onclick = () => openReader(art.id);
                 
                 card.innerHTML = `
-                    <span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block border-l-2 border-bdc-red pl-3">${art.cat}</span>
+                    <span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block red-line-minor pl-3">${art.cat}</span>
                     <h4 class="text-2xl font-bold mb-5 group-hover:text-accent transition-colors leading-tight">${art.title}</h4>
                     <p class="text-blue-100/60 mb-8 leading-relaxed font-light line-clamp-3">${art.desc}</p>
                     <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 group-hover:border-accent transition-all">
