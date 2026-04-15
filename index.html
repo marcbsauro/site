@@ -317,10 +317,14 @@
             </section>
 
             <!-- Appel à l'action final (CTA) -->
-            <section class="glass p-10 md:p-16 mb-32 text-center scroll-reveal">
-                <h3 class="text-2xl md:text-4xl font-bold tracking-tighter mb-6 text-white" data-key="cta-title"></h3>
-                <p class="text-white/70 max-w-xl mx-auto mb-10 text-lg font-light leading-relaxed" data-key="cta-desc"></p>
-                <a href="mailto:msauro@gmail.com" class="inline-block bg-[#ee3124] text-white px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#0b1a30] transition-colors" data-key="cta-btn"></a>
+            <section class="glass p-10 md:p-16 mb-32 scroll-reveal">
+                <div class="accent-line-title mb-6">
+                    <h3 class="text-2xl md:text-4xl font-bold tracking-tighter text-white/90" data-key="cta-title"></h3>
+                </div>
+                <div class="pl-6">
+                    <p class="text-white/70 max-w-xl mb-10 text-lg font-light leading-relaxed" data-key="cta-desc"></p>
+                    <a href="mailto:msauro@gmail.com" class="inline-block bg-[#ee3124] text-white px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#0b1a30] transition-colors" data-key="cta-btn"></a>
+                </div>
             </section>
         </div>
     </main>
@@ -966,7 +970,9 @@
             grid.innerHTML = translations[currentLang].articles.map(art => `
                 <div class="glass p-8 cursor-pointer hover:border-[#ee3124] transition-all group" onclick="openReader('${art.id}')">
                     <span class="text-[9px] font-bold uppercase tracking-widest text-[#ee3124] mb-4 block">${art.cat}</span>
-                    <h4 class="text-xl font-bold mb-4 group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
+                    <div class="red-line-minor pl-4 mb-4">
+                        <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white/90">${art.title}</h4>
+                    </div>
                     <p class="text-white/60 text-sm line-clamp-3 leading-relaxed mb-6 font-light">${art.desc}</p>
                     <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 text-white group-hover:text-white/80 transition-all">
                         ${translations[currentLang]['read-more']}
