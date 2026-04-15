@@ -145,6 +145,30 @@
             text-align: center;
         }
 
+        .scroll-btn {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            color: white;
+        }
+        .scroll-btn:hover {
+            background: rgba(238, 49, 36, 0.9);
+            border-color: rgba(238, 49, 36, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -265,17 +289,31 @@
 
             <section class="mb-32">
                 <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-8" data-key="exp-label"></h3>
-                <div id="logo-slider" class="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x scroll-smooth">
-                    <div class="logo-box snap-center"><img src="logo1.png" class="logo-img"><span class="company-label">Dassault Systèmes</span></div>
-                    <div class="logo-box snap-center"><img src="logo2.png" class="logo-img"><span class="company-label">Autodesk</span></div>
-                    <div class="logo-box snap-center"><img src="logo4.png" class="logo-img"><span class="company-label">Vent de la Savane</span></div>
-                    <div class="logo-box snap-center"><img src="esg_logo.png" class="logo-img"><span class="company-label">ESG UQAM</span></div>
+                <div class="relative group/slider">
+                    <button onclick="scrollSlider(-1)" class="scroll-btn -left-5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+                    <button onclick="scrollSlider(1)" class="scroll-btn -right-5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+                    <div id="logo-slider" class="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x scroll-smooth">
+                        <div class="logo-box snap-center" onclick="openExp('exp1')"><img src="logo1.png" class="logo-img" alt="Dassault Systèmes"><span class="company-label">Dassault Systèmes</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp2')"><img src="logo2.png" class="logo-img" alt="Autodesk"><span class="company-label">Autodesk</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp3')"><img src="logo3.png" class="logo-img" alt="Graitec"><span class="company-label">Graitec Group</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp4')"><img src="logo4.png" class="logo-img" alt="Vent de la Savane"><span class="company-label">Vent de la Savane</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp5')"><img src="logo5.png" class="logo-img" alt="SolidXperts"><span class="company-label">SolidXperts</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp6')"><img src="logo6.png" class="logo-img" alt="Groupe Bolloré"><span class="company-label">Groupe Bolloré</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp11')"><img src="esg_logo.png" class="logo-img" alt="ESG UQAM"><span class="company-label">ESG UQAM</span></div>
+                    </div>
                 </div>
             </section>
 
             <section id="articles" class="mb-32">
                 <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-8" data-key="articles-label"></h3>
                 <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            </section>
+
+            <!-- Appel à l'action final (CTA) -->
+            <section class="glass p-10 md:p-16 mb-32 text-center scroll-reveal">
+                <h3 class="text-2xl md:text-4xl font-bold tracking-tighter mb-6 text-white" data-key="cta-title"></h3>
+                <p class="text-white/70 max-w-xl mx-auto mb-10 text-lg font-light leading-relaxed" data-key="cta-desc"></p>
+                <a href="mailto:msauro@gmail.com" class="inline-block bg-[#ee3124] text-white px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#0b1a30] transition-colors" data-key="cta-btn"></a>
             </section>
         </div>
     </main>
@@ -310,6 +348,17 @@
                 "articles-label": "Vision et Innovation Stratégique", 
                 "read-more": "Lire l'analyse",
                 "discuss-social": "Discuter sur LinkedIn",
+                "visit-site": "Visiter le site corporatif",
+                "cta-title": "Optimisez votre trajectoire d'affaires.",
+                "cta-desc": "Transformez votre vision exécutive en résultats tangibles.",
+                "cta-btn": "Écrivez-moi",
+                "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction de la stratégie de vente nord-américaine et de l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM).</p>" },
+                "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Gestion d'une organisation mondiale d'habilitation technique et définition des stratégies de mise en marché pour le portefeuille Conception et Fabrication.</p>" },
+                "exp3": { title: "Graitec", role: "Architecte de Solutions", url: "https://www.graitec.com", full: "<p>Optimisation des infrastructures Cloud et des dépôts de données pour des clients AEC d'envergure.</p>" },
+                "exp4": { title: "Vent de la Savane", role: "Directeur des Opérations", url: "https://www.ventdelasavane.com", full: "<p>Réussite d'un redressement majeur avec une croissance de 8x du chiffre d'affaires sur un cycle de 3 ans via une refonte opérationnelle complète.</p>" },
+                "exp5": { title: "SolidXperts", role: "Directeur Technique", url: "https://www.solidxperts.com", full: "<p>Mise en œuvre de solutions PLM et PDM complexes pour le secteur manufacturier, améliorant les cycles de conception.</p>" },
+                "exp6": { title: "Groupe Bolloré", role: "Gestion de Projet Logistique", url: "https://www.bollore.com", full: "<p>Optimisation des flux opérationnels internationaux et gestion de projets logistiques transversaux de haute complexité.</p>" },
+                "exp11": { title: "ESG UQAM", role: "MBA en Conseil en Management (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Maîtrise spécialisée dans la consultation stratégique et le déploiement de modèles d'innovation.</p>" },
                 metrics: ["8x Croissance", "55 M$ Quota", "Top 5 % Leadership", "20 ans Expertise", "MBA · Adm.A · C.M.C."],
                 articles: [
                     {
@@ -601,6 +650,17 @@
                 "articles-label": "Vision & Strategic Innovation", 
                 "read-more": "Read more",
                 "discuss-social": "Discuss on LinkedIn",
+                "visit-site": "Visit corporate website",
+                "cta-title": "Optimize your business trajectory.",
+                "cta-desc": "Transform your executive vision into tangible results.",
+                "cta-btn": "Contact me",
+                "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction of North American sales strategy and technical enablement for Business Process Management solutions.</p>" },
+                "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Oversaw global technical enablement organization and defined GTM strategies for the Design & Manufacturing portfolio.</p>" },
+                "exp3": { title: "Graitec", role: "Solution Architect", url: "https://www.graitec.com", full: "<p>Strategic optimization of Cloud infrastructures and data repositories for major AEC global clients.</p>" },
+                "exp4": { title: "Vent de la Savane", role: "Director of Operations", url: "https://www.ventdelasavane.com", full: "<p>Successful 8x revenue growth turnaround over a 3-year cycle through total operational restructuring.</p>" },
+                "exp5": { title: "SolidXperts", role: "Technical Director", url: "https://www.solidxperts.com", full: "<p>Implemented complex PLM and PDM solutions for the manufacturing sector, optimizing design-to-production cycles.</p>" },
+                "exp6": { title: "Bolloré Group", role: "Logistics Project Management", url: "https://www.bollore.com", full: "<p>Optimized international operational flows and led cross-functional logistics projects across global regions.</p>" },
+                "exp11": { title: "ESG UQAM", role: "MBA in Management Consulting (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Specialized Master's degree focused on strategic consulting and innovation deployment models.</p>" },
                 metrics: ["8x Growth", "$55M Quota", "Top 5% Leader", "20+ Years Exp", "MBA · Adm.A · C.M.C."],
                 articles: [
                     {
@@ -934,6 +994,28 @@
             renderTicker();
         }
 
+        function openExp(id) {
+            const data = translations[currentLang][id];
+            if (!data) return;
+            document.getElementById('reader-title').innerText = data.title;
+            document.getElementById('reader-meta').innerText = data.role;
+            document.getElementById('reader-body').innerHTML = data.full;
+            const footer = document.getElementById('reader-footer');
+            footer.innerHTML = (data.url && data.url !== '#') ? 
+                `<a href="${data.url}" target="_blank" class="btn-social">${translations[currentLang]['visit-site']}</a>` : '';
+            document.getElementById('reader-overlay').style.display = 'block';
+            document.body.classList.add('modal-open');
+        }
+
+        function scrollSlider(direction) {
+            const slider = document.getElementById('logo-slider');
+            if (!slider) return;
+            const firstChild = slider.querySelector('.logo-box');
+            if (!firstChild) return;
+            const cardWidth = firstChild.offsetWidth + 16;
+            slider.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+        }
+
         function openReader(id) {
             const art = translations[currentLang].articles.find(a => a.id === id);
             if(!art) return;
@@ -967,12 +1049,14 @@
 
         window.onload = () => {
             initLanguage();
-            // Duplication des logos pour le slider infini (si la logique le requiert, sinon le CSS snap-x gère)
+            
             const slider = document.getElementById('logo-slider');
-            if (slider && slider.children.length === 5) {
+            if (slider) {
                 const items = Array.from(slider.children);
                 items.forEach(item => slider.appendChild(item.cloneNode(true)));
+                items.forEach(item => slider.appendChild(item.cloneNode(true)));
             }
+            
             window.dispatchEvent(new Event('scroll'));
         };
     </script>
