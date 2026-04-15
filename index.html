@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marc B. Sauro | Consultant</title>
+    <title>Marc B. Sauro | Stratège & Consultant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette Institutionnelle BDC */
             --bdc-blue: #0b1a30;
             --bdc-red: #ee3124;
             --bdc-white: #ffffff;
@@ -23,311 +22,151 @@
             overflow-x: hidden;
         }
 
-        body.modal-open {
-            overflow: hidden;
-        }
+        body.modal-open { overflow: hidden; }
 
         .bg-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -10;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -10; overflow: hidden;
         }
 
         #zoom-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.1s ease-out;
-            filter: brightness(1.15) contrast(1.1) saturate(1.1);
+            filter: brightness(1.1) contrast(1.1);
         }
 
         .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(11, 26, 48, 0.2) 0%, var(--bdc-bg-dark) 95%);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(11, 26, 48, 0.3) 0%, var(--bdc-bg-dark) 95%);
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
         }
 
         .nav-blur {
-            background: rgba(5, 12, 24, 0.85);
+            background: rgba(5, 12, 24, 0.9);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .red-line-major {
-            border-left: 4px solid var(--bdc-red);
-        }
-
-        .red-line-minor {
-            border-left: 2px solid var(--bdc-red);
-        }
+        .red-line-major { border-left: 4px solid var(--bdc-red); }
 
         .accent-line-title {
             border-left: 4px solid var(--bdc-red);
             padding-left: 1.5rem;
-            color: var(--bdc-white);
-            font-weight: 700;
             text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         section {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        section.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- EXECUTIVE TICKER --- */
+        /* --- EXECUTIVE TICKER (15s) --- */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.25rem 0;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .ticker {
             display: flex;
             white-space: nowrap;
-            animation: ticker-animation 35s linear infinite;
+            animation: ticker-animation 15s linear infinite;
         }
 
-        .ticker:hover {
-            animation-play-state: paused;
-        }
+        .ticker:hover { animation-play-state: paused; }
 
         @keyframes ticker-animation {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-33.33%); }
         }
 
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-            padding-right: 2.5rem;
-        }
+        .ticker-item { display: flex; align-items: center; }
 
         .ticker-segment {
-            border-left: 3px solid var(--bdc-red);
-            padding-left: 1.25rem;
+            border-left: 2px solid var(--bdc-red);
+            padding: 0 3rem;
             font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            color: var(--bdc-white);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
+            color: var(--bdc-white);
         }
 
         /* --- LOGO BOXES --- */
         .logo-box {
+            flex-shrink: 0;
+            width: 14rem;
+            height: 10rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            min-height: 11rem;
-            width: 14rem;
-            background: rgba(255, 255, 255, 0.06);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            flex-shrink: 0;
-            padding: 1.5rem 1rem;
-            border-radius: 0.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
             cursor: pointer;
+            padding: 1rem;
         }
 
         .logo-box:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.08);
             border-color: var(--bdc-red);
-            transform: translateY(-5px);
-        }
-
-        .company-label {
-            color: var(--bdc-white);
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-            text-align: center;
-            line-height: 1.4;
+            transform: translateY(-4px);
         }
 
         .logo-img {
-            max-height: 55px;
-            max-width: 90%;
-            object-fit: contain;
-            filter: brightness(0) invert(1) opacity(0.8);
-            transition: all 0.6s ease;
+            max-height: 45px;
+            max-width: 80%;
+            filter: brightness(0) invert(1) opacity(0.7);
+            margin-bottom: 1rem;
         }
 
-        .scroll-btn {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 20;
-            color: white;
+        .company-label {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            text-align: center;
         }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* --- READER & MODAL --- */
-        #reader-overlay, #portrait-modal {
+        #reader-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(11, 26, 48, 0.98);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 12, 24, 0.98);
             z-index: 1000;
             overflow-y: auto;
             backdrop-filter: blur(15px);
         }
 
         .reader-content {
-            max-width: 850px;
-            margin: 2rem auto;
+            max-width: 800px;
+            margin: 4rem auto;
             background: var(--bdc-white);
             color: #1a1a1a;
-            padding: 1.5rem;
+            padding: 4rem;
             border-radius: 2px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-
-        @media (min-width: 768px) {
-            .reader-content {
-                margin: 4rem auto;
-                padding: 4.5rem;
-            }
-        }
-
-        .reader-close {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            background: var(--bdc-red);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s;
-            z-index: 1100;
-        }
-
-        @media (min-width: 768px) {
-            .reader-close {
-                top: 2.5rem;
-                right: 2.5rem;
-                padding: 0.8rem 1.8rem;
-            }
-        }
-
-        /* --- NAVIGATION IDENTITY --- */
-        .nav-identity {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .nav-identity:hover {
-            transform: scale(1.02);
-        }
-
-        .avatar-container {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid var(--bdc-red);
-            background: var(--bdc-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(238, 49, 36, 0.2);
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .portrait-large {
-            max-width: 90vw;
-            max-height: 70vh;
-            border-radius: 4px;
-            border: 4px solid var(--bdc-red);
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-        }
-
-        .section-label {
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: #bfdbfe;
-            margin-bottom: 2rem;
-            opacity: 0.7;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .btn-social {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 2rem;
-            border: 2px solid #0077b5;
-            color: #0077b5;
-            padding: 0.8rem 1.5rem;
-            border-radius: 2px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-        
-        .btn-social:hover {
-            background: #0077b5;
-            color: white;
-        }
-
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body>
@@ -337,146 +176,81 @@
         <div class="overlay"></div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-white/10">
-        <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex justify-between items-center">
-            <div class="nav-identity" onclick="openPortrait()">
-                <div class="avatar-container">
-                    <img src="portrait.jpg" alt="Marc B. Sauro" class="avatar-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<span class=\'text-[10px] font-bold\'>MBS</span>'">
+    <nav class="fixed top-0 w-full z-50 nav-blur">
+        <div class="max-w-6xl mx-auto px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="location.reload()">
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#ee3124] bg-slate-900">
+                    <img src="portrait.jpg" alt="MBS" class="w-full h-full object-cover">
                 </div>
-                <div class="text-lg md:text-xl font-bold tracking-tighter">MBS<span class="text-[#ee3124]">.</span></div>
+                <div class="text-xl font-bold tracking-tighter italic">MBS<span class="text-[#ee3124]">.</span></div>
             </div>
-            <div class="flex items-center gap-4 md:gap-8">
-                <button id="lang-toggle" onclick="toggleLanguage()" class="text-[10px] md:text-xs font-bold tracking-widest border border-white/15 px-3 py-1.5 md:px-5 md:py-2 rounded-sm hover:bg-white hover:text-black transition-all">
-                    EN
-                </button>
-            </div>
+            <button id="lang-toggle" onclick="toggleLanguage()" class="text-[10px] font-bold tracking-[0.2em] border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all">EN</button>
         </div>
     </nav>
 
-    <div id="reader-overlay">
-        <button class="reader-close" onclick="closeReader()" data-key="close-reader">Fermer</button>
-        <article class="reader-content max-w-none">
-            <h1 id="reader-title" class="text-3xl md:text-4xl font-extrabold mb-4 text-[#0b1a30] tracking-tight"></h1>
-            <p id="reader-meta" class="text-xs font-bold text-red-600 mb-8 uppercase tracking-[0.2em] border-b border-gray-100 pb-4"></p>
-            <div id="reader-body" class="article-body text-gray-800 text-base md:text-lg"></div>
-            <div id="reader-footer" class="mt-8 flex gap-4 flex-wrap"></div>
-        </article>
-    </div>
-
-    <div id="portrait-modal" onclick="closePortrait()">
-        <button class="reader-close" onclick="closePortrait()">Fermer</button>
-        <div class="flex flex-col items-center justify-center h-full p-8">
-            <img src="portrait.jpg" alt="Marc B. Sauro" class="portrait-large">
-            <p class="mt-6 text-white font-bold uppercase tracking-widest text-sm">Marc B. Sauro</p>
-        </div>
-    </div>
-
     <main class="relative z-10 pt-48 pb-24">
-        
-        <!-- Hero Section -->
-        <section id="hero" class="max-w-4xl mx-auto px-8 mb-24 visible text-white">
-            <h1 class="text-5xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]" data-key="name" style="text-shadow: 0 4px 15px rgba(0,0,0,0.6);"></h1>
+        <section id="hero" class="max-w-4xl mx-auto px-8 mb-32 visible">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-none" data-key="name"></h1>
             <div class="accent-line-title">
-                <h2 class="text-lg md:text-2xl tracking-[0.12em] uppercase" data-key="title"></h2>
+                <h2 class="text-lg md:text-xl font-semibold tracking-[0.15em] uppercase text-white/90" data-key="title"></h2>
             </div>
-            <p class="text-lg md:text-2xl text-blue-50 max-w-2xl mt-12 leading-relaxed opacity-90 font-light" data-key="hero-p" style="text-shadow: 0 2px 8px rgba(0,0,0,0.4);"></p>
+            <p class="text-xl md:text-2xl text-white/70 max-w-2xl mt-12 font-light leading-relaxed" data-key="hero-p"></p>
         </section>
 
-        <!-- Executive Ticker -->
-        <section class="ticker-wrap mb-48 visible">
+        <section class="ticker-wrap mb-32 visible">
             <div id="ticker-container" class="ticker"></div>
         </section>
 
-        <div class="max-w-4xl mx-auto px-8 text-white">
-            <!-- Profil Stratégique -->
-            <section class="glass p-8 md:p-14 mb-32 scroll-reveal">
-                <h3 class="section-label" data-key="about-label"></h3>
-                <div class="red-line-major pl-6 md:pl-8">
-                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-10 text-white" data-key="summary"></p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-blue-100/60">
-                        <div class="flex items-center gap-3 text-white"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
-                        <div class="flex items-center gap-3 text-white"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill2"></span></div>
-                        <div class="flex items-center gap-3 text-white"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill3"></span></div>
-                        <div class="flex items-center gap-3 text-white"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill4"></span></div>
+        <div class="max-w-4xl mx-auto px-8">
+            <section class="glass p-10 md:p-16 mb-32 scroll-reveal">
+                <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#ee3124] mb-8" data-key="about-label"></h3>
+                <div class="red-line-major pl-8">
+                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-16" data-key="summary"></p>
+                    
+                    <div class="space-y-12">
+                        <div class="group">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-[#ee3124] mb-2" data-key="skill1-title"></h4>
+                            <p class="text-lg font-light text-white/80 leading-relaxed" data-key="skill1-desc"></p>
+                        </div>
+                        <div class="group">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-[#ee3124] mb-2" data-key="skill2-title"></h4>
+                            <p class="text-lg font-light text-white/80 leading-relaxed" data-key="skill2-desc"></p>
+                        </div>
+                        <div class="group">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-[#ee3124] mb-2" data-key="skill3-title"></h4>
+                            <p class="text-lg font-light text-white/80 leading-relaxed" data-key="skill3-desc"></p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Axes d'Intervention -->
-            <section class="mb-48 scroll-reveal">
-                <h3 class="section-label" data-key="services-label"></h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="space-y-4 red-line-minor pl-6">
-                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
-                        <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv1-desc"></p>
-                    </div>
-                    <div class="space-y-4 red-line-minor pl-6">
-                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
-                        <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv2-desc"></p>
-                    </div>
-                    <div class="space-y-4 red-line-minor pl-6">
-                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
-                        <p class="text-blue-100/60 text-sm leading-relaxed" data-key="srv3-desc"></p>
-                    </div>
+            <section class="mb-32">
+                <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-8" data-key="exp-label"></h3>
+                <div id="logo-slider" class="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x scroll-smooth">
+                    <div class="logo-box snap-center"><img src="logo1.png" class="logo-img"><span class="company-label">Dassault Systèmes</span></div>
+                    <div class="logo-box snap-center"><img src="logo2.png" class="logo-img"><span class="company-label">Autodesk</span></div>
+                    <div class="logo-box snap-center"><img src="logo4.png" class="logo-img"><span class="company-label">Vent de la Savane</span></div>
+                    <div class="logo-box snap-center"><img src="esg_logo.png" class="logo-img"><span class="company-label">ESG UQAM</span></div>
                 </div>
             </section>
 
-            <!-- Trajectoire Professionnelle -->
-            <section class="mb-48 scroll-reveal">
-                <h3 class="section-label" data-key="exp-label"></h3>
-                <div class="relative group/slider">
-                    <button onclick="scrollSlider(-1)" class="scroll-btn -left-4 md:-left-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
-                    <button onclick="scrollSlider(1)" class="scroll-btn -right-4 md:-right-8 transition-transform hover:scale-110"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
-                    <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
-                        <div class="logo-box snap-center" onclick="openExp('exp1')"><img src="logo1.png" alt="Dassault" class="logo-img"><span class="company-label">Dassault Systèmes</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp2')"><img src="logo2.png" alt="Autodesk" class="logo-img"><span class="company-label">Autodesk</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp3')"><img src="logo3.png" alt="Graitec" class="logo-img"><span class="company-label">Graitec Group</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp4')"><img src="logo4.png" alt="Vent de la Savane" class="logo-img"><span class="company-label">Pourvoirie Vent de la Savane</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp5')"><img src="logo5.png" alt="SolidXperts" class="logo-img"><span class="company-label">SolidXperts</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp6')"><img src="logo6.png" alt="Bolloré" class="logo-img"><span class="company-label">Groupe Bolloré</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp7')"><img src="logo7.png" alt="Mecachrome" class="logo-img"><span class="company-label">Mecachrome</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp8')"><img src="logo8.png" alt="Construction PL" class="logo-img"><span class="company-label">Construction Pascal Lanoue</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp9')"><img src="logo9.png" alt="EMICA" class="logo-img"><span class="company-label">EMICA</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp10')"><img src="hec_logo.png" alt="HEC Montréal" class="logo-img"><span class="company-label">HEC Montréal</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp11')"><img src="esg_logo.png" alt="ESG UQAM" class="logo-img"><span class="company-label">ESG UQAM</span></div>
-                    </div>
-                </div>
-                <div class="mt-8 text-center">
-                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" data-key="exp-linkedin"></a>
-                </div>
+            <section id="articles" class="mb-32">
+                <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/40 mb-8" data-key="articles-label"></h3>
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
-
-            <!-- Leadership de Pensée -->
-            <section id="articles" class="mb-48 scroll-reveal">
-                <h3 class="section-label" data-key="articles-label"></h3>
-                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-            </section>
-
-            <!-- Appel à l'action final -->
-            <section class="glass p-10 md:p-20 mb-48 text-center scroll-reveal">
-                <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-8" data-key="cta-title"></h3>
-                <p class="text-blue-100/60 max-w-xl mx-auto mb-12" data-key="cta-desc"></p>
-                <a href="mailto:msauro@gmail.com" class="inline-block bg-accent text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
-            </section>
-
-            <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10">
-                <div>
-                    <p class="text-3xl font-bold tracking-tighter mb-2">marcbsauro<span class="text-[#ee3124]">.ca</span></p>
-                    <div class="flex flex-col gap-1">
-                        <p class="text-[10px] text-blue-100/30 uppercase tracking-[0.4em]">© 2026 Marc B. Sauro</p>
-                        <p class="text-[9px] text-blue-100/20 uppercase tracking-widest">
-                            Photo <a href="https://unsplash.com/@rockcyp1?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" class="hover:text-blue-100/40 underline decoration-blue-100/10 transition-colors">Cyprien Da Silva</a> | <a href="https://unsplash.com/photos/city-skyline-lit-up-at-night-kNbuhVeCJrE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" class="hover:text-blue-100/40 underline decoration-blue-100/10 transition-colors">Unsplash</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="flex gap-10">
-                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-blue-100/60 hover:text-white transition-colors">LinkedIn</a>
-                    <a href="mailto:msauro@gmail.com" class="text-xs font-bold uppercase tracking-widest text-blue-100/60 hover:text-white transition-colors">Contact</a>
-                </div>
-            </footer>
         </div>
     </main>
+
+    <div id="reader-overlay">
+        <div class="max-w-4xl mx-auto px-4">
+            <button class="fixed top-8 right-8 bg-[#ee3124] text-white px-6 py-2 font-bold uppercase text-xs tracking-widest z-[1100]" onclick="closeReader()">Fermer</button>
+            <article class="reader-content">
+                <h1 id="reader-title" class="text-4xl font-bold mb-4 tracking-tight"></h1>
+                <p id="reader-meta" class="text-xs font-bold text-[#ee3124] uppercase tracking-widest mb-8 border-b pb-4"></p>
+                <div id="reader-body" class="prose max-w-none text-lg leading-relaxed text-gray-800"></div>
+            </article>
+        </div>
+    </div>
 
     <script>
         const translations = {
@@ -484,177 +258,79 @@
                 name: "Marc B. Sauro",
                 title: "Conseiller Stratégique | Transformation",
                 "hero-p": "Convertir la vision en trajectoires opérationnelles et en stratégies d'exécution tangibles pour maximiser la valeur d'affaires.",
-                "about-label": "Profil Stratégique",
-                "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expertise à l'intersection de la technologie et de la stratégie d'affaires. Candidat au MBA en conseil en management (C.M.C.) à l'ESG UQAM, je me spécialise dans la conversion des ambitions décisionnelles en trajectoires opérationnelles tangibles. Mon approche unifie l'innovation stratégique et l'excellence opérationnelle pour maximiser la valeur des organisations.",
-                "skill1": "Développement des Affaires et Croissance", 
-                "skill2": "Diagnostic Organisationnel & Stratégique", 
-                "skill3": "Architecture de Solutions et Optimisation des Investissements", 
-                "skill4": "Leadership d'Influence et Gestion du Changement",
-                "services-label": "Axes d'Intervention",
-                "srv1-title": "Diagnostic Stratégique", "srv1-desc": "Analyse critique des modèles d'affaires et identification des leviers d'optimisation pour sécuriser la rentabilité et la pérennité opérationnelle.",
-                "srv2-title": "Architecture de Solutions", "srv2-desc": "Conception de cadres opérationnels et technologiques alignés sur les objectifs de croissance, garantissant la maximisation de la valeur d'affaires.",
-                "srv3-title": "Accompagnement Exécutif", "srv3-desc": "Transformation de la vision exécutive en trajectoires d'exécution concrètes pour les organisations en phase de transformation majeure.",
-                "exp-label": "Trajectoire Professionnelle", "exp-linkedin": "Consultez mon parcours complet sur LinkedIn",
-                "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", 
-                "visit-site": "Site web", 
-                "discuss-social": "Commentez sur LinkedIn",
-                "cta-title": "Optimisez votre trajectoire d'affaires.", "cta-desc": "Transformez votre vision exécutive en résultats tangibles.", "cta-btn": "Écrivez-moi",
-                
-                /* Experience Metadata FR */
-                "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction de la stratégie de vente nord-américaine et de l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM).</p>" },
-                "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Gestion d'une organisation mondiale d'habilitation technique et définition des stratégies de mise en marché pour le portefeuille Conception et Fabrication.</p>" },
-                "exp3": { title: "Graitec", role: "Architecte de Solutions", url: "https://www.graitec.com", full: "<p>Optimisation des infrastructures Cloud et des dépôts de données pour des clients AEC d'envergure.</p>" },
-                "exp4": { title: "Vent de la Savane", role: "Directeur des Opérations", url: "https://www.ventdelasavane.com", full: "<p>Réussite d'un redressement majeur avec une croissance de 8x du chiffre d'affaires sur un cycle de 3 ans via une refonte opérationnelle complète.</p>" },
-                "exp5": { title: "SolidXperts", role: "Directeur Technique", url: "https://www.solidxperts.com", full: "<p>Mise en œuvre de solutions PLM et PDM complexes pour le secteur manufacturier, améliorant les cycles de conception.</p>" },
-                "exp6": { title: "Groupe Bolloré", role: "Gestion de Projet Logistique", url: "https://www.bollore.com", full: "<p>Optimisation des flux opérationnels internationaux et gestion de projets logistiques transversaux de haute complexité.</p>" },
-                "exp7": { title: "Mecachrome", role: "Ingénierie Aéronautique", url: "https://www.mecachrome.com", full: "<p>Soutien technique et stratégique pour l'usinage de haute précision appliqué aux standards de l'industrie aéronautique.</p>" },
-                "exp8": { title: "Construction Pascal Lanoue", role: "Gestion d'Infrastructure", url: "#", full: "<p>Gestion opérationnelle et redressement de projets complexes en milieu industriel et de construction.</p>" },
-                "exp9": { title: "EMICA", role: "Expert Conseil Technologie", url: "https://emica.cssdm.gouv.qc.ca", full: "<p>Intégration technologique stratégique au sein du réseau de formation professionnelle.</p>" },
-                "exp10": { title: "HEC Montréal", role: "Certificat | Gestion des Affaires", url: "https://www.hec.ca", full: "<p>Formation avancée en administration, posant les bases de la rigueur analytique appliquée au monde corporatif québécois.</p>" },
-                "exp11": { title: "ESG UQAM", role: "MBA en Conseil en Management (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Maîtrise spécialisée dans la consultation stratégique et le déploiement de modèles d'innovation.</p>" },
-
-                metrics: ["8x Croissance · Turnaround", "55 M$ Quota · Tech Sales", "Top 5 % · Leadership Stratégique", "20 ans+ Expertise · Transformation", "Architecture IA · Gouvernance", "MBA · Adm.A · C.M.C."],
+                "about-label": "Axes d'intervention",
+                "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expertise. Candidat au MBA à l'ESG UQAM, je me spécialise dans la conversion des ambitions décisionnelles en trajectoires opérationnelles tangibles.",
+                "skill1-title": "Diagnostic Organisationnel et Stratégique",
+                "skill1-desc": "Analyse critique des modèles d'affaires et identification des leviers d'optimisation pour sécuriser la rentabilité et la pérennité opérationnelle.",
+                "skill2-title": "Architecture de Solutions et Optimisation des Investissements",
+                "skill2-desc": "Conception de cadres opérationnels et technologiques alignés sur les objectifs de croissance, garantissant la maximisation de la valeur d'affaires.",
+                "skill3-title": "Vision et Innovation Stratégique",
+                "skill3-desc": "Transformation de la vision exécutive en trajectoires d'exécution concrètes pour les organisations en phase de transition majeure.",
+                "exp-label": "Trajectoire", 
+                "articles-label": "Vision et Innovation Stratégique", 
+                metrics: ["8x Croissance", "55 M$ Quota", "Top 5 % Leadership", "20 ans Expertise", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    { id: "art1", cat: "Innovation & Gouvernance", title: "Avons-nous oublié la définition du mot « Innovation » ?", desc: "Pourquoi nous confondons « polir le passé » avec « bâtir l'avenir ».", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme", full: `<p>Je suis récemment tombé sur une publicité d'une grande entreprise de café qui promettait de « réinventer ma routine matinale » grâce à leur « toute nouvelle innovation ».</p><p>En tant que stratège, le mot innovation déclenche immédiatement mon radar. Ladite « innovation » se résumait à un réservoir d'eau rotatif et un design « plus mince ».</p><p>Il faut arrêter de se mentir. Ce n'est pas de l'innovation. C'est de la Nouveauté (Novelty). La Nouveauté rend l'ancien produit plus brillant pour une transaction court terme. L'Innovation change les règles du jeu pour une relation long terme.</p><h3>La Forteresse vs L'Avant-Poste</h3><p>La Forteresse (votre cœur de métier) est bâtie sur l'efficacité. Pour innover, vous avez besoin d'un Détachement (Outpost), un système d'exploitation distinct dont le seul but est la découverte. Son travail est de cannibaliser la Forteresse avant qu'un concurrent ne le fasse.</p><h3>The BID</h3><p>L'Efficacité tue la Découverte. La Découverte gaspille l'Efficacité. J'appelle cela Le Business Innovation Dichotomy (The BID). Arrêtons de célébrer le « Nouveau et Amélioré ». Commençons à bâtir le « Différent et Vital ».</p>` },
-                    { id: "art2", cat: "Stratégie & Leadership", title: "Pourquoi la Stratégie est un Pari, et pas une Science.", desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie", full: `<p>Si vous consultez l'ordre du jour d'une réunion de CA, vous verrez beaucoup de mots rassurants : « Optimisation », « Prévisions » et « IA ». C'est une illusion. La réalité est tout autre : l'entreprise moderne n'a rien à voir avec un laboratoire. C'est plutôt un casino. À chaque exercice financier, il faut se présenter à la table avec vos jetons et miser. Cette mise est votre BID. C'est le risque calculé pour la survie. Le Rouge est le Cœur Métier (la Forteresse). Le Noir est l'Innovation (l'Avant-Poste). La solution est de reconnaître le fossé et de bâtir le pont. C'est le temps de faire un BID.</p>` },
-                    { id: "art3", cat: "Innovation & Gouvernance", title: "Pourquoi le CFO tue vos meilleures idées.", desc: "Le problème du « Vilain Petit Canard » en stratégie corporative.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe", full: `<p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé que presque tous les athlètes sur le parcours utilisaient des skis à fixations centrées. C'est la fin d'une guerre commencée dans un garage en 1995. Salomon, le géant, a réagi comme une Forteresse : ils ont peint un ski de course en jaune et courbé le tail. C'était de la Nouveauté. Line Skis, un startup, a réagi comme un Avant-Poste en redimensionnant un snowboard. Salomon ne pouvait pas faire ça : sa structure de gouvernance l'aurait tué immédiatement. Dans la plupart des entreprises, le CFO tue les idées d'Avant-Poste pour protéger la Forteresse. Vous avez besoin d'un Double Système d'Exploitation pour créer une Zone de Sécurité.</p>` },
-                    { id: "art4", cat: "Innovation & Gouvernance", title: "Arrêtez de bâtir des laboratoires d'innovation. Commencez à bâtir des ponts.", desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc", full: `<p>La Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Nestlé a vu juste en construisant un meilleur Modèle de Gouvernance. Pour comprendre Nespresso, il faut comprendre la puissance de Nescafé. Né d'une crise en 1929, Nescafé était la Forteresse. Nestlé a réussi avec Nespresso parce qu'ils ont su construire le Pont et déclencher toute la puissance de leur chaîne d'approvisionnement pour forcer le marché à exister. Ils n'ont pas laissé la Forteresse tuer l'idée : ils ont attendu que l'idée devienne un géant. Le Pont est l'ensemble de règles qui protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre.</p>` },
-                    { id: "art5", cat: "Finance & Stratégie", title: "Une conversation sur Milton Friedman, le Capital Impatient et le Pari du 1 %.", desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc", full: `<p>La finance corporative est intrinsèquement plus à l'aise avec le statu quo. Mais l'innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. La solution pour un PDG public ? La Règle du 99/1. Engagez 99 % de votre capital envers Friedman (la Forteresse) et isolez 1 % pour Smith (l'Avant-Poste) comme une Option d'achat asymétrique. En isolant l'Avant-Poste par une transparence radicale, Wall Street cesse de punir la marge principale. Dites exactement aux investisseurs à quel jeu vous jouez.</p>` },
-                    { id: "art6", cat: "Innovation & Gouvernance", title: "Arrêtez de parler d'innovation, bâtissez votre Skunkworks et comblez le Fossé de Gouvernance.", desc: "Comment Lockheed Martin garantit le succès de ses inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>La règle secrète chez Lockheed Martin est le dogfooding : les équipes internes sont forcées d'utiliser les nouvelles technologies pour résoudre leurs propres problèmes quotidiens. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché.</p>` },
-                    { id: "art7", cat: "Management & Stratégie", title: "Du Canevas à la Boussole : Connecter le Business Model aux Trois Horizons de McKinsey.", desc: "Bâtir un système d'exploitation stratégique complet.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%25C3%25A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne", full: `<p>Un modèle d'affaires n'est jamais statique. Dès que vous projetez ce canevas dans le temps, le besoin d'une feuille de route devient évident. C'est ici qu'interviennent les Trois Horizons de McKinsey pour sécuriser la base, optimiser la croissance et propulser votre avenir. Le Canevas sécurise votre base, la feuille de route optimise votre croissance et les Trois Horizons propulsent votre avenir.</p>` }
+                    { id: "art1", cat: "Innovation", title: "Avons-nous oublié la définition du mot « Innovation » ?", desc: "Pourquoi nous confondons « polir le passé » avec « bâtir l'avenir ».", full: "<p>L'Innovation change les règles du jeu pour une relation long terme...</p>" }
                 ]
             },
             en: {
                 name: "Marc B. Sauro",
-                title: "Strategic Advisor | Business Transformation",
+                title: "Strategic Advisor | Transformation",
                 "hero-p": "Converting vision into operational trajectories and tangible execution strategies to maximize business value.",
-                "about-label": "Strategic Profile",
-                "summary": "Bilingual Management Consulting Leader with over 20 years of expertise at the intersection of technology and business strategy. Currently an MBA candidate in Management Consulting (C.M.C.) at ESG UQAM, I specialize in converting executive ambitions into actionable operational roadmaps. My approach integrates strategic innovation and operational excellence to drive organizational value.",
-                "skill1": "Business Development & Growth", 
-                "skill2": "Strategic & Organizational Diagnostics", 
-                "skill3": "Solutions Architecture & Investment Optimization", 
-                "skill4": "Influential Leadership & Change Management",
-                "services-label": "Core Expertise",
-                "srv1-title": "Strategic Diagnosis", "srv1-desc": "Rigorous business model analysis and identification of optimization levers to secure immediate profitability and long-term resilience.",
-                "srv2-title": "Solution Architecture", "srv2-desc": "Designing operational and technological frameworks aligned with growth objectives, ensuring the maximization of business value.",
-                "srv3-title": "Executive Advisory", "srv3-desc": "Translating executive vision into actionable execution trajectories for organizations undergoing major transformation.",
-                "exp-label": "Professional Milestones", "exp-linkedin": "View my complete profile on LinkedIn",
-                "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", 
-                "visit-site": "Website", 
-                "discuss-social": "Comment on LinkedIn",
-                "cta-title": "Optimize your business trajectory.", "cta-desc": "Transform your executive vision into tangible results.", "cta-btn": "Contact me",
-
-                /* Experience Metadata EN */
-                "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction of North American sales strategy and technical enablement for Business Process Management solutions.</p>" },
-                "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Oversaw global technical enablement organization and defined GTM strategies for the Design & Manufacturing portfolio.</p>" },
-                "exp3": { title: "Graitec", role: "Solution Architect", url: "https://www.graitec.com", full: "<p>Strategic optimization of Cloud infrastructures and data repositories for major AEC global clients.</p>" },
-                "exp4": { title: "Vent de la Savane", role: "Director of Operations", url: "https://www.ventdelasavane.com", full: "<p>Successful 8x revenue growth turnaround over a 3-year cycle through total operational restructuring.</p>" },
-                "exp5": { title: "SolidXperts", role: "Technical Director", url: "https://www.solidxperts.com", full: "<p>Implemented complex PLM and PDM solutions for the manufacturing sector, optimizing design-to-production cycles.</p>" },
-                "exp6": { title: "Bolloré Group", role: "Logistics Project Management", url: "https://www.bollore.com", full: "<p>Optimized international operational flows and led cross-functional logistics projects across global regions.</p>" },
-                "exp7": { title: "Mecachrome", role: "Aeronautical Engineering", url: "https://www.mecachrome.com", full: "<p>Technical and strategic support for high-precision machining applied to aeronautical standards.</p>" },
-                "exp8": { title: "Construction Pascal Lanoue", role: "Infrastructure Management", url: "#", full: "<p>Operational management and turnaround of complex industrial projects in construction environments.</p>" },
-                "exp9": { title: "EMICA", role: "Technology Consultant", url: "https://emica.cssdm.gouv.qc.ca", full: "<p>Strategic technology integration within the professional vocational training network.</p>" },
-                "exp10": { title: "HEC Montréal", role: "Certificate | Business Management", url: "https://www.hec.ca", full: "<p>Advanced administrative training, laying the foundations for analytical rigor in corporate environments.</p>" },
-                "exp11": { title: "ESG UQAM", role: "MBA in Management Consulting (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Specialized Master's degree focused on strategic consulting and innovation deployment models.</p>" },
-
-                metrics: ["8x Revenue Growth · Turnaround", "$55M Quota Managed", "Top 5% Strategic Leader", "20+ Years Experience", "AI Architecture · Data Governance", "MBA · Adm.A · C.M.C."],
+                "about-label": "Core Expertise",
+                "summary": "Bilingual Management Consulting Leader with over 20 years of expertise. MBA candidate at ESG UQAM, specializing in converting executive ambitions into actionable roadmaps.",
+                "skill1-title": "Strategic & Organizational Diagnostics",
+                "skill1-desc": "Rigorous business model analysis and identification of optimization levers to secure immediate profitability and long-term resilience.",
+                "skill2-title": "Solutions Architecture & Investment Optimization",
+                "skill2-desc": "Designing operational and technological frameworks aligned with growth objectives, ensuring the maximization of business value.",
+                "skill3-title": "Vision & Strategic Innovation",
+                "skill3-desc": "Transforming executive vision into concrete execution trajectories for organizations navigating major transitions.",
+                "exp-label": "Trajectory", 
+                "articles-label": "Vision & Strategic Innovation", 
+                metrics: ["8x Growth", "$55M Quota", "Top 5% Leader", "20+ Years Exp", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    { id: "art1", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/have-we-forgotten-definition-word-innovation-marc-b-sauro-u6dce", full: `<p>Innovation is about changing the game for a long-term relationship. Most companies spend their careers inside the Fortress (the core business), where metrics are too rigid. To innovate, you need an Outpost: a separate operating system whose job is to cannibalize the Fortress before a competitor does.</p>` },
-                    { id: "art2", cat: "Strategy & Leadership", title: "Strategy is a Wager, Not a Science.", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/why-strategy-wager-science-marc-b-sauro-yblue", full: `<p>Modern business is more like a casino than a laboratory. Every fiscal year, you place your wager (BID). Standard strategy is to bet 99% on the Fortress and cover slightly on Innovation. To survive, you must recognize the gap and build the bridge. The wheel is spinning. It is time to make your BID.</p>` },
-                    { id: "art3", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas.", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree", full: `<p>The CFO often kills the best ideas because they protect the Fortress using ROI metrics that don't apply to discovery. You need a Dual Operating System to create a safe zone where Ugly Ducklings can grow. If you judge an innovation by its ability to deliver immediate yield, it will die on the vine.</p>` },
-                    { id: "art4", cat: "Innovation & Governance", title: "Stop Building Innovation Labs. Start Building Bridges.", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/stop-building-innovation-labs-start-bridges-marc-b-sauro-4fxcc", full: `<p>Nestlé succeeded with Nespresso not by integrating it, but by exiling it to an Outpost. The real victory happened when Nestlé built the Bridge, leveraging its power to force the market into existence. If you can protect the Outpost without abandoning the Fortress, you own the game.</p>` },
-                    { id: "art5", cat: "Finance & Strategy", title: "A conversation about Milton Friedman, Impatient Capital, and the 1% Wager.", desc: "Managing Impatient Capital using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/stop-blabbing-innovation-build-your-skunkworks-close-gap-b-sauro-z97ae", full: `<p>Corporate Finance is wired to protect predictable yield. But innovation requires Adam Smith's raw entrepreneurial risk. The solution is the 99/1 Rule: publicly commit 99% to the Fortress and isolate 1% for Smith's Outpost as an Asymmetric Call Option. Tell Wall Street exactly what game you are playing.</p>` },
-                    { id: "art6", cat: "Innovation & Governance", title: "Stop blabbing about innovation, build your Skunkworks, and close the Governance Gap.", desc: "How Lockheed Martin guarantees the success of its inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>Lockheed Martin's Skunkworks model works because of dogfooding: internal teams are forced to be their own first customers. If you want to disrupt your industry, make sure your own team takes the first bite. Bypassing the Impatient Capital trap is the key to corporate survival.</p>` },
-                    { id: "art7", cat: "Management & Strategy", title: "From Canvas to Compass: Connecting the Business Model to McKinsey's Three Horizons.", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/from-canvas-compass-connecting-business-model-three-marc-b-sauro-wcjwe", full: `<p>A business model is never static. By stretching the Canvas across time, you realize it demands a roadmap. McKinsey's Three Horizons framework provides the structure: Horizon 1 for stabilization, Horizon 2 for optimization, and Horizon 3 for disruptive bets.</p>` }
+                    { id: "art1", cat: "Innovation", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", full: "<p>Innovation is about changing the game for a long-term relationship...</p>" }
                 ]
             }
         };
 
-        let currentLang = 'en';
+        let currentLang = 'fr';
 
         function renderTicker() {
             const container = document.getElementById('ticker-container');
-            if (!container) return;
             const data = translations[currentLang].metrics;
-            const tickerHtml = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
-            container.innerHTML = `<div class="ticker-item">${tickerHtml}</div><div class="ticker-item">${tickerHtml}</div>`;
+            const content = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
+            container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
         }
 
         function renderArticles() {
             const grid = document.getElementById('articles-grid');
-            const data = translations[currentLang].articles;
-            if (!grid) return;
-            grid.innerHTML = '';
-            data.forEach(art => {
-                const card = document.createElement('div');
-                card.className = "glass p-10 cursor-pointer hover:bg-white/5 transition-all group";
-                card.onclick = () => openReader(art.id);
-                card.innerHTML = `
-                    <span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block red-line-minor pl-3">${art.cat}</span>
-                    <h4 class="text-xl md:text-2xl font-bold mb-5 group-hover:text-accent transition-colors leading-tight text-white">${art.title}</h4>
-                    <p class="text-blue-100/60 mb-8 leading-relaxed font-light line-clamp-3 text-sm md:text-base">${art.desc}</p>
-                    <span class="text-xs font-bold uppercase tracking-widest border-b border-bdc-red pb-1 group-hover:border-white transition-all text-white">
-                        ${translations[currentLang]['read-more']}
-                    </span>
-                `;
-                grid.appendChild(card);
-            });
+            grid.innerHTML = translations[currentLang].articles.map(art => `
+                <div class="glass p-8 cursor-pointer hover:border-[#ee3124] transition-all group" onclick="openReader('${art.id}')">
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#ee3124] mb-4 block">${art.cat}</span>
+                    <h4 class="text-xl font-bold mb-4 group-hover:translate-x-1 transition-transform">${art.title}</h4>
+                    <p class="text-white/50 text-sm">${art.desc}</p>
+                </div>
+            `).join('');
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            const toggleBtn = document.getElementById('lang-toggle');
-            if (toggleBtn) toggleBtn.innerText = currentLang === 'fr' ? 'EN' : 'FR';
+            document.getElementById('lang-toggle').innerText = currentLang === 'fr' ? 'EN' : 'FR';
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+                if(translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
             });
-            renderArticles();
-            renderTicker();
-        }
-
-        function openPortrait() {
-            document.getElementById('portrait-modal').style.display = 'block';
-            document.body.classList.add('modal-open');
-        }
-
-        function closePortrait() {
-            document.getElementById('portrait-modal').style.display = 'none';
-            document.body.classList.remove('modal-open');
-        }
-
-        function openExp(id) {
-            const overlay = document.getElementById('reader-overlay');
-            const data = translations[currentLang][id];
-            
-            if (data) {
-                document.getElementById('reader-title').innerText = data.title;
-                document.getElementById('reader-meta').innerText = data.role;
-                document.getElementById('reader-body').innerHTML = data.full;
-                
-                const footer = document.getElementById('reader-footer');
-                footer.innerHTML = (data.url && data.url !== '#') ? 
-                    `<a href="${data.url}" target="_blank" class="btn-social !mt-0 !bg-white !text-[#0b1a30] !border-white hover:!bg-gray-200 transition-colors uppercase tracking-widest text-[10px] font-bold px-6 py-3 rounded-sm shadow-lg">${translations[currentLang]['visit-site']}</a>` : '';
-                
-                overlay.style.display = 'block';
-                document.body.classList.add('modal-open');
-            }
+            renderArticles(); renderTicker();
         }
 
         function openReader(id) {
             const art = translations[currentLang].articles.find(a => a.id === id);
-            if (!art) return;
-            const overlay = document.getElementById('reader-overlay');
+            if(!art) return;
             document.getElementById('reader-title').innerText = art.title;
             document.getElementById('reader-meta').innerText = art.cat;
             document.getElementById('reader-body').innerHTML = art.full;
-            const footer = document.getElementById('reader-footer');
-            footer.innerHTML = art.socialUrl ? `
-                <a href="${art.socialUrl}" target="_blank" class="btn-social">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    ${translations[currentLang]['discuss-social']}
-                </a>` : '';
-            overlay.style.display = 'block';
+            document.getElementById('reader-overlay').style.display = 'block';
             document.body.classList.add('modal-open');
         }
 
@@ -663,32 +339,17 @@
             document.body.classList.remove('modal-open');
         }
 
-        function scrollSlider(direction) {
-            const slider = document.getElementById('logo-slider');
-            if (!slider) return;
-            const firstChild = slider.querySelector('.logo-box');
-            if (!firstChild) return;
-            const cardWidth = firstChild.offsetWidth + 24;
-            slider.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-        }
-
         window.addEventListener('scroll', () => {
             const scroll = window.scrollY;
-            const zoomBg = document.getElementById('zoom-bg');
-            if (zoomBg) zoomBg.style.transform = `scale(${1 + (scroll * 0.00035)})`;
-            document.querySelectorAll('section').forEach(section => {
-                if (section.getBoundingClientRect().top < window.innerHeight * 0.88) section.classList.add('visible');
+            document.getElementById('zoom-bg').style.transform = `scale(${1 + (scroll * 0.0002)})`;
+            document.querySelectorAll('section').forEach(sec => {
+                if(sec.getBoundingClientRect().top < window.innerHeight * 0.95) sec.classList.add('visible');
             });
         });
 
-        window.onload = function() {
-            const slider = document.getElementById('logo-slider');
-            const items = Array.from(slider.children);
-            items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            slider.scrollLeft = slider.scrollWidth / 3;
+        window.onload = () => {
+            renderTicker(); renderArticles(); toggleLanguage();
             window.dispatchEvent(new Event('scroll'));
-            toggleLanguage(); 
         };
     </script>
 </body>
