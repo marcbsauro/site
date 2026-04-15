@@ -173,7 +173,7 @@
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* --- READER & MODAL --- */
-        #reader-overlay {
+        #reader-overlay, #portrait-modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -181,6 +181,15 @@
             z-index: 1000;
             overflow-y: auto;
             backdrop-filter: blur(15px);
+        }
+
+        .portrait-large {
+            max-width: 90vw;
+            max-height: 75vh;
+            border-radius: 4px;
+            border: 2px solid var(--bdc-red);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            object-fit: contain;
         }
 
         .reader-content {
@@ -241,7 +250,7 @@
 
     <nav class="fixed top-0 w-full z-50 nav-blur">
         <div class="max-w-6xl mx-auto px-8 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer" onclick="location.reload()">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="openPortrait()">
                 <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#ee3124] bg-slate-900">
                     <img src="portrait.jpg" alt="MBS" class="w-full h-full object-cover">
                 </div>
@@ -338,6 +347,14 @@
                 <div id="reader-body" class="article-body text-lg leading-relaxed text-gray-800"></div>
                 <div id="reader-footer" class="mt-12 pt-8 border-t"></div>
             </article>
+        </div>
+    </div>
+
+    <div id="portrait-modal" onclick="closePortrait()">
+        <button class="fixed top-8 right-8 bg-[#ee3124] text-white px-6 py-2 font-bold uppercase text-xs tracking-widest z-[1100]" onclick="closePortrait()">Fermer</button>
+        <div class="flex flex-col items-center justify-center h-full p-8">
+            <img src="portrait.jpg" alt="Marc B. Sauro" class="portrait-large">
+            <p class="mt-6 text-white font-bold uppercase tracking-widest text-sm">Marc B. Sauro</p>
         </div>
     </div>
 
@@ -1007,6 +1024,16 @@
             
             renderArticles(); 
             renderTicker();
+        }
+
+        function openPortrait() {
+            document.getElementById('portrait-modal').style.display = 'block';
+            document.body.classList.add('modal-open');
+        }
+
+        function closePortrait() {
+            document.getElementById('portrait-modal').style.display = 'none';
+            document.body.classList.remove('modal-open');
         }
 
         function openExp(id) {
