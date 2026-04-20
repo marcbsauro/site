@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Palette Institutionnelle BDC */
             --bdc-blue: #0b1a30;
             --bdc-red: #ee3124;
             --bdc-white: #ffffff;
@@ -72,7 +73,7 @@
 
         section.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- EXECUTIVE TICKER (15s) --- */
+        /* --- EXECUTIVE TICKER --- */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
@@ -85,14 +86,14 @@
         .ticker {
             display: flex;
             white-space: nowrap;
-            animation: ticker-animation 15s linear infinite;
+            animation: ticker-animation 35s linear infinite;
         }
 
         .ticker:hover { animation-play-state: paused; }
 
         @keyframes ticker-animation {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-33.33%); }
+            100% { transform: translateX(-50%); }
         }
 
         .ticker-item { display: flex; align-items: center; }
@@ -130,7 +131,7 @@
         }
 
         .logo-img {
-            max-height: 65px;
+            max-height: 60px;
             max-width: 90%;
             filter: brightness(0) invert(1) opacity(0.7);
             margin-bottom: 1rem;
@@ -165,7 +166,6 @@
         }
         .scroll-btn:hover {
             background: rgba(238, 49, 36, 0.9);
-            border-color: rgba(238, 49, 36, 1);
             transform: translateY(-50%) scale(1.1);
         }
 
@@ -183,23 +183,34 @@
             backdrop-filter: blur(15px);
         }
 
-        .portrait-large {
-            max-width: 90vw;
-            max-height: 75vh;
-            border-radius: 4px;
-            border: 2px solid var(--bdc-red);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            object-fit: contain;
-        }
-
         .reader-content {
-            max-width: 800px;
-            margin: 4rem auto;
+            max-width: 850px;
+            margin: 2rem auto;
             background: var(--bdc-white);
             color: #1a1a1a;
-            padding: 4rem;
+            padding: 1.5rem;
             border-radius: 2px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        @media (min-width: 768px) {
+            .reader-content { margin: 4rem auto; padding: 4.5rem; }
+        }
+
+        .reader-close {
+            position: fixed;
+            top: 1rem; right: 1rem;
+            background: var(--bdc-red);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        @media (min-width: 768px) {
+            .reader-close { top: 2.5rem; right: 2.5rem; padding: 0.8rem 1.8rem; }
         }
 
         .btn-social {
@@ -212,32 +223,50 @@
             font-weight: 700;
             font-size: 0.8rem;
             text-transform: uppercase;
-            transition: all 0.3s;
             text-decoration: none;
         }
 
         .btn-social:hover { background: #0077b5; color: white; }
 
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: var(--bdc-blue);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn-ghost:hover { background: #f8fafc; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
         .article-body h3 {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
             color: var(--bdc-blue);
+            border-left: 4px solid var(--bdc-red);
+            padding-left: 1.25rem;
         }
         
-        .article-body p {
-            margin-bottom: 1.25rem;
-        }
+        .article-body p { margin-bottom: 1.5rem; line-height: 1.8; color: #334155; }
+        .article-body ul { list-style-type: none; margin-bottom: 1.5rem; padding-left: 0; }
+        .article-body li { margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative; }
+        .article-body li::before { content: "•"; color: var(--bdc-red); position: absolute; left: 0; font-weight: bold; }
 
-        .article-body ul {
-            list-style-type: disc;
-            margin-left: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-        
-        .article-body li {
-            margin-bottom: 0.5rem;
+        .section-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #bfdbfe;
+            margin-bottom: 2rem;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -248,113 +277,139 @@
         <div class="overlay"></div>
     </div>
 
+    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 nav-blur">
-        <div class="max-w-6xl mx-auto px-8 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer" onclick="openPortrait()">
-                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#ee3124] bg-slate-900">
-                    <img src="portrait.jpg" alt="MBS" class="w-full h-full object-cover">
+        <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex justify-between items-center">
+            <div class="nav-identity flex items-center gap-4 cursor-pointer" onclick="openPortrait()">
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#ee3124] bg-slate-900 shadow-lg">
+                    <img src="portrait.jpg" alt="M." class="w-full h-full object-cover">
                 </div>
-                <div class="text-xl font-bold tracking-tighter">MBS<span class="text-[#ee3124]">.</span></div>
+                <div class="text-xl font-bold tracking-tighter text-white">M<span class="text-[#ee3124]">.</span></div>
             </div>
-            <button id="lang-toggle" onclick="toggleLanguage()" class="text-[10px] font-bold tracking-[0.2em] border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all">EN</button>
+            <div class="flex items-center gap-8">
+                <button id="lang-toggle" onclick="toggleLanguage()" class="text-[10px] font-bold tracking-[0.2em] border border-white/20 px-4 py-2 text-white hover:bg-white hover:text-black transition-all">EN</button>
+            </div>
         </div>
     </nav>
 
     <main class="relative z-10 pt-48 pb-24">
+        
+        <!-- Hero Section -->
         <section id="hero" class="max-w-4xl mx-auto px-8 mb-32 visible">
-            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-none" data-key="name"></h1>
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-none text-white" data-key="name"></h1>
             <div class="accent-line-title">
-                <h2 class="text-lg md:text-xl font-semibold tracking-[0.15em] uppercase text-white/90" data-key="title"></h2>
+                <h2 class="text-lg md:text-2xl tracking-[0.12em] uppercase text-white/90 font-bold" data-key="title"></h2>
             </div>
             <p class="text-xl md:text-2xl text-white/70 max-w-2xl mt-12 font-light leading-relaxed" data-key="hero-p"></p>
         </section>
 
-        <section class="ticker-wrap mb-32 visible">
+        <!-- Executive Ticker -->
+        <section class="ticker-wrap mb-48 visible">
             <div id="ticker-container" class="ticker"></div>
         </section>
 
         <div class="max-w-4xl mx-auto px-8">
-            <section class="glass p-10 md:p-16 mb-32 scroll-reveal">
-                <div class="accent-line-title mb-12">
-                    <h3 class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/90" data-key="about-label"></h3>
-                </div>
-                <div class="pl-4 md:pl-6">
-                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-16 text-white/90" data-key="summary"></p>
-                    
-                    <div class="space-y-12">
-                        <div class="group red-line-minor pl-6">
-                            <h4 class="text-sm md:text-base font-bold uppercase tracking-widest text-white/90 mb-3" data-key="srv1-title"></h4>
-                            <p class="text-lg font-light text-white/80 leading-relaxed" data-key="srv1-desc"></p>
-                        </div>
-                        <div class="group red-line-minor pl-6">
-                            <h4 class="text-sm md:text-base font-bold uppercase tracking-widest text-white/90 mb-3" data-key="srv2-title"></h4>
-                            <p class="text-lg font-light text-white/80 leading-relaxed" data-key="srv2-desc"></p>
-                        </div>
-                        <div class="group red-line-minor pl-6">
-                            <h4 class="text-sm md:text-base font-bold uppercase tracking-widest text-white/90 mb-3" data-key="srv3-title"></h4>
-                            <p class="text-lg font-light text-white/80 leading-relaxed" data-key="srv3-desc"></p>
-                        </div>
+            <!-- Profil Stratégique -->
+            <section class="glass p-10 md:p-16 mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="about-label"></h3>
+                <div class="red-line-major pl-8">
+                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-10 text-white" data-key="summary"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill2"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill3"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill4"></span></div>
                     </div>
                 </div>
             </section>
 
-            <section class="mb-32">
-                <div class="accent-line-title mb-12">
-                    <h3 class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/90" data-key="exp-label"></h3>
+            <!-- Axes d'Intervention -->
+            <section class="mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="services-label"></h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="space-y-4 red-line-minor pl-6">
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
+                        <p class="text-white/60 text-sm leading-relaxed font-light" data-key="srv1-desc"></p>
+                    </div>
+                    <div class="space-y-4 red-line-minor pl-6">
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
+                        <p class="text-white/60 text-sm leading-relaxed font-light" data-key="srv2-desc"></p>
+                    </div>
+                    <div class="space-y-4 red-line-minor pl-6">
+                        <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
+                        <p class="text-white/60 text-sm leading-relaxed font-light" data-key="srv3-desc"></p>
+                    </div>
                 </div>
+            </section>
+
+            <!-- Trajectoire -->
+            <section class="mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="exp-label"></h3>
                 <div class="relative group/slider">
-                    <button onclick="scrollSlider(-1)" class="scroll-btn -left-5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
-                    <button onclick="scrollSlider(1)" class="scroll-btn -right-5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
-                    <div id="logo-slider" class="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x scroll-smooth">
-                        <div class="logo-box snap-center" onclick="openExp('exp1')"><img src="logo1.png" class="logo-img" alt="Dassault Systèmes"><span class="company-label">Dassault Systèmes</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp2')"><img src="logo2.png" class="logo-img" alt="Autodesk"><span class="company-label">Autodesk</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp3')"><img src="logo3.png" class="logo-img" alt="Graitec"><span class="company-label">Graitec Group</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp4')"><img src="logo4.png" class="logo-img" alt="Vent de la Savane"><span class="company-label">Vent de la Savane</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp5')"><img src="logo5.png" class="logo-img" alt="SolidXperts"><span class="company-label">SolidXperts</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp6')"><img src="logo6.png" class="logo-img" alt="Groupe Bolloré"><span class="company-label">Groupe Bolloré</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp7')"><img src="logo7.png" class="logo-img" alt="Mecachrome"><span class="company-label">Mecachrome</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp8')"><img src="logo8.png" class="logo-img" alt="Construction Pascal Lanoue"><span class="company-label">Construction Pascal Lanoue</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp9')"><img src="logo9.png" class="logo-img" alt="EMICA"><span class="company-label">EMICA</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp10')"><img src="hec_logo.png" class="logo-img" alt="HEC Montréal"><span class="company-label">HEC Montréal</span></div>
-                        <div class="logo-box snap-center" onclick="openExp('exp11')"><img src="esg_logo.png" class="logo-img" alt="ESG UQAM"><span class="company-label">ESG UQAM</span></div>
+                    <button onclick="scrollSlider(-1)" class="scroll-btn -left-4 md:-left-8"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
+                    <button onclick="scrollSlider(1)" class="scroll-btn -right-4 md:-right-8"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
+                    <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
+                        <div class="logo-box snap-center" onclick="openExp('exp1')"><img src="logo1.png" alt="Dassault" class="logo-img"><span class="company-label">Dassault Systèmes</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp2')"><img src="logo2.png" alt="Autodesk" class="logo-img"><span class="company-label">Autodesk</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp3')"><img src="logo3.png" alt="Graitec" class="logo-img"><span class="company-label">Graitec Group</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp4')"><img src="logo4.png" alt="Vent de la Savane" class="logo-img"><span class="company-label">Vent de la Savane</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp5')"><img src="logo5.png" alt="SolidXperts" class="logo-img"><span class="company-label">SolidXperts</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp6')"><img src="logo6.png" alt="Bolloré" class="logo-img"><span class="company-label">Groupe Bolloré</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp7')"><img src="logo7.png" alt="Mecachrome" class="logo-img"><span class="company-label">Mecachrome</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp8')"><img src="logo8.png" alt="Construction PL" class="logo-img"><span class="company-label">Construction Pascal Lanoue</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp9')"><img src="logo9.png" alt="EMICA" class="logo-img"><span class="company-label">EMICA</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp10')"><img src="hec_logo.png" alt="HEC" class="logo-img"><span class="company-label">HEC Montréal</span></div>
+                        <div class="logo-box snap-center" onclick="openExp('exp11')"><img src="esg_logo.png" alt="ESG" class="logo-img"><span class="company-label">ESG UQAM</span></div>
                     </div>
                 </div>
+                <div class="mt-8 text-center">
+                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" data-key="exp-linkedin"></a>
+                </div>
             </section>
 
-            <section id="articles" class="mb-32">
-                <div class="accent-line-title mb-12">
-                    <h3 class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/90" data-key="articles-label"></h3>
-                </div>
-                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            <!-- Leadership de Pensée -->
+            <section id="articles" class="mb-48 scroll-reveal">
+                <h3 class="section-label" data-key="articles-label"></h3>
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
             </section>
 
-            <!-- Appel à l'action final (CTA) -->
-            <section class="glass p-10 md:p-16 mb-32 scroll-reveal">
-                <div class="accent-line-title mb-6">
-                    <h3 class="text-2xl md:text-4xl font-bold tracking-tighter text-white/90" data-key="cta-title"></h3>
-                </div>
-                <div class="pl-6">
-                    <p class="text-white/70 max-w-xl mb-10 text-lg font-light leading-relaxed" data-key="cta-desc"></p>
-                    <a href="mailto:msauro@gmail.com" class="inline-block bg-[#ee3124] text-white px-10 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#0b1a30] transition-colors" data-key="cta-btn"></a>
-                </div>
+            <!-- Appel à l'action final -->
+            <section class="glass p-10 md:p-20 mb-48 text-center scroll-reveal">
+                <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-8" data-key="cta-title"></h3>
+                <p class="text-white/60 max-w-xl mx-auto mb-12 font-light" data-key="cta-desc"></p>
+                <a href="mailto:msauro@gmail.com" class="inline-block bg-accent text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
             </section>
+
+            <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10 pb-12">
+                <div>
+                    <p class="text-3xl font-bold tracking-tighter mb-2 text-white">M<span class="text-[#ee3124]">.</span></p>
+                    <div class="flex flex-col gap-1">
+                        <p class="text-[10px] text-white/30 uppercase tracking-[0.4em]">© 2026 Marc B. Sauro</p>
+                        <p class="text-[9px] text-white/20 uppercase tracking-widest">
+                            Photo <a href="https://unsplash.com/@rockcyp1" target="_blank" class="hover:text-white/40 underline decoration-white/10">Cyprien Da Silva</a> | <a href="https://unsplash.com/photos/city-skyline-lit-up-at-night-kNbuhVeCJrE" target="_blank" class="hover:text-white/40 underline decoration-white/10">Unsplash</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-10">
+                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors">LinkedIn</a>
+                    <a href="mailto:msauro@gmail.com" class="text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors">Contact</a>
+                </div>
+            </footer>
         </div>
     </main>
 
     <div id="reader-overlay">
-        <div class="max-w-4xl mx-auto px-4">
-            <button class="fixed top-8 right-8 bg-[#ee3124] text-white px-6 py-2 font-bold uppercase text-xs tracking-widest z-[1100]" onclick="closeReader()">Fermer</button>
-            <article class="reader-content">
-                <h1 id="reader-title" class="text-4xl font-bold mb-4 tracking-tight text-[#0b1a30]"></h1>
-                <p id="reader-meta" class="text-xs font-bold text-[#ee3124] uppercase tracking-widest mb-8 border-b pb-4"></p>
-                <div id="reader-body" class="article-body text-lg leading-relaxed text-gray-800"></div>
-                <div id="reader-footer" class="mt-12 pt-8 border-t"></div>
-            </article>
-        </div>
+        <button class="reader-close" onclick="closeReader()">Fermer</button>
+        <article class="reader-content max-w-none">
+            <h1 id="reader-title" class="text-3xl md:text-4xl font-extrabold mb-4 text-[#0b1a30] tracking-tight"></h1>
+            <p id="reader-meta" class="text-xs font-bold text-red-600 mb-8 uppercase tracking-[0.2em] border-b border-gray-100 pb-4"></p>
+            <div id="reader-body" class="article-body text-gray-800 text-base md:text-lg"></div>
+            <div id="reader-footer" class="mt-12 flex gap-4 flex-wrap"></div>
+        </article>
     </div>
 
     <div id="portrait-modal" onclick="closePortrait()">
-        <button class="fixed top-8 right-8 bg-[#ee3124] text-white px-6 py-2 font-bold uppercase text-xs tracking-widest z-[1100]" onclick="closePortrait()">Fermer</button>
+        <button class="reader-close" onclick="closePortrait()">Fermer</button>
         <div class="flex flex-col items-center justify-center h-full p-8">
             <img src="portrait.jpg" alt="Marc B. Sauro" class="portrait-large">
             <p class="mt-6 text-white font-bold uppercase tracking-widest text-sm">Marc B. Sauro</p>
@@ -368,21 +423,21 @@
                 title: "Conseiller Stratégique | Transformation",
                 "hero-p": "Convertir la vision en trajectoires opérationnelles et en stratégies d'exécution tangibles pour maximiser la valeur d'affaires.",
                 "about-label": "Axes d'intervention",
-                "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expertise. Candidat au MBA à l'ESG UQAM, je me spécialise dans la conversion des ambitions décisionnelles en trajectoires opérationnelles tangibles.",
-                "srv1-title": "Diagnostic Organisationnel et Stratégique",
-                "srv1-desc": "Analyse critique des modèles d'affaires et identification des leviers d'optimisation pour sécuriser la rentabilité et la pérennité opérationnelle.",
-                "srv2-title": "Architecture de Solutions et Optimisation des Investissements",
-                "srv2-desc": "Conception de cadres opérationnels et technologiques alignés sur les objectifs de croissance, garantissant la maximisation de la valeur d'affaires.",
-                "srv3-title": "Vision et Innovation Stratégique",
-                "srv3-desc": "Transformation de la vision exécutive en trajectoires d'exécution concrètes pour les organisations en phase de transition majeure.",
-                "exp-label": "Trajectoire", 
-                "articles-label": "Vision et Innovation Stratégique", 
-                "read-more": "Lire l'analyse",
-                "discuss-social": "Commentez sur LinkedIn",
-                "visit-site": "Site web",
-                "cta-title": "Optimisez votre trajectoire d'affaires.",
-                "cta-desc": "Transformez votre vision exécutive en résultats tangibles.",
-                "cta-btn": "Écrivez-moi",
+                "summary": "Leader bilingue en services-conseils avec plus de 20 ans d'expertise à l'intersection de la technologie et de la stratégie d'affaires. Candidat au MBA en conseil en management (C.M.C.) à l'ESG UQAM, je me spécialise dans la conversion des ambitions décisionnelles en trajectoires opérationnelles tangibles.",
+                "skill1": "Développement des Affaires et Croissance", 
+                "skill2": "Diagnostic Organisationnel & Stratégique", 
+                "skill3": "Architecture de Solutions et Optimisation", 
+                "skill4": "Leadership d'Influence et Changement",
+                "services-label": "Expertises",
+                "srv1-title": "Diagnostic Stratégique", "srv1-desc": "Analyse critique des modèles d'affaires et identification des leviers d'optimisation pour sécuriser la rentabilité.",
+                "srv2-title": "Architecture de Solutions", "srv2-desc": "Conception de cadres opérationnels et technologiques alignés sur les objectifs de croissance de l'organisation.",
+                "srv3-title": "Accompagnement Exécutif", "srv3-desc": "Transformation de la vision décisionnelle en trajectoires d'exécution concrètes pour les leaders en transition.",
+                "exp-label": "Trajectoire", "exp-linkedin": "Consultez mon parcours complet sur LinkedIn",
+                "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", 
+                "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn",
+                "cta-title": "Optimisez votre trajectoire d'affaires.", "cta-desc": "Transformez votre vision exécutive en résultats tangibles.", "cta-btn": "Écrivez-moi",
+                
+                /* Restoration Experience FR */
                 "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction de la stratégie de vente nord-américaine et de l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM).</p>" },
                 "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Gestion d'une organisation mondiale d'habilitation technique et définition des stratégies de mise en marché pour le portefeuille Conception et Fabrication.</p>" },
                 "exp3": { title: "Graitec", role: "Architecte de Solutions", url: "https://www.graitec.com", full: "<p>Optimisation des infrastructures Cloud et des dépôts de données pour des clients AEC d'envergure.</p>" },
@@ -390,283 +445,20 @@
                 "exp5": { title: "SolidXperts", role: "Directeur Technique", url: "https://www.solidxperts.com", full: "<p>Mise en œuvre de solutions PLM et PDM complexes pour le secteur manufacturier, améliorant les cycles de conception.</p>" },
                 "exp6": { title: "Groupe Bolloré", role: "Gestion de Projet Logistique", url: "https://www.bollore.com", full: "<p>Optimisation des flux opérationnels internationaux et gestion de projets logistiques transversaux de haute complexité.</p>" },
                 "exp7": { title: "Mecachrome", role: "Ingénierie Aéronautique", url: "https://www.mecachrome.com", full: "<p>Soutien technique et stratégique pour l'usinage de haute précision appliqué aux standards de l'industrie aéronautique.</p>" },
-                "exp8": { title: "Construction Pascal Lanoue", role: "Gestion d'Infrastructure", url: "https://constructionpascallanoue.com", full: "<p>Gestion opérationnelle et redressement de projets complexes en milieu industriel et de construction.</p>" },
+                "exp8": { title: "Construction Pascal Lanoue", role: "Gestion d'Infrastructure", url: "#", full: "<p>Gestion opérationnelle et redressement de projets complexes en milieu industriel et de construction.</p>" },
                 "exp9": { title: "EMICA", role: "Expert Conseil Technologie", url: "https://emica.cssdm.gouv.qc.ca", full: "<p>Intégration technologique stratégique au sein du réseau de formation professionnelle.</p>" },
                 "exp10": { title: "HEC Montréal", role: "Certificat | Gestion des Affaires", url: "https://www.hec.ca", full: "<p>Formation avancée en administration, posant les bases de la rigueur analytique appliquée au monde corporatif québécois.</p>" },
                 "exp11": { title: "ESG UQAM", role: "MBA en Conseil en Management (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Maîtrise spécialisée dans la consultation stratégique et le déploiement de modèles d'innovation.</p>" },
-                metrics: ["8x Croissance", "55 M$ Quota", "Top 5 % Leadership", "20 ans Expertise", "MBA · Adm.A · C.M.C."],
+
+                metrics: ["8x Croissance · Turnaround", "55 M$ Quota · Tech Sales", "Top 5 % · Leadership Stratégique", "20 ans+ Expertise · Transformation", "Architecture IA · Gouvernance", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    {
-                        id: "art1",
-                        cat: "Innovation & Gouvernance",
-                        title: "Avons-nous oublié la définition du mot « Innovation » ?",
-                        desc: "Pourquoi nous confondons « polir le passé » avec « bâtir l'avenir ».",
-                        socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme",
-                        full: `<p>Je suis récemment tombé sur une publicité d'une grande entreprise de café qui promettait de « réinventer ma routine matinale » grâce à leur « toute nouvelle innovation ».</p>
-<p>Naturellement, je me suis arrêté. J'ai regardé de plus près. En tant que stratège, le mot innovation déclenche immédiatement mon radar. Je m'attendais à un nouveau modèle d'affaires, à une transformation durable de la chaîne d'approvisionnement, ou peut-être à une découverte en science des matériaux éliminant les déchets.</p>
-<p>Au lieu de cela, ladite « innovation » se résumait à :</p>
-<ul>
-  <li>Un réservoir d'eau rotatif.</li>
-  <li>Un temps de chauffe de 3 secondes.</li>
-  <li>Un design « plus mince ».</li>
-</ul>
-<p>Il faut arrêter de se mentir. Ce n'est pas de l'innovation. C'est de la Nouveauté (Novelty). Et la différence entre les deux n'est pas seulement sémantique ; c'est la différence entre une entreprise qui prospère et une entreprise qui survit à peine.</p>
-<h3>Le Piège de la Nouveauté</h3>
-<p>Dans son livre <em>Start With Why</em>, Simon Sinek trace une ligne nette entre manipulation et inspiration. Mais pour le PDG moderne, la distinction la plus critique se situe entre la Nouveauté et l'Innovation.</p>
-<ul>
-  <li><strong>La Nouveauté</strong>, c'est rendre l'ancien produit plus brillant. C'est le fameux « Nouveau et Amélioré ! ». Cela crée une transaction à court terme.</li>
-  <li><strong>L'Innovation</strong>, c'est changer les règles du jeu. Cela crée une relation à long terme.</li>
-</ul>
-<p>On le voit partout. Gillette a passé des décennies à ajouter une troisième lame, puis une quatrième, puis une cinquième. Ils ont appelé ça de l'innovation. C'était juste de la physique. Pendant qu'ils étaient obsédés par leurs bandes lubrifiantes (Nouveauté), Dollar Shave Club a changé le modèle d'affaires (Innovation) et a pris leurs parts de marché.</p>
-<p>Lorsque vous ajoutez un « réservoir rotatif » à une machine, vous n'inventez pas l'avenir. Vous optimisez le présent. Vous essayez d'extraire une augmentation des ventes de 2 % grâce à un élément chauffant légèrement meilleur. Vous jouez à un Jeu Défini (Finite Game) où le but est simplement de battre la fiche technique du concurrent.</p>
-<p>La véritable innovation ne s'intègre pas simplement mieux sur le comptoir ; elle s'intègre mieux dans la vie humaine.</p>
-<h3>La Forteresse vs L'Avant-Poste</h3>
-<p>Pourquoi certains leaders notoires tombent-ils dans ce piège ? Pourquoi nous contentons-nous d'une « plomberie disruptive » (pour emprunter une expression du regretté Dr Clayton Christensen) au lieu d'une véritable disruption ?</p>
-<p>C'est à cause de l'endroit où nous évoluons.</p>
-<p>La plupart d'entre nous passons notre carrière à l'intérieur de ce que j'appelle La Forteresse. La Forteresse est votre cœur de métier (Core Business). Elle est bâtie sur l'efficacité, la prévisibilité et les résultats trimestriels. Son travail est de protéger les flux de revenus.</p>
-<ul>
-  <li><strong>Le but de la Forteresse :</strong> Servir au client ce qu'il veut aujourd'hui.</li>
-  <li><strong>La métrique de la Forteresse :</strong> Marges et Efficacité.</li>
-</ul>
-<p>Mais vous ne pouvez pas inventer l'avenir à l'intérieur d'une Forteresse. Les murs sont trop épais. Les métriques sont trop rigides.</p>
-<p>Pour innover, vous avez besoin d'un Détachement (Outpost). Le Détachement est un système d'exploitation distinct. Son seul but est la découverte. Son travail est de cannibaliser la Forteresse avant qu'un concurrent ne le fasse.</p>
-<h3>Le Fossé de Gouvernance (The Governance Gap)</h3>
-<p>J'ai vu cette tension de première main au début de ma carrière. J'étais à une conférence pour une grande entreprise de logiciels de CAO. Le PDG est monté sur scène et a dit quelque chose qui a coupé le souffle à toute la salle :</p>
-<p><em>« Nous devons redevenir les jeunes dans le garage qui imaginent ce que nos solutions pourraient devenir. Nous devons tuer notre propre produit phare. »</em></p>
-<p>L'auditoire - composé majoritairement d'employés et de partenaires vivant confortablement à l'intérieur de la Forteresse - n'a pas compris. Ils étaient horrifiés. Pourquoi tuerions-nous la poule aux œufs d'or ?</p>
-<p>Ce PDG essayait de construire un Avant-Poste. Il essayait de faire un BID (un Pari) sur l'avenir. Mais la Forteresse l'a rejeté comme un virus.</p>
-<p>Cela arrive tous les jours. Nous tuons l'Avant-Poste parce qu'il semble inefficace aux yeux de la Forteresse. Nous choisissons le « réservoir d'eau rotatif » parce que c'est sécuritaire. Ça rentre dans le budget. Ça rentre dans le rapport trimestriel.</p>
-<h3>Le Business Innovation Dichotomy (The BID)</h3>
-<p>Ceci m'amène au projet que je lance aujourd'hui.</p>
-<p>Cela bouillonne en moi depuis mon retour à l'école de gestion. On m'a assigné une étude de cas sur les Cinq Forces de Michael Porter (le cadre ultime de « Forteresse » pour la défense). Mais je ne pouvais m'empêcher de penser à l'Innovation Disruptive de Clayton Christensen (le cadre ultime de Détachement pour l'attaque).</p>
-<p>J'ai réalisé que le problème n'est pas que nous ne comprenons pas l'innovation. Le problème est que nous ne savons pas comment gérer la tension entre ces deux mondes.</p>
-<p>Clayton Christensen nous a donné le diagnostic. Il nous a montré pourquoi nous échouons. Mais un diagnostic n'est pas un remède. Il a défini le dilemme ; je planifie la solution.</p>
-<ul>
-  <li>L'Efficacité tue la Découverte.</li>
-  <li>La Découverte gaspille l'Efficacité.</li>
-</ul>
-<p>J'appelle cela Le Business Innovation Dichotomy (The BID).</p>
-<p>Au cours des prochaines semaines, je publierai en série le manuel pour naviguer ce fossé. Nous examinerons des entreprises comme BlackBerry (morte dans la Forteresse) et Jawbone (morte dans le Détachement), et nous disséquerons les rares organisations qui ont réussi à jeter un pont entre les deux.</p>
-<p>En tant que leaders, nous avons le devoir de connaître la différence. Si vous dites à vos équipes qu'un « design plus mince » est de l'innovation, vous les entraînez à viser bas. Vous leur enseignez que le but est de vendre une unité, et non de résoudre un problème.</p>
-<p>Arrêtons de célébrer le « Nouveau et Amélioré ». Commençons à bâtir le « Différent et Vital ».</p>
-<p><strong>Votre équipe construit-elle des fonctionnalités, ou construit-elle l'avenir ?</strong></p>`
-                    },
-                    {
-                        id: "art2",
-                        cat: "Stratégie & Leadership",
-                        title: "Pourquoi la Stratégie est un Pari, et pas une Science.",
-                        desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie",
-                        full: `<p>Si vous consultez l'ordre du jour d'une réunion de CA, d'à peu près n'importe quelle entreprise actuelle, vous verrez beaucoup de mots rassurants. Vous verrez « Optimisation », « Prévisions » et, maintenant, « IA ».</p>
-<p>Ces mots sont conçus pour donner l'impression d'être scientifiques. Laissant croire qu'avec une manipulation précise des manettes, la machine produira exactement ce que nous avons prédit.</p>
-<p>Mais c'est une illusion.</p>
-<p>La réalité est tout autre : l'entreprise moderne n'a rien à voir avec un laboratoire. C'est plutôt un casino. À chaque exercice financier, il faut se présenter à la table avec vos jetons (vos revenus, vos talents et votre temps) et miser.</p>
-<p>Cette mise est votre BID. C'est le risque calculé pour la survie.</p>
-<p>Le problème n'est pas que les entreprises établies refusent de parier. Le problème est que la plupart des dirigeants parient sur un jeu qui n'existe plus. Le plus gros problème est que la Startup d'à côté est All-In.</p>
-<h3>Le Pari : Rouge vs Noir</h3>
-<p>Dans ce casino, il y a deux couleurs.</p>
-<p>Le Rouge est le Cœur Métier. C'est la « Forteresse ». Quand on mise sur Rouge, on mise sur l'efficacité. Demain ressemblera exactement à aujourd'hui, seulement un peu plus rentable. Le pari est sur les clients et uniquement les clients actuels.</p>
-<p>Le Noir est l'Innovation. C'est l'« Avant-Poste ». Quand on mise sur Noir, on mise sur la découverte. On parie sur ce qui nous anime, l'étincelle de notre mission. On parie sur un futur qui n'est pas encore arrivé.</p>
-<p>Depuis vingt ans, la stratégie corporative standard est simple : Miser tout (ou presque) sur le Rouge. Se couvrir légèrement sur le Noir avec quelques « Laboratoires d'Innovation » (souvent cachés sous une marque R&amp;D et servant surtout aux relations publiques), mais garder le vrai capital en sécurité dans la Forteresse.</p>
-<p>Cette logique fonctionne à merveille. Jusqu'à ce que la roue tourne…</p>
-<h3>Les Cimetières Jumeaux</h3>
-<p>L'histoire est remplie d'entreprises qui ont traité le Jeu Infini comme un Pari Fini. Elles meurent généralement de deux façons.</p>
-<p><strong>1. Mort par l'Ordre (Le Piège BlackBerry)</strong></p>
-<p>Research in Motion (BlackBerry) était la Forteresse ultime. Ils avaient le réseau le plus sécurisé et les clients corporatifs les plus fidèles. Ils ont joué le jeu du « Rouge » à la perfection.</p>
-<p>Quand l'iPhone est apparu, la direction de BlackBerry a regardé les données. L'iPhone avait une autonomie terrible et pas de clavier. Selon toutes les métriques de la Forteresse, c'était un mauvais produit. Alors, ils ont doublé la mise sur l'efficacité.</p>
-<p>Ils n'ont pas perdu par incompétence. Ils ont perdu parce qu'ils ont tout misé sur la stabilité du présent alors que le monde pivotait vers le futur. Ils se sont optimisés jusqu'à l'extinction.</p>
-<p><strong>2. Mort par le Chaos (Le Piège Jawbone)</strong></p>
-<p>À l'opposé, nous avons Jawbone. Ils étaient les chouchous des technologies wearables, inventant le moniteur d'activité moderne. Ils étaient des parieurs « Noirs » purs : Tout sur le futur.</p>
-<p>Mais ils n'avaient pas de Forteresse. Il leur manquait la discipline opérationnelle « ennuyeuse » de la chaîne d'approvisionnement et du contrôle qualité. Ils ont innové brillamment, mais ils brûlaient leurs liquidités plus vite qu'ils ne pouvaient en générer. Ils ont innové jusqu'à la faillite.</p>
-<h3>Le Business Innovation Dichotomy (The BID)</h3>
-<p>Ceci nous amène au paradoxe central, la Dichotomie, du leadership moderne.</p>
-<p>Pour survivre ce trimestre, il faut être BlackBerry. On a besoin de la Forteresse. On a besoin de discipline : marges, processus et exécution. On doit prendre soin des nôtres.</p>
-<p>Pour survivre à la prochaine décennie, on doit être l'Anti-BlackBerry. On a besoin de l'Avant-Poste. On a besoin de la vision du Jeu Infini, prêt à encaisser un coup aujourd'hui pour assurer que les nôtres aient un toit demain.</p>
-<p>Ces deux systèmes d'exploitation se détestent. L'Efficacité tue la Découverte. La Découverte gaspille l'Efficacité.</p>
-<p>La plupart des leaders essaient de les mélanger. Ils essaient de rendre la Forteresse « plus innovante » (ce qui crée le chaos) ou l'Avant-Poste « plus efficace » (ce qui crée de la bureaucratie).</p>
-<p>La solution n'est pas de les mélanger. La solution est de reconnaître le fossé et de bâtir le pont.</p>
-<p>Le startup d'à côté a déjà placé ses jetons sur Noir. Il joue le tout pour le tout. Depuis le premier jour. Rien à perdre.</p>
-<p>La Forteresse a l'avantage de la taille, du capital et des données. Mais le désavantage de la peur.</p>
-<p><strong>La roue tourne. C'est le temps de faire un BID.</strong></p>`
-                    },
-                    {
-                        id: "art3",
-                        cat: "Innovation & Gouvernance",
-                        title: "Pourquoi le CFO tue vos meilleures idées.",
-                        desc: "Le problème du « Vilain Petit Canard » en stratégie corporative.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe",
-                        full: `<p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé quelque chose qui m'a ramené 25 ans en arrière. Presque tous les athlètes sur le parcours utilisaient des skis à fixations centrées (center-mounted).</p>
-<p>Pour le spectateur moyen, ce n'est que de l'équipement. Pour un stratège, c'est la fin d'une guerre qui a commencé dans un garage du Vermont en 1995.</p>
-<p>À la fin des années 90, l'industrie du ski traversait une crise d'identité. Une nouvelle génération de jeunes ne voulait plus « aller vite » pour descendre la montagne : ils voulaient descendre fakie, faire des spins et faire des rails. Ils traitaient leurs skis comme des blades (tout comme les snowboarders amenaient le skateboard à la montagne… tout comme les surfeurs amenaient les vagues dans la rue…).</p>
-<p>Salomon, le géant de l'industrie, a réagi comme une véritable Forteresse. Ils ont pris leur ski de course le plus vendu, l'ont peint rapidement en jaune « cool », et ont courbé le tail du ski vers le haut. C'est tout. C'était une solution de « Nouveauté ». Ils ont optimisé leurs actifs existants pour s'adapter à une nouvelle tendance. C'était sûr. C'était efficace. Et c'était tellement ennuyant.</p>
-<p>La raison ? Line Skis, un minuscule startup fondée par Jason Levinthal dans un garage du Vermont, a réagi comme un Avant-Poste. Il n'a pas juste courbé le tail. Il a redimensionné un snowboard. Avec le modèle 1260 (orange vif avec un graphique de DJ), ils ont déplacé les fixations au centre exact du ski. Ils ont complètement détruit le ski traditionnel pour correspondre au comportement des nouveaux riders.</p>
-<p>Salomon ne pouvait pas faire ça. Si un ingénieur de Salomon avait proposé un ski symétrique à montage central en 1997/1998, la structure de gouvernance l'aurait tué immédiatement. Mort-né.</p>
-<ul>
-  <li>Le département Qualité : « C'est instable à haute vitesse. »</li>
-  <li>L'équipe Marketing : « Comment positionner cette marque pour des… délinquants ? »</li>
-  <li>L'équipe des Ventes : « Les coureurs du dimanche n'achèteront pas ça. »</li>
-  <li>Le Directeur Financier : « La taille du marché est trop petite. »</li>
-</ul>
-<p>Salomon avait le capital, les usines et le talent. Mais ils avaient la mauvaise Gouvernance.</p>
-<p>Aujourd'hui, 25 ans plus tard, l'idée de l'« Avant-Poste » est la norme olympique. Et l'idée de la « Forteresse » est une note de bas de page.</p>
-<h3>Le Problème du Vilain Petit Canard</h3>
-<p>C'est ce que j'appelle le Fossé de Gouvernance.</p>
-<p>Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse : ROI, BAIIA (EBITDA) et Scale.</p>
-<p>Lorsque vous appliquez ces métriques à une idée d'« Avant-Poste » (comme le ski à montage central ou la première puce iPhone), l'idée ressemble toujours à un Vilain Petit Canard.</p>
-<ul>
-  <li>C'est trop petit pour faire bouger l'aiguille des revenus.</li>
-  <li>C'est trop risqué pour la marque.</li>
-  <li>C'est inefficace comparé au cœur de métier.</li>
-</ul>
-<p>Alors, le Directeur Financier la tue. Non pas parce qu'il est malveillant, mais parce qu'il fait son travail : protéger la Forteresse.</p>
-<p>Intel a fait cela en 2006. Apple leur a offert le contrat pour la puce iPhone. Paul Otellini a fait les calculs. Le volume était élevé, mais la marge était mince. Le fichier Excel a dit « Non ». Alors Intel a passé son tour. Ils ont protégé leur activité de serveurs à haute marge (la Forteresse) et ont raté toute la révolution mobile.</p>
-<h3>Le "Kill Switch" (Mécanisme d'élimination)</h3>
-<p>Nous avons construit une machine corporative conçue pour traquer et détruire la variance. Nous appelons cela « Six Sigma ». Nous appelons cela « Optimisation ».</p>
-<p>Mais l'innovation est diversité. Si vous optimisez votre entreprise pour l'efficacité, vous l'optimisez par inadvertance pour la stérilité. Des mots durs, mais vrais.</p>
-<p>La raison pour laquelle les startups gagnent n'est pas parce qu'elles sont plus intelligentes. C'est parce qu'elles n'ont pas de « Kill Switch ». Elles n'ont pas de Directeur Financier qui demande un ROI sur 3 ans pour un produit qui n'existe pas encore.</p>
-<h3>Comment combler le fossé</h3>
-<p>La solution n'est pas de renvoyer votre Directeur Financier. Bien sûr que non. La solution est de changer les règles du pari.</p>
-<p>Vous ne pouvez pas gouverner l'Avant-Poste avec les lois de la Forteresse.</p>
-<ul>
-  <li><strong>Gouvernance de Forteresse :</strong> « Montrez-moi les profits. »</li>
-  <li><strong>Gouvernance d'Avant-Poste :</strong> « Montrez-moi ce qui est possible. »</li>
-</ul>
-<p>Vous avez besoin d'un Double Système d'Exploitation. Vous devez créer une « Zone de Sécurité » où les Vilains Petits Canards peuvent grandir sans être écrasés par le poids des QBRs.</p>
-<p><em>« Si vous jugez un poisson par sa capacité à grimper à un arbre, il passera toute sa vie à croire qu'il est stupide. Si vous jugez une innovation par sa capacité à livrer un ROI immédiat, elle mourra dans l'œuf. »</em></p>
-<p>Vos équipes ont les idées. Elles construisent les « Line Skis » dans le garage en ce moment même. La question est : Êtes-vous à l'écoute ? Posez-vous des questions ? Vous demandez-vous ce qui est possible ? Votre structure de gouvernance les laissera-t-elle lancer le produit ? Ou les forcerez-vous à les peindre jaune « cool » ?</p>`
-                    },
-                    {
-                        id: "art4",
-                        cat: "Innovation & Gouvernance",
-                        title: "Arrêtez de bâtir des laboratoires d'innovation. Commencez à bâtir des ponts.",
-                        desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas : l'intégration est la clé.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-glv1c",
-                        full: `<p>Dans la Partie 1 de cette série, j'ai critiqué une entreprise de machines à café pour avoir lancé de la « Nouveauté » (un réservoir d'eau rotatif) en l'appelant Innovation. Je vous ai dit que la Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir.</p>
-<p>Mais la maison-mère a vu juste. Et ils ne l'ont pas fait en construisant une meilleure machine. Ils l'ont fait en construisant un meilleur Modèle de Gouvernance.</p>
-<h3>L'Origine de la Forteresse</h3>
-<p>Pour comprendre Nespresso, il faut d'abord comprendre la puissance brute de Nescafé.</p>
-<p>L'histoire ne commence pas par une étude de marché. Elle commence par une crise. À la suite du krach boursier de 1929, le Brésil était assis sur un surplus massif de grains de café qui pourrissaient littéralement dans les entrepôts. Le gouvernement brésilien a approché Nestlé avec une demande désespérée : Trouvez un moyen de conserver ces grains sans perdre la saveur.</p>
-<p>Ce n'était pas facile. Il a fallu sept ans au chimiste en chef de Nestlé, Max Morgenthaler, pour trouver la solution. Au lieu d'ajouter du sucre pour conserver le café (la norme à l'époque), il a développé un processus révolutionnaire de séchage par atomisation du liquide de café concentré.</p>
-<p>Lorsque Nescafé a été lancé en Suisse le 1er avril 1938, il a résolu un point de friction fondamental : le temps et l'équipement requis pour le brassage traditionnel. C'est devenu un phénomène mondial.</p>
-<p>En 1986, Nescafé était la Forteresse. C'était efficace, massif et c'était une véritable planche à billets.</p>
-<h3>Le Paradoxe Nespresso</h3>
-<p>Puis, un ingénieur nommé Eric Favre a inventé Nespresso. Techniquement, c'était brillant. Mais stratégiquement, c'était un désastre pour la Forteresse.</p>
-<ul>
-  <li>C'était cher.</li>
-  <li>Ça nécessitait une machine.</li>
-  <li>Ça cannibalisait le produit principal (le café instantané).</li>
-</ul>
-<p>Si Nestlé avait traité Nespresso comme un projet normal, la Forteresse l'aurait tué. Le VP des Ventes aurait dit : « Pourquoi vendons-nous une machine qui concurrence nos propres pots ? » Le Directeur Financier aurait dit : « Les marges sont terribles comparées à Nescafé. »</p>
-<p>C'est là que la plupart des entreprises échouent. Elles essaient d'être « Ambidextres ». Elles disent à leurs dirigeants : « Concentrez-vous sur les résultats trimestriels (Forteresse) ET inventez le futur (Avant-Poste) en même temps. » C'est insensé. Vous ne pouvez pas demander à un poisson de grimper à un arbre.</p>
-<h3>Le Mythe du "Skunkworks"</h3>
-<p>Alors, qu'a fait Nestlé ? Ils n'ont pas essayé de l'intégrer. Ils l'ont exilé.</p>
-<p>Ils ont créé une entité légale distincte. Ils ont déménagé l'équipe dans un bâtiment séparé. Ils lui ont donné un PDG distinct. Ils ont construit un véritable Avant-Poste.</p>
-<p>C'est la partie que tout le monde connaît. C'est le modèle « Skunkworks ». « Mettez les gens intelligents dans un garage et attendez que la magie opère. »</p>
-<p>Mais ce n'est pas pour cela que Nespresso a réussi. L'isolement est facile. N'importe quel PDG peut louer un WeWork et appeler ça un « Lab d'Innovation ». L'intégration, c'est la guerre.</p>
-<h3>Le Pont</h3>
-<p>Nespresso a réussi non pas parce qu'elle était séparée, mais parce que Nestlé a su quand construire le Pont.</p>
-<p>Une fois que l'Avant-Poste a prouvé le modèle (passer de la vente de grains à la vente d'une expérience récurrente), Nestlé ne l'a pas laissé dans le garage. Ils ont déclenché toute la puissance de la Forteresse.</p>
-<p>Pensez à la chaîne d'approvisionnement. Nespresso avait besoin de grains spécifiques de haute qualité à une échelle massive. Un Directeur Financier standard aurait exigé une évaluation des risques. « Pourquoi achetons-nous des tonnes d'inventaire premium pour un produit qui existe à peine ? »</p>
-<p>Nestlé n'a pas attendu que le fichier Excel passe au vert. Ils ont mis à profit leur statut de Rois incontestés du Café. Ils ont utilisé le pouvoir d'achat de la Forteresse pour acheter les surplus de café premium à travers le monde. Ils n'ont pas demandé si c'était efficace ; ils ont utilisé leur échelle pour forcer le marché à exister.</p>
-<p>Ils n'ont pas laissé la Forteresse tuer l'idée ; ils ont attendu que l'idée devienne un géant, puis ils ont laissé le géant diriger la Forteresse.</p>
-<h3>Le Cadre BID (The BID Framework)</h3>
-<p>Ceci nous amène à la conclusion de The Business Innovation Dichotomy.</p>
-<p>Le problème n'est pas que vous manquez d'idées. (Vous aviez Max Morgenthaler en 1929, et Eric Favre en 1986). Le problème n'est pas que vous manquez de ressources. (Vous avez la Forteresse !).</p>
-<p>Le problème est que vous manquez de Pont. Vous essayez de gérer le Futur avec les métriques du Passé.</p>
-<ul>
-  <li><strong>La Forteresse</strong> fonctionne à l'Efficacité (Six Sigma, BAIIA).</li>
-  <li><strong>L'Avant-Poste</strong> fonctionne à la Découverte (Apprentissage, Pivot).</li>
-  <li><strong>Le Pont</strong> fonctionne à la Traduction.</li>
-</ul>
-<p>Le Pont est une couche de gouvernance. C'est l'ensemble spécifique de règles qui décide quand une idée passe du garage à la salle du conseil. Il protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au « Kill Switch ».</p>
-<h3>Le Pari Final</h3>
-<p>Les affaires ne sont pas une science. C'est un pari. La plupart d'entre vous misent 99 % sur le Rouge (La Forteresse). La startup d'à côté mise 100 % sur le Noir (L'Avant-Poste).</p>
-<p>Vous ne pouvez pas gagner leur jeu avec vos règles. Mais vous avez un avantage qu'ils n'ont pas : Vous avez les jetons.</p>
-<p>Si vous pouvez apprendre à construire le Pont - si vous pouvez protéger l'Avant-Poste sans abandonner la Forteresse - vous ne gagnerez pas seulement la main. Vous maîtriserez le jeu.</p>`
-                    },
-                    {
-                        id: "art5",
-                        cat: "Finance & Stratégie",
-                        title: "Une conversation sur Milton Friedman, le Capital Impatient et le Pari du 1 %.",
-                        desc: "Gérer le Capital Impatient en utilisant la règle du 99/1 pour financer Adam Smith sans effrayer Milton Friedman.",
-                        socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc",
-                        full: `<p>Il y a quelques semaines, je discutais avec deux amis en finance de ma cohorte de MBA. Ils avaient lu mes récents articles sur The Business Innovation Dichotomy, en particulier la partie où je qualifiais le Directeur Financier de « Kill Switch » de l'innovation.</p>
-<p>Ils n'étaient pas amusés.</p>
-<p>« Alors, nous sommes des tueurs d'innovation ? » m'ont-ils demandé, mi-figue mi-raisin, mais clairement un peu (beaucoup) agacés.</p>
-<p>Je n'ai pas eu d'autre choix que de leur répondre en un mot : « Oui. »</p>
-<p>Je leur ai dit la dure vérité : la finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier, ce qui signifie qu'ils refusent fondamentalement de placer des capitaux dans un projet parallèle qui pourrait ne pas être rentable avant trois ou cinq ans.</p>
-<p>Mais une fois le choc initial passé, je leur ai dit autre chose. Ce n'est absolument pas de leur faute. C'est la faute de la philosophie que nous les forçons à utiliser. It is what it is, comme on dit.</p>
-<h3>La Forteresse de Friedman vs L'Avant-Poste de Smith</h3>
-<p>Mes amis ne sont pas les méchants. Loin de là. Ils sont simplement de fidèles disciples de Milton Friedman.</p>
-<p>Friedman a soutenu que la seule responsabilité sociale d'une entreprise est d'augmenter ses profits. Bay Street/Wall Street a interprété cela comme signifiant les profits d'aujourd'hui. C'est le système d'exploitation de la Forteresse. Elle s'appuie sur le ROI, le BAIIA (EBITDA) et le rendement immédiat pour maximiser la valeur pour les actionnaires dès maintenant.</p>
-<p>Mais la véritable innovation nécessite le capitalisme d'Adam Smith. Elle nécessite le risque entrepreneurial brut qui crée de tout nouveaux marchés et génère de la richesse à long terme.</p>
-<p>Lorsque vous appliquez les métriques de Friedman à l'Avant-Poste de Smith, l'Avant-Poste se fait écraser. Si vous demandez à un fichier Excel de calculer le ROI sur 3 ans d'un produit ou d'un service qui n'existe pas, le fichier affichera toujours zéro. Et le Directeur Financier, avec raison, tuera le projet.</p>
-<p>Mes amis étaient d'accord avec le concept, mais ils ont ensuite soulevé l'objection ultime.</p>
-<p>« Ça fonctionne à merveille dans une entreprise privée, » a dit l'un d'eux. « Mais nous sommes cotés en bourse. Si nous ratons nos résultats trimestriels parce que nous finançons une expérience d'Adam Smith, Wall Street (ou Bay Street) va crucifier notre action. Le C.A. nous renverra avant même que le projet ne soit lancé. »</p>
-<p>Ils ont 100 % raison.</p>
-<h3>Le Problème du Capital Impatient</h3>
-<p>Les marchés boursiers représentent le Capital Impatient. Les analystes veulent de la prévisibilité, une croissance des dividendes et un BAIIA optimisé. Ils tolèrent la « R&amp;D » parce qu'ils la perçoivent comme une dépense d'entretien pour le cœur de métier. La R&amp;D est le nom de code pour « Ce que les clients veulent ». Mais si vous leur dites que vous financez de l'« Innovation de Rupture », ils entendent une seule chose : « Nous jetons vos dividendes par la fenêtre. »</p>
-<p>Alors, comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ?</p>
-<p>Vous ne pouvez pas combattre le Capital Impatient. Mais vous pouvez le gérer. Voici les deux règles stratégiques pour les marchés publics.</p>
-<h3>1. La Règle du 99/1 (Le Pari Asymétrique)</h3>
-<p>Les entreprises publiques font l'erreur d'essayer de faire pivoter l'ensemble de leur énorme navire. Cela terrifie les investisseurs. Il faut y aller en douceur.</p>
-<p>Vous ne demandez pas 5 % ou 10 % le premier jour. Vous demandez 1 % annuellement.</p>
-<p>Vous engagez publiquement 99 % de votre capital envers Friedman. Vous promettez aux marchés que ces 99 % (La Forteresse) seront gérés impitoyablement avec les métriques traditionnelles. Vous optimisez le cœur de métier pour payer le dividende.</p>
-<p>Ensuite, vous isolez 1 % pour Smith. Mais vous ne l'appelez pas un « Lab d'Innovation ». Vous parlez le langage de Bay Street/Wall Street : vous l'appelez une Option d'achat asymétrique (Asymmetric Call Option).</p>
-<p>Vous dites aux marchés : « Nous allouons exactement 1 % de notre capital chaque année pour acheter des options sur l'avenir. Sur un cycle stratégique de cinq ans, cela permet de bâtir un portefeuille de capital-risque de 5 % de façon disciplinée. Le risque annuel de perte est strictement plafonné à 1 %. Mais le potentiel de gain est asymétrique. Si nous avons tort, les 99 % couvrent la perte. Si nous avons raison, nous possédons la prochaine décennie. »</p>
-<h3>2. La Transparence Radicale (La Quarantaine)</h3>
-<p>Si vous mélangez les coûts de ce 1 % d'Avant-Poste avec les dépenses d'exploitation de vos 99 % de Forteresse, vos marges globales auront l'air de décliner. Les analystes supposeront que votre cœur de métier s'effondre et dégraderont votre action.</p>
-<p>Google a fait face à cette crise exacte en 2015. Leur activité principale de recherche (La Forteresse) imprimait de l'argent. Mais Larry Page versait des milliards dans les voitures autonomes et l'IA (L'Avant-Poste). Parce que tout était mélangé, Wall Street pénalisait l'action de Google.</p>
-<p>Google a donc exécuté le coup de maître ultime en matière de Gouvernance : Alphabet.</p>
-<p>Ils ont séparé les finances.</p>
-<ul>
-  <li><strong>Segment A (Google) :</strong> La Forteresse. Les investisseurs pouvaient maintenant voir que cette entreprise opérait avec une marge incroyable de plus de 30 %.</li>
-  <li><strong>Segment B (Autres Paris) :</strong> L'Avant-Poste. Les investisseurs pouvaient voir exactement combien d'argent y était mis en quarantaine.</li>
-</ul>
-<p>En isolant l'Avant-Poste, Wall Street a cessé de punir la marge principale. Ils ont évalué le segment « Google » comme un service public mature, et ils ont évalué le segment « Other Bets » comme un portefeuille de capital-risque.</p>
-<h3>Arrêtez de cacher les Vilains Petits Canards</h3>
-<p>La plus grande erreur que font les PDG publics est d'essayer de cacher leurs projets d'Avant-Poste dans les dépenses d'exploitation de la Forteresse.</p>
-<p>Quand vous le cachez, cela ressemble à de l'inefficacité. Quand vous l'isolez, le plafonnez à 1 % et le rapportez séparément, cela ressemble à de la Stratégie.</p>
-<p>Vos investisseurs le savent très bien : si vous n'inventez pas l'avenir, quelqu'un d'autre le fera. Mais vous ne pouvez pas leur demander d'évaluer Adam Smith en utilisant les mathématiques de Milton Friedman.</p>
-<p><strong>Bâtissez le Pont. Mettez le 1 % en quarantaine. Et dites exactement à Bay Street/Wall Street à quel jeu vous jouez.</strong></p>`
-                    },
-                    {
-                        id: "art6",
-                        cat: "Innovation & Gouvernance",
-                        title: "Arrêtez de parler d'innovation, bâtissez votre Skunkworks et comblez le Fossé de Gouvernance.",
-                        desc: "Comment Lockheed Martin garantit le succès de ses inventions en devenant son propre premier client.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e",
-                        full: `<p>En 1943, Lockheed Martin a placé ses plus brillants ingénieurs dans une tente de cirque louée, a éliminé toute la bureaucratie corporative et leur a ordonné de construire un avion de chasse révolutionnaire. Le résultat fut légendaire.</p>
-<p>Le monde corporatif a une dangereuse obsession pour le « théâtre de l'innovation ». Comme Aaron Shapiro l'a si bien écrit dans Fast Company : « Stop Blabbing About Innovation And Start Actually Doing It ». Pour passer à l'action, les PDG ambitieux se tournent vers le modèle Skunkworks. Dans le Harvard Business Review, Colin Raney identifie avec justesse que les startups et les Skunkworks sont les moteurs définitifs de votre prochain grand produit. Ils offrent à vos meilleurs cerveaux l'autonomie d'un Avant-Poste, totalement libéré des métriques rigides du cœur de métier.</p>
-<p>Mais l'autonomie sans structure mène à l'échec. Dans son article pour Fast Company, Matthew E. May rappelle les règles des projets Skunkworks qui réussissent. Sans une gouvernance stricte, un laboratoire secret n'est qu'un passe-temps corporatif très coûteux.</p>
-<p>Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse.</p>
-<p>Le cœur de métier est régi par le Capital Impatient. Il exige un ROI immédiat et un BAIIA trimestriel. Lorsque le laboratoire remet son nouveau produit au cœur de métier pour le déployer à grande échelle, les métriques financières entrent violemment en collision. L'équipe de vente ne sait pas le positionner. Le directeur financier refuse de le financer car cela dilue la marge actuelle. La machine corporative rejette naturellement le nouvel organe.</p>
-<p>Comment garantir le succès de votre Skunkworks ? Vous devez bâtir le Pont.</p>
-<p>Il y a quelques semaines, j'ai eu le plaisir de discuter de ce défi précis avec un chef de l'ingénierie chez Lockheed Martin. Il a partagé la règle secrète de leur succès continu : ils sont obligés d'être leurs propres premiers clients. (Le fameux dogfooding en technologie).</p>
-<p>Lorsque leur Skunkworks invente une nouvelle technologie, ils ne se contentent pas de la lancer par-dessus le mur au département des ventes. Les équipes internes d'ingénierie et d'opérations sont forcées d'utiliser cette nouvelle technologie pour résoudre leurs propres problèmes quotidiens.</p>
-<p>Ils deviennent leur propre client le plus exigeant.</p>
-<p>C'est le test de résistance ultime. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations quotidiennes, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle à l'interne avant même d'affronter le marché ouvert.</p>
-<p><strong>Si vous voulez disrupter votre industrie, bâtissez absolument un Skunkworks. Mais pour que ces inventions survivent à la machine corporative, assurez-vous que votre propre équipe prenne la première bouchée.</strong></p>`
-                    },
-                    {
-                        id: "art7",
-                        cat: "Management & Stratégie",
-                        title: "Du Canevas à la Boussole : Connecter le Business Model aux Trois Horizons de McKinsey.",
-                        desc: "Connecter le Business Model Canvas aux Trois Horizons de croissance de McKinsey pour bâtir un système d'exploitation stratégique complet.",
-                        socialUrl: "https://www.linkedin.com/pulse/du-canevas-%25C3%25A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne",
-                        full: `<p>Récemment, j'ai eu une excellente discussion avec un contact à la BDC. Notre échange a rapidement convergé vers un outil fondamental : le Business Model Canvas.</p>
-<p>Pendant longtemps, j'ai utilisé ce canevas sous un angle très précis. Je m'en servais principalement comme un outil d'alignement pour les Ventes, afin de cartographier la proposition de valeur et les segments de clientèle à un instant précis. Pour le rendre véritablement opérationnel, je l'ai adapté en y ajoutant trois blocs : La Douleur (le problème réel), La Solution (l'idée qu'ils s'en font), et je commençais systématiquement tout l'exercice par La Vision et La Mission. C'est une structure redoutable pour capturer le moment présent.</p>
-<p>Cependant, un modèle d'affaires n'est jamais statique.</p>
-<p>Dès que vous tentez de projeter ce canevas dans le temps, le besoin d'une feuille de route devient évident. Vous devez planifier comment vos canaux de distribution et vos sources de revenus évolueront au fil des trimestres.</p>
-<p>En cherchant à structurer cette évolution temporelle, ma réflexion m'a inévitablement mené au cadre de référence par excellence : les Trois Horizons de Croissance de McKinsey &amp; Company.</p>
-<p>Lorsque vous connectez ces outils, vous obtenez un système d'exploitation stratégique complet basé sur trois phases :</p>
-<ul>
-  <li><strong>L'Horizon 1 est la Stabilisation.</strong> Le Business Model Canvas définit ce que fait votre cœur de métier aujourd'hui pour sécuriser et défendre vos marges actuelles.</li>
-  <li><strong>L'Horizon 2 est l'Optimisation.</strong> La feuille de route dicte comment vous allez bâtir vos opportunités émergentes pour en faire vos prochains moteurs de revenus.</li>
-  <li><strong>L'Horizon 3 est la Propulsion.</strong> Le cadre de McKinsey vous force à regarder au-delà de la feuille de route et à financer les paris disruptifs nécessaires pour propulser votre survie future.</li>
-</ul>
-<p><strong>La planification stratégique n'est pas une collection d'outils isolés. Le Canevas sécurise votre base, la feuille de route optimise votre croissance, et les Trois Horizons propulsent votre avenir.</strong></p>`
-                    }
+                    { id: "art1", cat: "Innovation & Gouvernance", title: "Avons-nous oublié la définition du mot « Innovation » ?", desc: "Pourquoi nous confondons « polir le passé » avec « bâtir l'avenir ».", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme", full: `<p>Je suis récemment tombé sur une publicité d'une grande entreprise de café qui promettait de « réinventer ma routine matinale » grâce à leur « toute nouvelle innovation ».</p><p>En tant que stratège, le mot innovation déclenche mon radar. Ladite « innovation » se résumait à un réservoir d'eau rotatif et un design « plus mince ».</p><p>Il faut arrêter de se mentir. Ce n'est pas de l'innovation. C'est de la Nouveauté (Novelty). La Nouveauté rend l'ancien produit plus brillant pour une transaction court terme. L'Innovation change les règles du jeu pour une relation long terme. La véritable innovation s'intègre mieux dans la vie humaine.</p><h3>La Forteresse vs L'Avant-Poste</h3><p>La Forteresse (votre cœur de métier) est bâtie sur l'efficacité. Pour innover, vous avez besoin d'un Détachement (Outpost), un système d'exploitation distinct dont le seul but est la découverte. J'appelle cela Le Business Innovation Dichotomy (The BID). Arrêtons de célébrer le « Nouveau et Amélioré ». Commençons à bâtir le « Différent et Vital ».</p>` },
+                    { id: "art2", cat: "Stratégie & Leadership", title: "Pourquoi la Stratégie est un Pari, et pas une Science.", desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie", full: `<p>Si vous consultez l'ordre du jour d'une réunion de CA, vous verrez beaucoup de mots rassurants : « Optimisation », « Prévisions » et « IA ». Mais c'est une illusion. La réalité est tout autre : l'entreprise moderne n'a rien à voir avec un laboratoire. C'est plutôt un casino. À chaque exercice financier, il faut se présenter à la table avec vos jetons et miser. Cette mise est votre BID. C'est le risque calculé pour la survie. Le Rouge est le Cœur Métier (la Forteresse). Le Noir est l'Innovation (l'Avant-Poste). La solution est de reconnaître le fossé et de bâtir le pont. C'est le temps de faire un BID.</p>` },
+                    { id: "art3", cat: "Innovation & Gouvernance", title: "Pourquoi le CFO tue vos meilleures idées.", desc: "Le problème du « Vilain Petit Canard » en stratégie corporative.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe", full: `<p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé que presque tous les athlètes utilisaient des skis à fixations centrées. Salomon, le géant, a réagi comme une Forteresse en optimisant ses actifs existants. Line Skis a réagi comme un Avant-Poste en détruisant la physique du ski traditionnel. Salomon ne pouvait pas faire ça : sa structure de gouvernance l'aurait tué immédiatement. Dans la plupart des entreprises, le CFO tue les idées d'Avant-Poste pour protéger la Forteresse. Vous avez besoin d'un Double Système d'Exploitation.</p>` },
+                    { id: "art4", cat: "Innovation & Gouvernance", title: "Arrêtez de bâtir des laboratoires d'innovation. Commencez à bâtir des ponts.", desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc", full: `<p>Nestlé a réussi avec Nespresso parce qu'ils ont su construire le Pont et déclencher toute la puissance de leur chaîne d'approvisionnement pour forcer le marché à exister. Ils n'ont pas laissé la Forteresse tuer l'idée : ils ont attendu que l'idée devienne un géant. Le Pont est l'ensemble de règles qui protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au boardroom.</p>` },
+                    { id: "art5", cat: "Finance & Stratégie", title: "Une conversation sur Milton Friedman, le Capital Impatient et le Pari du 1 %.", desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc", full: `<p>La finance corporative est intrinsèquement plus à l'aise avec le statu quo. Mais l'innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. La solution pour un PDG public ? La Règle du 99/1. Engagez 99 % de votre capital envers Friedman (la Forteresse) et isolez 1 % pour Smith (l'Avant-Poste) comme une Option d'achat asymétrique. Dites exactement aux investisseurs à quel jeu vous jouez.</p>` },
+                    { id: "art6", cat: "Innovation & Gouvernance", title: "Arrêtez de parler d'innovation, bâtissez votre Skunkworks et comblez le Fossé de Gouvernance.", desc: "Comment Lockheed Martin garantit le succès de ses inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>La règle secrète chez Lockheed Martin est le dogfooding : les équipes internes sont forcées d'utiliser les nouvelles technologies pour résoudre leurs propres problèmes quotidiens. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations, le rejet financier devient impossible. Si vous voulez disrupter votre industrie, assurez-vous que votre propre équipe prenne la première bouchée.</p>` },
+                    { id: "art7", cat: "Management & Stratégie", title: "Du Canevas à la Boussole : Connecter le Business Model aux Trois Horizons de McKinsey.", desc: "Bâtir un système d'exploitation stratégique complet.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%25C3%25A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne", full: `<p>Un modèle d'affaires n'est jamais statique. Dès que vous projetez ce canevas dans le temps, le besoin d'une feuille de route devient évident. C'est ici qu'interviennent les Trois Horizons de McKinsey pour sécuriser la base, optimiser la croissance et propulser votre avenir.</p>` }
                 ]
             },
             en: {
@@ -675,319 +467,53 @@
                 "hero-p": "Converting vision into operational trajectories and tangible execution strategies to maximize business value.",
                 "about-label": "Core Expertise",
                 "summary": "Bilingual Management Consulting Leader with over 20 years of expertise. MBA candidate at ESG UQAM, specializing in converting executive ambitions into actionable roadmaps.",
-                "srv1-title": "Strategic & Organizational Diagnostics",
-                "srv1-desc": "Rigorous business model analysis and identification of optimization levers to secure immediate profitability and long-term resilience.",
-                "srv2-title": "Solutions Architecture & Investment Optimization",
-                "srv2-desc": "Designing operational and technological frameworks aligned with growth objectives, ensuring the maximization of business value.",
-                "srv3-title": "Vision & Strategic Innovation",
-                "srv3-desc": "Transforming executive vision into concrete execution trajectories for organizations navigating major transitions.",
-                "exp-label": "Trajectory", 
-                "articles-label": "Vision & Strategic Innovation", 
-                "read-more": "Read more",
-                "discuss-social": "Comment on LinkedIn",
-                "visit-site": "Website",
-                "cta-title": "Optimize your business trajectory.",
-                "cta-desc": "Transform your executive vision into tangible results.",
-                "cta-btn": "Contact me",
-                "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction of North American sales strategy and technical enablement for Business Process Management solutions.</p>" },
+                "skill1": "Business Development & Growth", 
+                "skill2": "Strategic & Organizational Diagnostics", 
+                "skill3": "Solutions Architecture & Optimization", 
+                "skill4": "Influential Leadership & Change",
+                "services-label": "Expertise",
+                "srv1-title": "Strategic Diagnosis", "srv1-desc": "Rigorous business model analysis and identification of optimization levers to secure immediate profitability.",
+                "srv2-title": "Solution Architecture", "srv2-desc": "Designing operational and technological frameworks aligned with organizational growth objectives.",
+                "srv3-title": "Executive Advisory", "srv3-desc": "Translating executive vision into actionable execution trajectories for leaders in transition.",
+                "exp-label": "Milestones", "exp-linkedin": "View my complete profile on LinkedIn",
+                "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", 
+                "visit-site": "Website", "discuss-social": "Comment on LinkedIn",
+                "cta-title": "Optimize your business trajectory.", "cta-desc": "Transform your executive vision into tangible results.", "cta-btn": "Contact me",
+                
+                /* Experience Metadata EN */
+                "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Commanded North American sales strategy and technical enablement for Business Process Management solutions.</p>" },
                 "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Oversaw global technical enablement organization and defined GTM strategies for the Design & Manufacturing portfolio.</p>" },
                 "exp3": { title: "Graitec", role: "Solution Architect", url: "https://www.graitec.com", full: "<p>Strategic optimization of Cloud infrastructures and data repositories for major AEC global clients.</p>" },
-                "exp4": { title: "Vent de la Savane", role: "Director of Operations", url: "https://www.ventdelasavane.com", full: "<p>Successful 8x revenue growth turnaround over a 3-year cycle through total operational restructuring.</p>" },
+                "exp4": { title: "Vent de la Savane", role: "Director of Operations", url: "https://www.ventdelasavane.com", full: "<p>Executed a major operational turnaround, delivering 8x revenue growth over a 3-year cycle via total operational restructuring.</p>" },
                 "exp5": { title: "SolidXperts", role: "Technical Director", url: "https://www.solidxperts.com", full: "<p>Implemented complex PLM and PDM solutions for the manufacturing sector, optimizing design-to-production cycles.</p>" },
                 "exp6": { title: "Bolloré Group", role: "Logistics Project Management", url: "https://www.bollore.com", full: "<p>Optimized international operational flows and led cross-functional logistics projects across global regions.</p>" },
                 "exp7": { title: "Mecachrome", role: "Aeronautical Engineering", url: "https://www.mecachrome.com", full: "<p>Technical and strategic support for high-precision machining applied to aeronautical standards.</p>" },
-                "exp8": { title: "Construction Pascal Lanoue", role: "Infrastructure Management", url: "https://constructionpascallanoue.com", full: "<p>Operational management and turnaround of complex industrial projects in construction environments.</p>" },
+                "exp8": { title: "Construction Pascal Lanoue", role: "Infrastructure Management", url: "#", full: "<p>Operational management and turnaround of complex industrial projects in construction environments.</p>" },
                 "exp9": { title: "EMICA", role: "Technology Consultant", url: "https://emica.cssdm.gouv.qc.ca", full: "<p>Strategic technology integration within the professional vocational training network.</p>" },
-                "exp10": { title: "HEC Montréal", role: "Certificate | Business Management", url: "https://www.hec.ca", full: "<p>Advanced administrative training, laying the foundations for analytical rigor in corporate environments.</p>" },
+                "exp10": { title: "HEC Montréal", role: "Certificate | Business Management", url: "https://www.hec.ca", full: "<p>Advanced administrative training, establishing the foundations for business analytical rigor.</p>" },
                 "exp11": { title: "ESG UQAM", role: "MBA in Management Consulting (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Specialized Master's degree focused on strategic consulting and innovation deployment models.</p>" },
-                metrics: ["8x Growth", "$55M Quota", "Top 5% Leader", "20+ Years Exp", "MBA · Adm.A · C.M.C."],
+
+                metrics: ["8x Growth · Turnaround", "$55M Quota Managed", "Top 5% Strategic Leader", "20+ Years Experience", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    {
-                        id: "art1",
-                        cat: "Innovation & Governance",
-                        title: "Have We Forgotten the Definition of the Word \"Innovation\"?",
-                        desc: "Why we confuse polishing the past with building the future.",
-                        socialUrl: "https://www.linkedin.com/pulse/have-we-forgotten-definition-word-innovation-marc-b-sauro-u6dce",
-                        full: `<p>I recently came across an ad from a major coffee company that promised to "reimagine my morning routine" with their "newest innovation."</p>
-<p>Naturally, I paused. I looked closer. As a strategist, the word innovation sets off my radar. I was expecting a new business model, a sustainable supply chain shift, or perhaps a material science discovery that eliminated waste.</p>
-<p>Instead, the "innovation" was:</p>
-<ul>
-  <li>A rotating water tank.</li>
-  <li>A 3-second heat-up time.</li>
-  <li>A "slimmer" design.</li>
-</ul>
-<p>We need to stop lying to ourselves. This is not innovation. This is Novelty. And the difference between the two is not just semantics; it is the difference between a company that is thriving and a company that is merely surviving.</p>
-<h3>The Novelty Trap</h3>
-<p>In his book <em>Start With Why</em>, Simon Sinek draws a sharp line between manipulation and inspiration. But for the modern CEO, the most critical distinction is between Novelty and Innovation.</p>
-<ul>
-  <li><strong>Novelty</strong> is about making the old thing shiny. It is "New and Improved!" It creates a short-term transaction.</li>
-  <li><strong>Innovation</strong> is about changing the game. It creates a long-term relationship.</li>
-</ul>
-<p>We see this everywhere. Gillette spent decades adding a third blade, then a fourth, then a fifth. They called it innovation. It was just physics. While they were obsessing over lubrication strips (Novelty), Dollar Shave Club changed the business model (Innovation) and stole their lunch.</p>
-<p>When you add a "rotating tank" to a machine, you are not inventing the future. You are optimizing the present. You are trying to squeeze a 2% sales bump out of a slightly better heater. You are playing a Finite Game where the goal is to beat the competitor's spec sheet.</p>
-<p>Real innovation doesn't just fit better on the counter; it fits better into the human life.</p>
-<h3>The Fortress vs. The Outpost</h3>
-<p>Why do smart leaders fall into this trap? Why do we settle for "disruptive plumbing" (to borrow a phrase from the late Dr. Clayton Christensen) instead of real disruption?</p>
-<p>It is because of where we live.</p>
-<p>Most of us spend our careers inside what I call The Fortress. The Fortress is your core business. It is built on efficiency, predictability, and quarterly results. Its job is to protect the revenue stream.</p>
-<ul>
-  <li><strong>The Goal of the Fortress:</strong> Serve the customer what they want today.</li>
-  <li><strong>The Metric of the Fortress:</strong> Margins and Efficiency.</li>
-</ul>
-<p>But you cannot invent the future inside a Fortress. The walls are too thick. The metrics are too rigid.</p>
-<p>To innovate, you need an Outpost. The Outpost is a separate operating system. Its sole purpose is discovery. Its job is to cannibalize the Fortress before a competitor does.</p>
-<h3>The Governance Gap</h3>
-<p>I saw this tension firsthand early in my career. I was at a conference for a major CAD software company. The CEO stood on stage and said something that sucked the air out of the room:</p>
-<p><em>"We need to be the kids in the garage imagining what our solutions could become. We need to kill our own flagship product."</em></p>
-<p>The audience - mostly employees and partners living comfortably inside the Fortress - didn't get it. They were horrified. Why would we kill the Golden Goose?</p>
-<p>That CEO was trying to build an Outpost. He was trying to make a BID (a Wager) on the future. But the Fortress rejected him like a virus.</p>
-<p>This happens every day. We kill the Outpost because it looks inefficient to the Fortress. We choose the "rotating water tank" because it is safe. It fits in the budget. It fits in the quarterly report.</p>
-<h3>The Business Innovation Dichotomy (The BID)</h3>
-<p>This brings me to the project I am launching today.</p>
-<p>It has been boiling inside me since I went back to business school. I was assigned a case study on Michael Porter's Five Forces (the ultimate "Fortress" framework for defense). But I couldn't stop thinking about Clayton Christensen's "Disruptive Innovation" (the ultimate "Outpost" framework for offense).</p>
-<p>I realized that the problem isn't that we don't understand innovation. The problem is that we don't know how to manage the tension between these two worlds.</p>
-<p>Clayton Christensen gave us the diagnosis. He showed us why we fail. But a diagnosis is not a cure. He defined the dilemma; I am planning for the solution.</p>
-<ul>
-  <li>Efficiency kills Discovery.</li>
-  <li>Discovery wastes Efficiency.</li>
-</ul>
-<p>I call this The Business Innovation Dichotomy (The BID).</p>
-<p>Over the coming weeks, I will be serializing the manual for how to navigate this gap. We will look at companies like BlackBerry (who died in the Fortress) and Jawbone (who died in the Outpost), and we will dissect the few who managed to bridge them.</p>
-<p>As leaders, we have a duty to know the difference. If you tell your teams that a "slimmer design" is innovation, you are training them to aim low. You are teaching them that the goal is to sell a unit, not to solve a problem.</p>
-<p>Let's stop celebrating "New and Improved." Let's start building "Different and Vital."</p>
-<p><strong>Is your team building features, or are they building the future?</strong></p>`
-                    },
-                    {
-                        id: "art2",
-                        cat: "Strategy & Leadership",
-                        title: "Why Strategy is a Wager, Not a Science.",
-                        desc: "The illusion of scientific certainty vs the reality of the corporate casino.",
-                        socialUrl: "https://www.linkedin.com/pulse/why-strategy-wager-science-marc-b-sauro-yblue",
-                        full: `<p>If you look at the agenda of any Fortune 500 Board meeting, you will see a lot of buzz, investor-comforting words. You will see "Optimization," "Forecast", and, now, "AI".</p>
-<p>These words are designed to make us feel like scientists. That if we just turn the dials precisely enough, the machine will spit out exactly what we predict.</p>
-<p>But this is an illusion.</p>
-<p>The reality is: modern business has nothing to do with a laboratory. It's more like a casino. Every fiscal year, you are required to walk up to the table with your chips (revenue, talent, time) and place a wager.</p>
-<p>This wager is your BID. It is your somewhat-calculated risk for survival.</p>
-<p>The problem is not that incumbents refuse to bet. The problem is that most leaders are betting on a game that's long gone. The bigger problem is that the Startup Next Door Is All In.</p>
-<h3>The Red vs. Black Wager</h3>
-<p>In this casino, there are two colors.</p>
-<p>Red is your Core Business. It is your "Fortress." When you bet on Red, you are betting on efficiency. You are betting that tomorrow will look exactly like today, only slightly more profitable. You're betting on serving your customers and solely serving your customers.</p>
-<p>Black is Innovation. It is the "Outpost." When you bet on Black, you are betting on discovery. You are betting on what drove you there, what sparked your mission. You are betting on a future that hasn't arrived yet.</p>
-<p>For the last twenty years, the standard corporate strategy has been simple: Bet the farm on Red. Hedge slightly on Black with a few "Innovation Labs" (hidden under a "R&D" branding and mostly for PR), but keep the real capital safe inside the Fortress.</p>
-<p>This logic works kind of beautifully. Until the wheel spins.</p>
-<h3>The Twin Graveyards</h3>
-<p>History is littered with companies that treated the Infinite Game like a Finite Wager. They usually die in one of two ways.</p>
-<p><strong>1. Death by Order (The BlackBerry Trap)</strong></p>
-<p>Research in Motion (BlackBerry) was the ultimate Fortress. They had the most secure network and the most loyal corporate customers. They played the "Red" game perfectly.</p>
-<p>When the iPhone appeared, BlackBerry's leadership looked at the data. The iPhone had terrible battery life and no keyboard. By every metric of the Fortress, it was a bad product. So, they doubled down on efficiency.</p>
-<p>They didn't lose because they were incompetent. They lost because they bet everything on the stability of the present while the world pivoted to the future. They optimized themselves into extinction.</p>
-<p><strong>2. Death by Chaos (The Jawbone Trap)</strong></p>
-<p>On the other side, we have Jawbone. They were the darlings of the wearable tech world, inventing the modern fitness tracker. They were pure "Black" bettors - all in on the future.</p>
-<p>But they had no Fortress. They lacked the "boring" operational discipline of supply chain management and quality control. They innovated brilliantly, but they burned cash faster than they could print it. They innovated themselves into bankruptcy.</p>
-<h3>The Business Innovation Dichotomy (The BID)</h3>
-<p>This brings us to the central paradox, the Dichotomy, of modern leadership.</p>
-<p>To survive this quarter, you must be BlackBerry. You need the Fortress. You need the discipline: margins, processes, and execution. You must take care of your tribe.</p>
-<p>To survive the next decade, you must be the Anti-BlackBerry. You need the Outpost. You need the vision of the Infinite Game, willing to take a hit today to ensure your people have a home tomorrow.</p>
-<p>These two operating systems hate each other. So much. Efficiency kills Discovery. Discovery wastes Efficiency.</p>
-<p>Most leaders try to blend them. They try to make the Fortress "more innovative" (which creates chaos) or the Outpost "more efficient" (which creates bureaucracy).</p>
-<p>The solution is not to blend them. The solution is to recognize the gap and build the bridge.</p>
-<p>The startup next door has already placed their chips on Black. They are all in. They were from day 1. They have nothing to lose.</p>
-<p>You have the advantage of size, capital, and data. But you have the disadvantage of fear.</p>
-<p><strong>The wheel is spinning. It is time to make your BID.</strong></p>`
-                    },
-                    {
-                        id: "art3",
-                        cat: "Innovation & Governance",
-                        title: "Why the CFO Kills Your Best Ideas.",
-                        desc: "The Ugly Duckling problem in corporate strategy: how Fortress governance stifles innovation.",
-                        socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree",
-                        full: `<p>I was watching Slopestyle Skiing at the Olympics last week, and I realized something that pulled me back 25 years. Almost every single athlete on that course was riding center-mounted skis.</p>
-<p>To the casual viewer, this is just equipment. To a strategist, this is the end of a war that started in a Vermont garage in 1995.</p>
-<p>In the late 90s, the ski industry faced an identity crisis. A new generation of kids didn't want to race down the mountain: They wanted to ride fakie, spin, and grind on rails. They were treating skis like blades (similar to how snowboarders were bringing skateboards to the mountain... similar to surfers that were bringing the waves to the streets...)</p>
-<p>Salomon, the industry giant, responded like a true Fortress. They took their best-selling racing ski, quickly painted it "cool" yellow, and bent the tail up. That's it. It was a "Novelty" solution. They optimized their existing assets to fit a new trend. It was safe. It was efficient. And it was boring.</p>
-<p>But why did Salomon react that way? The reason? Line Skis, a tiny startup founded by Jason Levinthal in a garage, responded like an Outpost. They didn't just bend the tail. They scaled a snowboard. With the 1260 model (blaze orange with a DJ graphic), they moved the bindings to the dead center of the ski. They completely destroyed the physics of traditional skiing to match the behavior of the new athlete.</p>
-<p>Salomon couldn't do this. If a Salomon engineer had proposed a center-mounted, symmetric ski in 1997/1998, the governance structure would have killed it immediately. DOA.</p>
-<ul>
-  <li>The QA Department: "It's unstable at high speed."</li>
-  <li>The Marketing team: "How do we position this brand to... delinquents?"</li>
-  <li>The Sales Team: "Weekend racers won't buy it."</li>
-  <li>The CFO: "The market size is too small."</li>
-</ul>
-<p>Salomon had the capital, the factories, and the talent. But they had the wrong Governance.</p>
-<p>Today, 25 years later, the "Outpost" idea is the Olympic Standard. And the "Fortress" idea is a footnote.</p>
-<h3>The Ugly Duckling Problem</h3>
-<p>This is the Governance Gap.</p>
-<p>In most companies, every new idea is judged by the metrics of the Fortress: ROI, EBITDA, and Scale.</p>
-<p>When you apply these metrics to an "Outpost" idea (like the center-mounted ski or the first iPhone chip), the idea always looks like an Ugly Duckling.</p>
-<ul>
-  <li>It is too small to move the needle on revenue.</li>
-  <li>It is too risky for the brand.</li>
-  <li>It is inefficient compared to the core business.</li>
-</ul>
-<p>So, the CFO kills it. Not because they are evil, but because they are doing their job: protecting the Fortress.</p>
-<p>Intel did this in 2006. Apple offered them the contract for the iPhone chip. Paul Otellini ran the numbers. The volume was high, but the margin was thin. The spreadsheet said "No." So Intel passed. They protected their high-margin server business (The Fortress) and lost the entire mobile revolution.</p>
-<h3>The Kill Switch</h3>
-<p>We have built a corporate machine designed to hunt down and destroy variance. We call it "Six Sigma." We call it "Optimization."</p>
-<p>But innovation is variance. If you optimize your company for efficiency, you are inadvertently optimizing it for sterility. Harsh words but true words.</p>
-<p>The reason startups win isn't because they are smarter. It is because they don't have a "Kill Switch." They don't have a CFO asking for a 3-year ROI on a product that doesn't exist yet.</p>
-<h3>How to Bridge the Gap</h3>
-<p>The solution is not to fire your CFO. Of course not. The solution is to change the rules of the wager.</p>
-<p>You cannot govern the Outpost with the laws of the Fortress.</p>
-<ul>
-  <li><strong>Fortress Governance:</strong> "Show me the profit."</li>
-  <li><strong>Outpost Governance:</strong> "Show me what's possible."</li>
-</ul>
-<p>You need a Dual Operating System. You need to create a "Safe Zone" where the Ugly Ducklings can grow without being crushed by the weight of the QBRs.</p>
-<p><em>"If you judge a fish by its ability to climb a tree, it will live its whole life believing it is stupid. If you judge an innovation by its ability to deliver immediate EBITDA, it will die on the vine."</em></p>
-<p>Your teams have the ideas. They are building the "Line Skis" in the garage right now. The question is: Are you listening? Are you asking questions? Are you wondering what could be? Will your governance structure let them launch it? Or will you force them to paint it old "cool" yellow?</p>`
-                    },
-                    {
-                        id: "art4",
-                        cat: "Innovation & Governance",
-                        title: "Stop Building Innovation Labs. Start Building Bridges.",
-                        desc: "The Nespresso story illustrates why isolation is not enough: integration is the key to strategic success.",
-                        socialUrl: "https://www.linkedin.com/pulse/stop-building-innovation-labs-start-bridges-marc-b-sauro-4fxcc",
-                        full: `<p>In Part 1 of this series, I criticized a coffee machine company for launching "Novelty" (a rotating water tank) and calling it Innovation.</p>
-<p>I told you that Novelty is about making the past slightly better, while Innovation is about inventing the future.</p>
-<p>But the mother company got it right. And they didn't do it by building a new machine. They did it by building a better Governance Model.</p>
-<h3>The Origin of the Fortress</h3>
-<p>To understand Nespresso, you first have to understand the sheer power of Nescafé.</p>
-<p>The story doesn't begin with a consumer insight. It begins with a crisis.</p>
-<p>Following the Wall Street Crash of 1929, Brazil was sitting on a massive surplus of coffee beans that was literally rotting in warehouses. The Brazilian government approached Nestlé with a desperate request: Find a way to preserve these beans without losing the flavor.</p>
-<p>It wasn't easy. It took Nestlé's lead chemist, Max Morgenthaler, seven years to crack the code. Instead of adding sugar to preserve the coffee (the standard at the time), he developed a revolutionary process of spray-drying concentrated coffee liquid.</p>
-<p>When Nescafé launched in Switzerland on April 1, 1938, it solved a fundamental friction point: the time and equipment required for traditional brewing. It became a global phenomenon.</p>
-<p>By 1986, Nescafé was the Fortress. It was efficient, massive, and printed money.</p>
-<h3>The Nespresso Paradox</h3>
-<p>Then, an engineer named Eric Favre invented Nespresso. Technically, it was brilliant. But strategically, it was a disaster for the Fortress.</p>
-<ul>
-  <li>It was expensive.</li>
-  <li>It required a machine.</li>
-  <li>It cannibalized the core product (Instant Coffee).</li>
-</ul>
-<p>If Nestlé had treated Nespresso like a normal project, the Fortress would have killed it. The Sales VP would have said: "Why are we selling a machine that competes with our own jars?" The CFO would have said: "The margins are terrible compared to Nescafé."</p>
-<p>This is where most companies fail. They try to be "Ambidextrous." They tell their leaders: "Focus on the quarterly results (Fortress) AND invent the future (Outpost) at the same time." This is crazy talk. You cannot ask a fish to climb a tree.</p>
-<h3>The Skunkworks Myth</h3>
-<p>So, what did Nestlé do? They didn't try to integrate it. They exiled it.</p>
-<p>They created a separate legal entity. They moved the team to a separate building. They gave it a separate CEO. They built a true Outpost.</p>
-<p>This is the part everyone knows. This is the "Skunkworks" model. "Put the smart people in a garage and wait for magic."</p>
-<p>But that is not why Nespresso succeeded. Isolation is easy. Any CEO can rent a WeWork and call it an "Innovation Lab." Integration is the war.</p>
-<h3>The Bridge</h3>
-<p>Nespresso succeeded not because it was separate, but because Nestlé knew when to build the Bridge.</p>
-<p>Once the Outpost had proven the model (shifting from selling coffee beans to selling a recurring experience), Nestlé didn't leave it in the garage. They unleashed the full weight of the Fortress.</p>
-<p>Think about the supply chain. Nespresso needed specific, high-quality beans at a massive scale. A standard CFO would have demanded a risk assessment. "Why are we buying tons of premium inventory for a product that barely exists?"</p>
-<p>Nestlé didn't wait for the spreadsheet to turn green. They leveraged their status as the undisputed Rulers of Coffee. They used the purchasing power of the Fortress to buy the overstock of premium coffee across the globe. They didn't ask if it was efficient; they used their scale to force the market into existence.</p>
-<p>They didn't let the Fortress kill the idea; they waited until the idea became a giant, then they let the giant lead the Fortress.</p>
-<h3>The BID Framework</h3>
-<p>This brings us to the conclusion of The Business Innovation Dichotomy (BID).</p>
-<p>The problem isn't that you lack ideas. (You had Max Morgenthaler in 1929, and Eric Favre in 1986). The problem isn't that you lack resources. (You have the Fortress!). The problem is that you lack the Bridge.</p>
-<p>You are trying to run the Future with the metrics of the Past.</p>
-<ul>
-  <li><strong>The Fortress</strong> runs on Efficiency (Six Sigma, EBITDA).</li>
-  <li><strong>The Outpost</strong> runs on Discovery (Learning, Pivot).</li>
-  <li><strong>The Bridge</strong> runs on Translation.</li>
-</ul>
-<p>The Bridge is a governance layer. It is the specific set of rules that decides when an idea moves from the garage to the boardroom. It protects the "Ugly Duckling" until it is strong enough to survive the "Kill Switch."</p>
-<h3>The Final Wager</h3>
-<p>Business is not a science. It is a bet. Most of you are betting 99% on Red (The Fortress). The startup next door is betting 100% on Black (The Outpost).</p>
-<p>You cannot win their game with your rules. But you have one advantage they don't: You have the chips.</p>
-<p>If you can learn to build the Bridge - if you can protect the Outpost without abandoning the Fortress - you don't just win the hand. You own the game.</p>`
-                    },
-                    {
-                        id: "art5",
-                        cat: "Finance & Strategy",
-                        title: "A conversation about Milton Friedman, Impatient Capital, and the 1% Wager.",
-                        desc: "Managing Impatient Capital using the 99/1 rule to fund Adam Smith without scaring Milton Friedman.",
-                        socialUrl: "https://www.linkedin.com/pulse/stop-blabbing-innovation-build-your-skunkworks-close-gap-b-sauro-z97ae",
-                        full: `<p>A couple of weeks ago, I was discussing this with two Finance friends from my MBA cohort. They had been reading my recent articles on The Business Innovation Dichotomy, specifically the part where I called the CFO the "Kill Switch" of innovation.</p>
-<p>They were not pleased.</p>
-<p>"So, we are innovation killers?" they asked, half-joking but clearly a little bit annoyed.</p>
-<p>I didn't have a choice but to give them a one-word answer: "Yes."</p>
-<p>I told them the hard truth: Corporate Finance is inherently more comfortable with the 'same old, same old' because it has a predictable yield. They are wired to protect the core business, which means they fundamentally reject putting capital into a side venture that might not be profitable for three to five years.</p>
-<p>But after the initial sting wore off, I told them something else. It is absolutely not their fault. It is the fault of the philosophy we force them to use. It is what it is, as we say.</p>
-<h3>Friedman's Fortress vs. Smith's Outpost</h3>
-<p>My friends are not the villains. Far from it. They are simply loyal disciples of Milton Friedman.</p>
-<p>Friedman famously argued that the sole social responsibility of a business is to increase its profits. Wall Street took that to mean today's profits. This is the operating system of the Fortress. It relies on ROI, EBITDA, and immediate yield to maximize shareholder value right now.</p>
-<p>But true innovation requires the capitalism of Adam Smith. It requires the raw, entrepreneurial risk that builds entirely new markets and drives long-term wealth.</p>
-<p>When you apply Friedman's metrics to Smith's Outpost, the Outpost gets crushed. If you ask a spreadsheet to calculate the 3-year ROI on a product or service that doesn't exist, the spreadsheet will always output a zero. And the CFO will, correctly, kill it.</p>
-<p>My friends agreed with the concept, but then they delivered the ultimate reality check.</p>
-<p>"That works beautifully in a private company," one said. "But we are publicly traded. If we miss our quarterly earnings because we are funding an Adam Smith experiment, Wall Street (or Bay Street) will crucify our stock price. The Board will fire us before the project ever launches."</p>
-<p>They are 100% right.</p>
-<h3>The Impatient Capital Problem</h3>
-<p>Public markets represent Impatient Capital. Analysts want predictability, dividend growth, and optimized EBITDA. They tolerate "R&D" because they view it as maintenance for the core business. R&D is code for "What the customers want". But if you tell them you are funding "Disruptive Innovation," they hear one thing: "We are throwing your dividends into a black hole."</p>
-<p>So, how does a public CEO invent the future when their compensation is tied to the next 90 days?</p>
-<p>You cannot fight Impatient Capital. But you can manage it. Here are the two rules of public-market strategy.</p>
-<h3>1. The 99/1 Rule (The Asymmetric Wager)</h3>
-<p>Public companies make the mistake of trying to pivot their entire massive ship. That terrifies investors. You have to ease them into it.</p>
-<p>You do not ask for 5% or 10% on day one. You ask for 1% annually.</p>
-<p>You publicly commit 99% of your capital to Friedman. You promise the street that this 99% (The Fortress) will be managed ruthlessly using traditional metrics. You optimize the core to pay the dividend.</p>
-<p>Then, you ring-fence 1% for Smith. But you do not call it an "Innovation Lab." You speak Wall Street's language: You call it an Asymmetric Call Option.</p>
-<p>You tell the street: "We are allocating exactly 1% of our capital every year to buy options on the future. Over a five-year strategic cycle, this builds a disciplined 5% venture portfolio. The annual downside is strictly capped at 1%. But the upside is asymmetric. If we are wrong, the 99% covers it. If we are right, we own the next decade."</p>
-<h3>2. Radical Transparency (The Quarantine)</h3>
-<p>If you mix the costs of that 1% Outpost with the operating expenses of your 99% Fortress, your overall margins look like they are declining. Analysts will assume your core business is failing and downgrade your stock.</p>
-<p>Google faced this exact crisis in 2015. Their core search business (The Fortress) was printing money. But Larry Page was pouring billions into self-driving cars and AI (The Outpost). Because it was all mixed together, Wall Street was penalizing Google's stock.</p>
-<p>So, Google executed the ultimate Governance Masterstroke: Alphabet.</p>
-<p>They split the financials.</p>
-<ul>
-  <li><strong>Segment A (Google):</strong> The Fortress. Investors could now see this business was operating at an incredible 30%+ margin.</li>
-  <li><strong>Segment B (Other Bets):</strong> The Outpost. Investors could see exactly how much money was quarantined here.</li>
-</ul>
-<p>By isolating the Outpost, Wall Street stopped punishing the core margin. They priced the "Google" segment like a mature utility, and they priced the "Other Bets" segment like a VC portfolio.</p>
-<h3>Stop Hiding the Ugly Ducklings</h3>
-<p>The biggest mistake public CEOs make is trying to hide their Outpost projects inside the operating expenses of the Fortress.</p>
-<p>When you hide it, it looks like inefficiency. When you isolate it, cap it at 1%, and report it separately, it looks like Strategy.</p>
-<p>Your investors aren't stupid. They know that if you don't invent the future, someone else will. But you cannot ask them to evaluate Adam Smith using Milton Friedman's math.</p>
-<p><strong>Build the Bridge. Quarantine the 1%. And tell Wall Street exactly what game you are playing.</strong></p>`
-                    },
-                    {
-                        id: "art6",
-                        cat: "Innovation & Governance",
-                        title: "Stop blabbing about innovation, build your Skunkworks, and close the Governance Gap.",
-                        desc: "How Lockheed Martin guarantees the success of its inventions by becoming its own first customer.",
-                        socialUrl: "https://www.linkedin.com/pulse/stop-blabbing-innovation-build-your-skunkworks-close-gap-b-sauro-z97ae",
-                        full: `<p>In 1943, Lockheed Martin placed their most brilliant engineers in a rented circus tent, stripped away all corporate bureaucracy, and told them to build a revolutionary fighter jet. The result was legendary.</p>
-<p>Corporate America has a dangerous obsession with "innovation theater." As Aaron Shapiro bluntly stated in Fast Company: "Stop Blabbing About Innovation And Start Actually Doing It." To actually do it, ambitious CEOs turn to the Skunkworks model. Writing in Harvard Business Review, Colin Raney correctly identified that startups and Skunkworks are the definitive engines for your next big product. They give your best minds the autonomy of an Outpost, completely free from the rigid metrics of the core business.</p>
-<p>But autonomy without structure is a recipe for failure. In his Fast Company piece, Matthew E. May outlines the rules of successful Skunk Works projects. Without strict governance, a secret lab is just an expensive corporate petting zoo.</p>
-<p>The ultimate point of failure is the Governance Gap between the Outpost and the Fortress.</p>
-<p>The core business is ruled by Impatient Capital. It demands immediate ROI and quarterly EBITDA. When the secret lab hands its brilliant new product back to the core business to scale it, the financial metrics violently clash. The sales team does not know how to sell it. The CFO refuses to fund it because it dilutes the current margin. The corporate machine naturally rejects the new organ.</p>
-<p>How do you guarantee your Skunkworks succeeds? You must build the Bridge.</p>
-<p>A couple of weeks ago, I had the pleasure of discussing this exact challenge with an engineering lead at Lockheed Martin. He shared the secret rule for their continued success: They eat their own food.</p>
-<p>When their Skunkworks invents a new technology, they do not just throw it over the wall to the sales department. The internal engineering and operational teams are forced to use the new technology to solve their own daily problems.</p>
-<p>They become their own most demanding customer.</p>
-<p>This is the ultimate stress test. If your core business relies on the Outpost's invention for its daily operations, the financial rejection becomes impossible. You bypass the Impatient Capital trap because the product proves its operational value internally before it ever faces the open market.</p>
-<p><strong>If you want to disrupt your industry, absolutely build a Skunkworks. But to ensure those inventions survive the corporate machine, make sure your own team takes the first bite.</strong></p>`
-                    },
-                    {
-                        id: "art7",
-                        cat: "Management & Strategy",
-                        title: "From Canvas to Compass: Connecting the Business Model to McKinsey's Three Horizons.",
-                        desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth to build a complete strategic operating system.",
-                        socialUrl: "https://www.linkedin.com/pulse/from-canvas-compass-connecting-business-model-three-marc-b-sauro-wcjwe",
-                        full: `<p>Recently, I had an excellent discussion with a contact at the BDC. Our exchange quickly converged on a foundational tool: the Business Model Canvas.</p>
-<p>For years, I viewed the Business Model Canvas through a very specific lens. I utilized it primarily as an alignment tool for Sales, mapping out value propositions and customer segments at a specific moment in time. To make it truly actionable for my teams, I customized it by adding three distinct frames: The Pain (the actual problem), The Solution (the client's envisioned fix), and I always anchored the entire exercise by starting with The Vision and Mission. It is a brilliant construct for capturing the "now."</p>
-<p>However, a business model is never static.</p>
-<p>When you begin to stretch this customized Canvas across time, you immediately realize it demands a roadmap. You must plan how your channels, revenue streams, and key partnerships will evolve.</p>
-<p>Seeking to structure this temporal evolution led me straight to the ultimate macro-framework: McKinsey &amp; Company's Three Horizons of Growth.</p>
-<p>When you connect these tools, you get a complete strategic operating system based on three distinct phases:</p>
-<ul>
-  <li><strong>Horizon 1 is Stabilization.</strong> Your Business Model Canvas defines exactly what your core business is doing today to secure and defend current margins.</li>
-  <li><strong>Horizon 2 is Optimization.</strong> Your roadmap dictates how you will scale emerging opportunities and streamline them into your next revenue engines.</li>
-  <li><strong>Horizon 3 is Propulsion.</strong> The McKinsey framework forces you to look beyond the roadmap and allocate capital toward the disruptive bets required to propel your future survival.</li>
-</ul>
-<p><strong>Strategic planning is not a collection of isolated tools. The Canvas secures your base, the roadmap optimizes your growth, and the Three Horizons propel your future.</strong></p>`
-                    }
+                    { id: "art1", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/have-we-forgotten-definition-word-innovation-marc-b-sauro-u6dce", full: `<p>Innovation is about changing the game for a long-term relationship. Most companies spend their careers inside the Fortress (the core business), built on efficiency. To innovate, you need an Outpost: a separate operating system whose job is to cannibalize the Fortress before a competitor does.</p>` },
+                    { id: "art2", cat: "Strategy & Leadership", title: "Strategy is a Wager, Not a Science.", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/why-strategy-wager-science-marc-b-sauro-yblue", full: `<p>Modern business is more like a casino than a laboratory. Every fiscal year, you place your wager (BID). Standard strategy is to bet 99% on the Fortress and cover slightly on Innovation. To survive, you must recognize the gap and build the bridge.</p>` },
+                    { id: "art3", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas.", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree", full: `<p>The CFO often kills the best ideas because they protect the Fortress using ROI metrics that don't apply to discovery. You need a Dual Operating System to create a safe zone where Ugly Ducklings can grow.</p>` },
+                    { id: "art4", cat: "Innovation & Governance", title: "Stop Building Innovation Labs. Start Building Bridges.", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/stop-building-innovation-labs-start-bridges-marc-b-sauro-4fxcc", full: `<p>Nestlé succeeded with Nespresso not by integrating it, but by exiling it to an Outpost. The real victory happened when Nestlé built the Bridge, leveraging its power to force the market into existence. If you build the bridge, you own the game.</p>` },
+                    { id: "art5", cat: "Finance & Strategy", title: "A conversation about Milton Friedman, Impatient Capital, and the 1% Wager.", desc: "Managing Impatient Capital using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/stop-blabbing-innovation-build-your-skunkworks-close-gap-b-sauro-z97ae", full: `<p>Corporate Finance is wired to protect predictable yield. But innovation requires raw entrepreneurial risk. The solution is the 99/1 Rule: publicly commit 99% to the Fortress and isolate 1% for Smith's Outpost.</p>` },
+                    { id: "art6", cat: "Innovation & Governance", title: "Stop blabbing about innovation, build your Skunkworks, and close the Governance Gap.", desc: "How Lockheed Martin guarantees the success of its inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>Lockheed Martin's Skunkworks model works because of dogfooding: internal teams are forced to be their own first customers. If you want to disrupt your industry, make sure your own team takes the first bite.</p>` },
+                    { id: "art7", cat: "Management & Strategy", title: "From Canvas to Compass: Connecting the Business Model to McKinsey's Three Horizons.", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/from-canvas-compass-connecting-business-model-three-marc-b-sauro-wcjwe", full: `<p>A business model is never static. McKinsey's Three Horizons framework provides the structure: Horizon 1 for stabilization, Horizon 2 for optimization, and Horizon 3 for disruptive bets.</p>` }
                 ]
             }
         };
 
-        let currentLang = 'fr'; // Le Français par défaut
+        let currentLang = 'fr';
 
         function renderTicker() {
             const container = document.getElementById('ticker-container');
             if (!container) return;
             const data = translations[currentLang].metrics;
             const content = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
-            // Trois éléments pour une boucle parfaite de 15 secondes sans espaces vides
-            container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
+            container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
         }
 
         function renderArticles() {
@@ -997,10 +523,10 @@
                 <div class="glass p-8 cursor-pointer hover:border-[#ee3124] transition-all group" onclick="openReader('${art.id}')">
                     <span class="text-[9px] font-bold uppercase tracking-widest text-[#ee3124] mb-4 block">${art.cat}</span>
                     <div class="red-line-minor pl-4 mb-4">
-                        <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white/90">${art.title}</h4>
+                        <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
                     </div>
                     <p class="text-white/60 text-sm line-clamp-3 leading-relaxed mb-6 font-light">${art.desc}</p>
-                    <span class="text-xs font-bold uppercase tracking-widest border-b border-accent/40 pb-1 text-white group-hover:text-white/80 transition-all">
+                    <span class="text-xs font-bold uppercase tracking-widest border-b border-white/20 pb-1 text-white group-hover:border-white transition-all">
                         ${translations[currentLang]['read-more']}
                     </span>
                 </div>
@@ -1009,29 +535,17 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            const toggleBtn = document.getElementById('lang-toggle');
-            if (toggleBtn) toggleBtn.innerText = currentLang === 'fr' ? 'EN' : 'FR';
-            
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if(translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-            });
-            
-            renderArticles(); 
-            renderTicker();
+            initUI();
         }
-        
-        // Initialisation de la langue sans bascule pour le premier rendu
-        function initLanguage() {
+
+        function initUI() {
             const toggleBtn = document.getElementById('lang-toggle');
             if (toggleBtn) toggleBtn.innerText = currentLang === 'fr' ? 'EN' : 'FR';
-            
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if(translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
             });
-            
-            renderArticles(); 
+            renderArticles();
             renderTicker();
         }
 
@@ -1053,30 +567,21 @@
             document.getElementById('reader-body').innerHTML = data.full;
             const footer = document.getElementById('reader-footer');
             footer.innerHTML = (data.url && data.url !== '#') ? 
-                `<a href="${data.url}" target="_blank" class="btn-social">${translations[currentLang]['visit-site']}</a>` : '';
+                `<a href="${data.url}" target="_blank" class="btn-ghost">${translations[currentLang]['visit-site']}</a>` : '';
             document.getElementById('reader-overlay').style.display = 'block';
             document.body.classList.add('modal-open');
         }
 
-        function scrollSlider(direction) {
-            const slider = document.getElementById('logo-slider');
-            if (!slider) return;
-            const firstChild = slider.querySelector('.logo-box');
-            if (!firstChild) return;
-            const cardWidth = firstChild.offsetWidth + 16;
-            slider.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-        }
-
         function openReader(id) {
             const art = translations[currentLang].articles.find(a => a.id === id);
-            if(!art) return;
+            if (!art) return;
             document.getElementById('reader-title').innerText = art.title;
             document.getElementById('reader-meta').innerText = art.cat;
             document.getElementById('reader-body').innerHTML = art.full;
             const footer = document.getElementById('reader-footer');
             footer.innerHTML = art.socialUrl ? `
                 <a href="${art.socialUrl}" target="_blank" class="btn-social">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     ${translations[currentLang]['discuss-social']}
                 </a>` : '';
             document.getElementById('reader-overlay').style.display = 'block';
@@ -1088,51 +593,27 @@
             document.body.classList.remove('modal-open');
         }
 
+        function scrollSlider(direction) {
+            document.getElementById('logo-slider').scrollBy({ left: direction * 240, behavior: 'smooth' });
+        }
+
         window.addEventListener('scroll', () => {
             const scroll = window.scrollY;
             const zoomBg = document.getElementById('zoom-bg');
-            if(zoomBg) zoomBg.style.transform = `scale(${1 + (scroll * 0.0002)})`;
-            
+            if(zoomBg) zoomBg.style.transform = `scale(${1 + (scroll * 0.00025)})`;
             document.querySelectorAll('section').forEach(sec => {
-                if(sec.getBoundingClientRect().top < window.innerHeight * 0.95) sec.classList.add('visible');
+                if(sec.getBoundingClientRect().top < window.innerHeight * 0.9) sec.classList.add('visible');
             });
         });
 
         window.onload = () => {
-            initLanguage();
-            
+            initUI();
             const slider = document.getElementById('logo-slider');
             if (slider) {
                 const items = Array.from(slider.children);
-                // Calcul exact de la largeur d'un bloc complet de tuiles pour assurer un saut invisible
-                const shift = items.length * (items[0].offsetWidth + 16); 
-
                 items.forEach(item => slider.appendChild(item.cloneNode(true)));
-                items.forEach(item => slider.appendChild(item.cloneNode(true)));
-                
-                // Positionnement initial silencieux au centre de la boucle
-                slider.classList.remove('scroll-smooth');
-                slider.scrollLeft = shift;
-                
-                setTimeout(() => {
-                    slider.classList.add('scroll-smooth');
-                }, 50);
-
-                // Écouteur d'événement pour créer le défilement horizontal infini
-                slider.addEventListener('scroll', () => {
-                    if (slider.scrollLeft <= 0) {
-                        slider.classList.remove('scroll-smooth');
-                        slider.scrollLeft += shift;
-                        slider.classList.add('scroll-smooth');
-                    } else if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 5) {
-                        slider.classList.remove('scroll-smooth');
-                        slider.scrollLeft -= shift;
-                        slider.classList.add('scroll-smooth');
-                    }
-                });
+                slider.scrollLeft = 0;
             }
-            
-            window.dispatchEvent(new Event('scroll'));
         };
     </script>
 </body>
