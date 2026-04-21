@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Palette Institutionnelle BDC */
             --bdc-blue: #0b1a30;
             --bdc-red: #ee3124;
             --bdc-white: #ffffff;
@@ -193,7 +194,7 @@
         }
 
         @media (min-width: 768px) {
-            .reader-content { margin: 4rem auto; padding: 4rem; }
+            .reader-content { margin: 4rem auto; padding: 4.5rem; }
         }
 
         .reader-close {
@@ -322,7 +323,7 @@
             <section class="glass p-10 md:p-16 mb-48 scroll-reveal">
                 <h3 class="section-label" data-key="about-label"></h3>
                 <div class="red-line-major pl-8">
-                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-10" data-key="summary"></p>
+                    <p class="text-xl md:text-2xl font-light leading-relaxed mb-10 text-white" data-key="summary"></p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                         <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill1"></span></div>
                         <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#ee3124] rounded-full"></span><span data-key="skill2"></span></div>
@@ -356,7 +357,7 @@
                 <h3 class="section-label" data-key="exp-label"></h3>
                 <div class="relative group/slider">
                     <button onclick="scrollSlider(-1)" class="scroll-btn -left-4 md:-left-8"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
-                    <button onclick="scrollSlider(1)" class="scroll-btn -right-4 md:-right-8"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
+                    <button onclick="scrollSlider(1)" class="scroll-btn -right-4 md:-right-8"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
                     <div id="logo-slider" class="flex overflow-x-auto gap-6 pb-6 hide-scrollbar snap-x scroll-smooth">
                         <div class="logo-box snap-center" onclick="openExp('exp1')"><img src="logo1.png" alt="Dassault" class="logo-img"><span class="company-label">Dassault Systèmes</span></div>
                         <div class="logo-box snap-center" onclick="openExp('exp2')"><img src="logo2.png" alt="Autodesk" class="logo-img"><span class="company-label">Autodesk</span></div>
@@ -384,7 +385,7 @@
 
             <!-- Appel à l'action final -->
             <section class="glass p-10 md:p-20 mb-48 text-center scroll-reveal">
-                <h3 class="text-xl md:text-3xl font-bold tracking-tight mb-8 text-white" data-key="cta-title"></h3>
+                <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-8 text-white" data-key="cta-title"></h3>
                 <p class="text-white/60 max-w-xl mx-auto mb-12 font-light" data-key="cta-desc"></p>
                 <a href="mailto:msauro@gmail.com" class="inline-block bg-[#ee3124] text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
             </section>
@@ -410,7 +411,8 @@
     <div id="reader-overlay">
         <button class="reader-close" onclick="closeReader()">Fermer</button>
         <article class="reader-content max-w-none">
-            <h1 id="reader-title" class="text-3xl md:text-4xl font-extrabold mb-4 text-[#0b1a30] tracking-tight"></h1>
+            <h1 id="reader-title" class="text-3xl md:text-4xl font-extrabold mb-2 text-[#0b1a30] tracking-tight"></h1>
+            <p id="reader-date" class="text-[10px] font-bold text-gray-400 mb-6 uppercase tracking-widest"></p>
             <p id="reader-meta" class="text-xs font-bold text-red-600 mb-8 uppercase tracking-[0.2em] border-b border-gray-100 pb-4"></p>
             <div id="reader-body" class="article-body text-gray-800 text-base md:text-lg"></div>
             <div id="reader-footer" class="mt-12 flex gap-4 flex-wrap"></div>
@@ -446,7 +448,7 @@
                 "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn",
                 "cta-title": "Optimisez votre trajectoire d'affaires.", "cta-desc": "Transformez votre vision exécutive en résultats tangibles.", "cta-btn": "Écrivez-moi",
                 
-                /* Experiences FR */
+                /* Restoration Experience FR */
                 "exp1": { title: "Dassault Systèmes", role: "3DEXPERIENCE ITEROP (BPM) | Sales Lead", url: "https://www.3ds.com", full: "<p>Direction de la stratégie de vente nord-américaine et de l'habilitation technique pour les solutions de gestion des processus d'affaires (BPM).</p>" },
                 "exp2": { title: "Autodesk", role: "Technical Sales Manager (Global)", url: "https://www.autodesk.com", full: "<p>Gestion d'une organisation mondiale d'habilitation technique et définition des stratégies de mise en marché pour le portefeuille Conception et Fabrication.</p>" },
                 "exp3": { title: "Graitec", role: "Architecte de Solutions", url: "https://www.graitec.com", full: "<p>Optimisation des infrastructures Cloud et des dépôts de données pour des clients AEC d'envergure.</p>" },
@@ -461,101 +463,13 @@
 
                 metrics: ["8x Croissance · Turnaround", "55 M$ Quota · Tech Sales", "Top 5 % · Leadership Stratégique", "20 ans+ Expertise · Transformation", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    {
-                        id: "art1",
-                        cat: "Innovation & Gouvernance",
-                        title: "Avons-nous oublié la définition du mot « Innovation » ?",
-                        desc: "Pourquoi nous confondons « polir le passé » avec « bâtir l'avenir ».",
-                        socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme",
-                        full: `<p>Je suis récemment tombé sur une publicité d'une grande entreprise de café qui promettait de « réinventer ma routine matinale » grâce à leur « toute nouvelle innovation ».</p>
-                        <p>Naturellement, je me suis arrêté. J'ai regardé de plus près. En tant que stratège, le mot innovation déclenche immédiatement mon radar. Je m'attendais à un nouveau modèle d'affaires, à une transformation durable de la chaîne d'approvisionnement, ou peut-être à une découverte en science des matériaux éliminant les déchets.</p>
-                        <p>Au lieu de cela, ladite « innovation » se résumait à :</p>
-                        <ul><li>Un réservoir d'eau rotatif.</li><li>Un temps de chauffe de 3 secondes.</li><li>Un design « plus mince ».</li></ul>
-                        <p>Il faut arrêter de se mentir. Ce n'est pas de l'innovation. C'est de la Nouveauté (Novelty). Et la différence entre les deux n'est pas seulement sémantique ; c'est la différence entre une entreprise qui prospère et une entreprise qui survit à peine.</p>
-                        <h3>Le Piège de la Nouveauté</h3>
-                        <p>Dans son livre Start With Why, Simon Sinek trace une ligne nette entre manipulation et inspiration. Mais pour le PDG moderne, la distinction la plus critique se situe entre la Nouveauté et l'Innovation.</p>
-                        <ul><li><strong>La Nouveauté</strong>, c'est rendre l'ancien produit plus brillant. C'est le fameux « Nouveau et Amélioré ! ». Cela crée une transaction à court terme.</li><li><strong>L'Innovation</strong>, c'est changer les règles du jeu. Cela crée une relation à long terme.</li></ul>
-                        <p>Gillette a passé des décennies à ajouter une troisième lame, puis une quatrième, puis une cinquième. Ils ont appelé ça de l'innovation. C'était juste de la physique. Pendant qu'ils étaient obsédés par leurs bandes lubrifiantes (Nouveauté), Dollar Shave Club a changé le modèle d'affaires (Innovation) et a pris leurs parts de marché. La véritable innovation ne s'intègre pas simplement mieux sur le comptoir ; elle s'intègre mieux dans la vie humaine.</p>
-                        <h3>La Forteresse vs L'Avant-Poste</h3>
-                        <p>La plupart d'entre nous passons notre carrière à l'intérieur de ce que j'appelle La Forteresse. La Forteresse est votre cœur de métier (Core Business). Elle est bâtie sur l'efficacité, la prévisibilité et les résultats trimestriels. Son travail est de protéger les flux de revenus. Mais vous ne pouvez pas inventer l'avenir à l'intérieur d'une Forteresse. Les murs sont trop épais. Les métriques sont trop rigides.</p>
-                        <p>Pour innover, vous avez besoin d'un Détachement (Outpost). Le Détachement est un système d'exploitation distinct. Son seul but est la découverte. Son travail est de cannibaliser la Forteresse avant qu'un concurrent ne le fasse.</p>
-                        <h3>Le Fossé de Gouvernance</h3>
-                        <p>J'ai vu cette tension de première main au début de ma carrière. J'étais à une conférence pour une grande entreprise de logiciels de CAO. Le PDG est monté sur scène et a dit quelque chose qui a coupé le souffle à la salle : « Nous devons redevenir les jeunes dans le garage qui imaginent ce que nos solutions pourraient devenir. Nous devons tuer notre propre produit phare. »</p>
-                        <p>L'auditoire, composé majoritairement d'employés et de partenaires vivant confortablement à l'intérieur de la Forteresse, n'a pas compris. Ils étaient horrifiés. Pourquoi tuerions-nous la poule aux œufs d'or ? Ce PDG essayait de construire un Avant-Poste. Il essayait de faire un BID (un Pari) sur l'avenir. Mais la Forteresse l'a rejeté comme un virus.</p>
-                        <h3>Le Business Innovation Dichotomy (The BID)</h3>
-                        <p>L'Efficacité tue la Découverte. La Découverte gaspille l'Efficacité. J'appelle cela Le Business Innovation Dichotomy (The BID). Au cours des prochaines semaines, je publierai en série le manuel pour naviguer ce fossé. Nous examinerons des entreprises comme BlackBerry (morte dans la Forteresse) et Jawbone (morte dans le Détachement), et nous disséquerons les rares organisations qui ont réussi à jeter un pont entre les deux. Arrêtons de célébrer le « Nouveau et Amélioré ». Commençons à bâtir le « Différent et Vital ».</p>
-                        <p><strong>Votre équipe construit-elle des fonctionnalités, ou construit-elle l'avenir ?</strong></p>`
-                    },
-                    {
-                        id: "art2",
-                        cat: "Stratégie & Leadership",
-                        title: "Pourquoi la Stratégie est un Pari, et pas une Science.",
-                        desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie",
-                        full: `<p>Si vous consultez l'ordre du jour d'une réunion de CA, vous verrez beaucoup de mots rassurants. Vous verrez « Optimisation », « Prévisions » et, maintenant, « IA ». Ces mots sont conçus pour donner l'impression d'être scientifiques. Mais c'est une illusion.</p>
-                        <p>La réalité est tout autre : l'entreprise moderne n'a rien à voir avec un laboratoire. C'est plutôt un casino. À chaque exercice financier, il faut se présenter à la table avec vos jetons (vos revenus, vos talents et votre temps) et miser. Cette mise est votre BID. C'est le risque calculé pour la survie.</p>
-                        <p>Le problème n'est pas que les entreprises établies refusent de parier. Le problème est que la plupart des dirigeants parient sur un jeu qui n'existe plus. Le plus gros problème est que la Startup d'à côté est All-In.</p>
-                        <h3>Le Pari : Rouge vs Noir</h3>
-                        <p>Le Rouge est le Cœur Métier. C'est la « Forteresse ». Quand on mise sur Rouge, on mise sur l'efficacité. Demain ressemblera exactement à aujourd'hui, seulement un peu plus rentable. Le pari est sur les clients, et uniquement les clients actuels. Le Noir est l'Innovation. C'est l'« Avant-Poste ». Quand on mise sur Noir, on mise sur la découverte. On parie sur ce qui nous anime. On parie sur un futur qui n'est pas encore arrivé.</p>
-                        <h3>Les Cimetières Jumeaux</h3>
-                        <p>L'histoire est remplie d'entreprises qui ont traité le Jeu Infini comme un Pari Fini. Elles meurent généralement de deux façons :</p>
-                        <p><strong>1. Mort par l'Ordre (Le Piège BlackBerry)</strong> : Research in Motion (BlackBerry) était la Forteresse ultime. Ils avaient le réseau le plus sécurisé. Quand l'iPhone est apparu, ils ont regardé les données. Selon toutes les métriques de la Forteresse, c'était un mauvais produit. Alors, ils ont doublé la mise sur l'efficacité. Ils se sont optimisés jusqu'à l'extinction.</p>
-                        <p><strong>2. Mort par le Chaos (Le Piège Jawbone)</strong> : À l'opposé, nous avons Jawbone. Ils étaient des parieurs « Noirs » purs. Mais ils n'avaient pas de Forteresse. Il leur manquait la discipline opérationnelle. Ils ont innové jusqu'à la faillite.</p>
-                        <h3>The BID</h3>
-                        <p>Pour survivre ce trimestre, il faut être BlackBerry. On a besoin de la Forteresse. On a besoin de discipline. Pour survivre à la prochaine décennie, on doit être l'Anti-BlackBerry. On a besoin de l'Avant-Poste. Ces deux systèmes d'exploitation se détestent. L'Efficacité tue la Découverte. La Découverte gaspille l'Efficacité. La solution est de reconnaître le fossé et de bâtir le pont. La roue tourne. C'est le temps de faire un BID.</p>`
-                    },
-                    {
-                        id: "art3",
-                        cat: "Innovation & Gouvernance",
-                        title: "Pourquoi le CFO tue vos meilleures idées.",
-                        desc: "Le problème du « Vilain Petit Canard » en stratégie corporative.",
-                        socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe",
-                        full: `<p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé quelque chose : presque tous les athlètes sur le parcours utilisaient des skis à fixations centrées. C'est la fin d'une guerre commencée dans un garage en 1995. Salomon, le géant, a réagi comme une Forteresse : ils ont peint un ski de course en jaune et courbé le tail. C'était de la Nouveauté. Line Skis, un startup, a réagi comme un Avant-Poste en redimensionnant un snowboard pour correspondre au comportement des nouveaux riders. Salomon ne pouvait pas faire ça : sa structure de gouvernance l'aurait tué immédiatement.</p>
-                        <h3>Le Problème du Vilain Petit Canard</h3>
-                        <p>C'est ce que j'appelle le Fossé de Gouvernance. Dans la plupart des entreprises, chaque nouvelle idée est jugée selon les métriques de la Forteresse : ROI, BAIIA (EBITDA) et Scale. L'idée d'Avant-Poste ressemble alors toujours à un Vilain Petit Canard. Alors le Directeur Financier la tue, non pas par malveillance, mais parce qu'il fait son travail : protéger la Forteresse. Intel a fait cela en 2006 en refusant le contrat pour la puce iPhone car les marges étaient minces.</p>
-                        <h3>Le Kill Switch</h3>
-                        <p>Nous avons construit une machine corporative conçue pour traquer et détruire la variance. Mais l'innovation est diversité. Si vous optimisez pour l'efficacité, vous l'optimisez par inadvertance pour la stérilité. Les startups gagnent parce qu'elles n'ont pas de « Kill Switch ». La solution est de changer les règles du pari : vous ne pouvez pas gouverner l'Avant-Poste avec les lois de la Forteresse. Vous avez besoin d'un Double Système d'Exploitation.</p>`
-                    },
-                    {
-                        id: "art4",
-                        cat: "Innovation & Gouvernance",
-                        title: "Arrêtez de bâtir des laboratoires d'innovation. Commencez à bâtir des ponts.",
-                        desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc",
-                        full: `<p>La Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Nestlé a vu juste en construisant un meilleur Modèle de Gouvernance. Pour comprendre Nespresso, il faut comprendre la puissance de Nescafé. Né d'une crise en 1929, Nescafé était la Forteresse : efficace et massive. Puis Eric Favre a inventé Nespresso. Strategiquement, c'était un désastre pour la Forteresse car cela cannibalisait le produit principal. Si Nestlé l'avait traité normalement, la Forteresse l'aurait tué.</p>
-                        <h3>Le Pont Stratégique</h3>
-                        <p>Nestlé l'a exilé en créant une entité légale distincte : l'Avant-Poste. Mais l'isolement est facile, l'intégration est la guerre. Nespresso a réussi parce que Nestlé a su quand construire le Pont et déclencher toute la puissance de sa chaîne d'approvisionnement pour forcer le marché à exister. Le Pont est l'ensemble de règles qui protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre au BOARDROOM.</p>`
-                    },
-                    {
-                        id: "art5",
-                        cat: "Finance & Stratégie",
-                        title: "Une conversation sur Milton Friedman, le Capital Impatient et le Pari du 1 %.",
-                        desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.",
-                        socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc",
-                        full: `<p>La finance corporative est intrinsèquement plus à l'aise avec le statu quo car son rendement est prévisible. Ils sont programmés pour protéger le cœur de métier. Mais ce n'est pas de leur faute, c'est la faute de la philosophie de Milton Friedman qu'on leur force à utiliser. Friedman a soutenu que la seule responsabilité d'une entreprise est d'augmenter ses profits (ceux d'aujourd'hui). Mais la véritable innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut.</p>
-                        <h3>La Règle du 99/1</h3>
-                        <p>Les marchés boursiers représentent le Capital Impatient. Comment un PDG public peut-il inventer l'avenir quand sa rémunération est liée aux 90 prochains jours ? La solution est la Règle du 99/1. Engagez 99 % de votre capital envers Friedman (la Forteresse) et isolez 1 % pour Smith (l'Avant-Poste) comme une Option d'achat asymétrique. En isolant l'Avant-Poste par une transparence radicale (modèle Alphabet), Wall Street cesse de punir la marge principale. Dites exactement aux investisseurs à quel jeu vous jouez.</p>`
-                    },
-                    {
-                        id: "art6",
-                        cat: "Innovation & Gouvernance",
-                        title: "Arrêtez de parler d'innovation, bâtissez votre Skunkworks et comblez le Fossé de Gouvernance.",
-                        desc: "Comment Lockheed Martin garantit le succès de ses inventions.",
-                        socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e",
-                        full: `<p>En 1943, Lockheed Martin a éliminé la bureaucratie corporative pour construire un avion de chasse révolutionnaire : le Skunkworks était né. Mais l'autonomie sans structure mène à l'échec. Le point de défaillance critique est le Fossé de Gouvernance entre l'Avant-Poste et la Forteresse. Le cœur de métier est régi par le Capital Impatient qui exige un ROI immédiat et rejette naturellement le nouvel organe.</p>
-                        <h3>La Force du Dogfooding</h3>
-                        <p>Comment garantir le succès ? En bâtissant le Pont. La règle secrète chez Lockheed Martin est le dogfooding : les équipes internes sont forcées d'utiliser les nouvelles technologies pour résoudre leurs propres problèmes quotidiens. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations, le rejet financier devient impossible. Si vous voulez disrupter votre industrie, assurez-vous que votre propre équipe prenne la première bouchée.</p>`
-                    },
-                    {
-                        id: "art7",
-                        cat: "Management & Stratégie",
-                        title: "Du Canevas à la Boussole : Connecter le Business Model aux Trois Horizons de McKinsey.",
-                        desc: "Bâtir un système d'exploitation stratégique complet.",
-                        socialUrl: "https://www.linkedin.com/pulse/du-canevas-%25C3%25A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne",
-                        full: `<p>Le Business Model Canvas (BMC) est un outil redoutable pour cartographier la proposition de valeur et les segments clients à un instant précis. Cependant, un modèle d'affaires n'est jamais statique. Dès que vous projetez ce canevas dans le temps, le besoin d'une feuille de route devient évident. C'est ici qu'interviennent les Trois Horizons de croissance de McKinsey & Company.</p>
-                        <ul><li><strong>L'Horizon 1 est la Stabilisation</strong> : Le BMC définit ce que fait votre cœur de métier aujourd'hui pour sécuriser vos marges.</li><li><strong>L'Horizon 2 est l'Optimisation</strong> : La feuille de route dicte comment vous bâtissez vos opportunités émergentes.</li><li><strong>L'Horizon 3 est la Propulsion</strong> : Le cadre vous force à financer les paris disruptifs nécessaires à votre survie future.</li></ul>
-                        <p>Le Canevas sécurise votre base, la feuille de route optimise votre croissance et les Trois Horizons propulsent votre avenir. La planification stratégique n'est pas une collection d'outils isolés.</p>`
-                    }
+                    { id: "art1", date: "1er février 2026", cat: "Innovation & Gouvernance", title: "Avons-nous oublié la définition du mot « Innovation » ?", desc: "Pourquoi nous confondons « polir le passé » avec « bâtir l'avenir ».", socialUrl: "https://www.linkedin.com/pulse/avons-nous-oubli%25C3%25A9-la-d%25C3%25A9finition-du-mot-innovation-marc-b-sauro-nfyme", full: `<p>Je suis récemment tombé sur une publicité d'une grande entreprise de café qui promettait de « réinventer ma routine matinale » grâce à leur « toute nouvelle innovation ».</p><p>En tant que stratège, le mot innovation déclenche immédiatement mon radar. Ladite « innovation » se résumait à un réservoir d'eau rotatif et un design « plus mince ».</p><p>Il faut arrêter de se mentir. Ce n'est pas de l'innovation. C'est de la Nouveauté (Novelty). La Nouveauté rend l'ancien produit plus brillant pour une transaction court terme. L'Innovation change les règles du jeu pour une relation long terme.</p><h3>La Forteresse vs L'Avant-Poste</h3><p>La Forteresse (votre cœur de métier) est bâtie sur l'efficacité. Pour innover, vous avez besoin d'un Détachement (Outpost), un système d'exploitation distinct dont le seul but est la découverte. J'appelle cela Le Business Innovation Dichotomy (The BID).</p>` },
+                    { id: "art2", date: "10 février 2026", cat: "Stratégie & Leadership", title: "Pourquoi la Stratégie est un Pari, et pas une Science.", desc: "L'illusion de la certitude scientifique vs la réalité du casino corporatif.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-la-strat%25C3%25A9gie-est-un-pari-et-pas-une-science-marc-b-sauro-rlvie", full: `<p>Si vous consultez l'ordre du jour d'une réunion de CA, vous verrez beaucoup de mots rassurants : « Optimisation », « Prévisions » et « IA ». Mais c'est une illusion. La réalité est tout autre : l'entreprise moderne n'a rien à voir avec un laboratoire. C'est plutôt un casino. À chaque exercice financier, il faut se présenter à la table avec vos jetons et miser. Cette mise est votre BID. C'est le risque calculé pour la survie.</p>` },
+                    { id: "art3", date: "22 février 2026", cat: "Innovation & Gouvernance", title: "Pourquoi le CFO tue vos meilleures idées.", desc: "Le problème du « Vilain Petit Canard » en stratégie corporative.", socialUrl: "https://www.linkedin.com/pulse/pourquoi-le-cfo-tue-vos-meilleures-id%25C3%25A9es-marc-b-sauro-cn2qe", full: `<p>Je regardais le ski Slopestyle aux Jeux Olympiques la semaine dernière, et j'ai réalisé quelque chose : presque tous les athlètes sur le parcours utilisaient des skis à fixations centrées. C'est la fin d'une guerre commencée dans un garage en 1995. Salomon, le géant, a réagi comme une Forteresse : ils ont peint un ski de course en jaune et courbé le tail. C'était de la Nouveauté. Line Skis, un startup, a réagi comme un Avant-Poste en redimensionnant un snowboard. Salomon ne pouvait pas faire ça : sa structure de gouvernance l'aurait tué immédiatement.</p>` },
+                    { id: "art4", date: "2 mars 2026", cat: "Innovation & Gouvernance", title: "Arrêtez de bâtir des laboratoires d'innovation. Commencez à bâtir des ponts.", desc: "L'histoire de Nespresso illustre pourquoi l'isolement ne suffit pas.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-b%25C3%25A2tir-des-laboratoires-dinnovation-%25C3%25A0-ponts-marc-b-sauro-4fxcc", full: `<p>La Nouveauté consiste à rendre le passé légèrement meilleur, tandis que l'Innovation consiste à inventer l'avenir. Nestlé a réussi avec Nespresso parce qu'ils ont su construire le Pont et déclencher toute la puissance de leur chaîne d'approvisionnement pour forcer le marché à exister. Ils n'ont pas laissé la Forteresse tuer l'idée : ils ont attendu que l'idée devienne un géant. Le Pont est l'ensemble de règles qui protège le « Vilain Petit Canard » jusqu'à ce qu'il soit assez fort pour survivre.</p>` },
+                    { id: "art5", date: "15 mars 2026", cat: "Finance & Stratégie", title: "Une conversation sur Milton Friedman, le Capital Impatient et le Pari du 1 %.", desc: "Gérer le Capital Impatient en utilisant la règle du 99/1.", socialUrl: "https://www.linkedin.com/pulse/une-conversation-avec-mes-amis-en-finance-sur-milton-le-marc-b-sauro-ozexc", full: `<p>La finance corporative est intrinsèquement plus à l'aise avec le statu quo. Mais l'innovation nécessite le capitalisme d'Adam Smith : le risque entrepreneurial brut. La solution pour un PDG public ? La Règle du 99/1. Engagez 99 % de votre capital envers Friedman (la Forteresse) et isolez 1 % pour Smith (l'Avant-Poste) comme une Option d'achat asymétrique. En isolant l'Avant-Poste par une transparence radicale, Wall Street cesse de punir la marge principale.</p>` },
+                    { id: "art6", date: "28 mars 2026", cat: "Innovation & Gouvernance", title: "Arrêtez de parler d'innovation, bâtissez votre Skunkworks et comblez le Fossé de Gouvernance.", desc: "Comment Lockheed Martin garantit le succès de ses inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>La règle secrète chez Lockheed Martin est le dogfooding : les équipes internes sont forcées d'utiliser les nouvelles technologies pour résoudre leurs propres problèmes quotidiens. Si votre cœur de métier dépend de l'invention de l'Avant-Poste pour ses opérations, le rejet financier devient impossible. Vous contournez le piège du Capital Impatient car le produit prouve sa valeur opérationnelle.</p>` },
+                    { id: "art7", date: "14 avril 2026", cat: "Management & Stratégie", title: "Du Canevas à la Boussole : Connecter le Business Model aux Trois Horizons de McKinsey.", desc: "Bâtir un système d'exploitation stratégique complet.", socialUrl: "https://www.linkedin.com/pulse/du-canevas-%25C3%25A0-la-boussole-connecter-le-business-model-aux-b-sauro-anvne", full: `<p>Un modèle d'affaires n'est jamais statique. Dès que vous projetez ce canevas dans le temps, le besoin d'une feuille de route devient évident. C'est ici qu'interviennent les Trois Horizons de McKinsey pour sécuriser la base, optimiser la croissance et propulser votre avenir.</p>` }
                 ]
             },
             en: {
@@ -585,20 +499,20 @@
                 "exp5": { title: "SolidXperts", role: "Technical Director", url: "https://www.solidxperts.com", full: "<p>Implemented complex PLM and PDM solutions for the manufacturing sector, optimizing design-to-production cycles.</p>" },
                 "exp6": { title: "Bolloré Group", role: "Logistics Project Management", url: "https://www.bollore.com", full: "<p>Optimized international operational flows and led cross-functional logistics projects across global regions.</p>" },
                 "exp7": { title: "Mecachrome", role: "Aeronautical Engineering", url: "https://www.mecachrome.com", full: "<p>Technical and strategic support for high-precision machining applied to aeronautical standards.</p>" },
-                "exp8": { title: "Construction Pascal Lanoue", role: "Infrastructure Management", url: "https://constructionpascallanoue.com", full: "<p>Operational management and turnaround of complex industrial projects in construction environments.</p>" },
+                "exp8": { title: "Construction Pascal Lanoue", role: "Infrastructure Management", url: "#", full: "<p>Operational management and turnaround of complex industrial projects in construction environments.</p>" },
                 "exp9": { title: "EMICA", role: "Technology Consultant", url: "https://emica.cssdm.gouv.qc.ca", full: "<p>Strategic technology integration within the professional vocational training network.</p>" },
-                "exp10": { title: "HEC Montréal", role: "Certificate | Business Management", url: "https://www.hec.ca", full: "<p>Advanced administrative training, establishing the foundations for business analytical rigor in corporate environments.</p>" },
+                "exp10": { title: "HEC Montréal", role: "Certificate | Business Management", url: "https://www.hec.ca", full: "<p>Advanced administrative training, establishing the foundations for business analytical rigor.</p>" },
                 "exp11": { title: "ESG UQAM", role: "MBA in Management Consulting (C.M.C.)", url: "https://esg.uqam.ca", full: "<p>Specialized Master's degree focused on strategic consulting and innovation deployment models.</p>" },
 
                 metrics: ["8x Growth · Turnaround", "$55M Quota Managed", "Top 5% Strategic Leader", "20+ Years Experience", "MBA · Adm.A · C.M.C."],
                 articles: [
-                    { id: "art1", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/have-we-forgotten-definition-word-innovation-marc-b-sauro-u6dce", full: `<p>Innovation is about changing the game for a long-term relationship. Most companies spend their careers inside the Fortress (the core business), where metrics are too rigid. To innovate, you need an Outpost: a separate operating system whose job is to cannibalize the Fortress before a competitor does.</p><h3>The Novelty Trap</h3><p>Novelty is about making the old thing shiny. It creates a short-term transaction. Innovation is about changing the game. It creates a long-term relationship. Real innovation fits better into human life, not just on the counter.</p><h3>The Fortress vs. The Outpost</h3><p>Most of us spend our careers inside the Fortress (your core business), built on efficiency. But you cannot invent the future inside a Fortress. To innovate, you need an Outpost: a separate operating system whose job is to cannibalize the Fortress before a competitor does.</p><h3>Conclusion</h3><p>The problem is not that we do not understand innovation, but that we do not know how to manage the tension between Efficiency (which kills Discovery) and Discovery (which wastes Efficiency). This is what I call The Business Innovation Dichotomy (The BID).</p>` },
-                    { id: "art2", cat: "Strategy & Leadership", title: "Strategy is a Wager, Not a Science.", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/why-strategy-wager-science-marc-b-sauro-yblue", full: `<p>Modern business is more like a casino than a laboratory. Every fiscal year, you place your wager (BID). Standard strategy is to bet 99% on the Fortress and cover slightly on Innovation. To survive, you must recognize the gap and build the bridge. The wheel is spinning. It is time to make your BID.</p>` },
-                    { id: "art3", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas.", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree", full: `<p>The CFO often kills the best ideas because they protect the Fortress using ROI metrics that don't apply to discovery. You need a Dual Operating System to create a safe zone where Ugly Ducklings can grow. If you judge an innovation by its ability to deliver immediate yield, it will die on the vine.</p>` },
-                    { id: "art4", cat: "Innovation & Governance", title: "Stop Building Innovation Labs. Start Building Bridges.", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/stop-building-innovation-labs-start-bridges-marc-b-sauro-4fxcc", full: `<p>Nestlé succeeded with Nespresso not by integrating it, but by exiling it to an Outpost. The real victory happened when Nestlé built the Bridge, leveraging its power to force the market into existence. If you can protect the Outpost without abandoning the Fortress, you own the game.</p>` },
-                    { id: "art5", cat: "Finance & Strategy", title: "A conversation about Milton Friedman, Impatient Capital, and the 1% Wager.", desc: "Managing Impatient Capital using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/stop-blabbing-innovation-build-your-skunkworks-close-gap-b-sauro-z97ae", full: `<p>Corporate Finance is wired to protect predictable yield. But innovation requires Adam Smith's raw entrepreneurial risk. The solution is the 99/1 Rule: publicly commit 99% to the Fortress and isolate 1% for Smith's Outpost as an Asymmetric Call Option. Tell Wall Street exactly what game you are playing.</p>` },
-                    { id: "art6", cat: "Innovation & Governance", title: "Stop blabbing about innovation, build your Skunkworks, and close the Governance Gap.", desc: "How Lockheed Martin guarantees the success of its inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>Lockheed Martin's Skunkworks model works because of dogfooding: internal teams are forced to be their own first customers. When the core business relies on the Outpost's invention for its daily operations, financial rejection becomes impossible. Bypassing the Impatient Capital trap is the key to corporate survival.</p>` },
-                    { id: "art7", cat: "Management & Strategy", title: "From Canvas to Compass: Connecting the Business Model to McKinsey's Three Horizons.", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/from-canvas-compass-connecting-business-model-three-marc-b-sauro-wcjwe", full: `<p>A business model is never static. By stretching the Canvas across time, you realize it demands a roadmap. McKinsey's Three Horizons framework provides the structure: Horizon 1 for stabilization, Horizon 2 for optimization, and Horizon 3 for disruptive bets.</p>` }
+                    { id: "art1", date: "February 1, 2026", cat: "Innovation & Governance", title: "Have We Forgotten the Definition of \"Innovation\"?", desc: "Why we confuse polishing the past with building the future.", socialUrl: "https://www.linkedin.com/pulse/have-we-forgotten-definition-word-innovation-marc-b-sauro-u6dce", full: `<p>Innovation is about changing the game for a long-term relationship. Most companies spend their careers inside the Fortress (the core business), where metrics are too rigid. To innovate, you need an Outpost: a separate operating system whose job is to cannibalize the Fortress before a competitor does.</p><h3>The Novelty Trap</h3><p>Novelty is about making the old thing shiny. It creates a short-term transaction. Innovation is about changing the game. It creates a long-term relationship. Real innovation fits better into human life, not just on the counter.</p>` },
+                    { id: "art2", date: "February 10, 2026", cat: "Strategy & Leadership", title: "Strategy is a Wager, Not a Science.", desc: "The illusion of scientific certainty vs the reality of the corporate casino.", socialUrl: "https://www.linkedin.com/pulse/why-strategy-wager-science-marc-b-sauro-yblue", full: `<p>Modern business is more like a casino than a laboratory. Every fiscal year, you place your wager (BID). Standard strategy is to bet 99% on the Fortress and cover slightly on Innovation. To survive, you must recognize the gap and build the bridge.</p>` },
+                    { id: "art3", date: "February 22, 2026", cat: "Innovation & Governance", title: "Why the CFO Kills Your Best Ideas.", desc: "The Ugly Duckling problem in corporate strategy.", socialUrl: "https://www.linkedin.com/pulse/why-cfo-kills-your-best-ideas-marc-b-sauro-8dree", full: `<p>The CFO often kills the best ideas because they protect the Fortress using ROI metrics that don't apply to discovery. You need a Dual Operating System to create a safe zone where Ugly Ducklings can grow.</p>` },
+                    { id: "art4", date: "March 2, 2026", cat: "Innovation & Governance", title: "Stop Building Innovation Labs. Start Building Bridges.", desc: "The Nespresso story as strategic proof.", socialUrl: "https://www.linkedin.com/pulse/stop-building-innovation-labs-start-bridges-marc-b-sauro-4fxcc", full: `<p>Nestlé succeeded with Nespresso not by integrating it, but by exiling it to an Outpost. The real victory happened when Nestlé built the Bridge, leveraging its power to force the market into existence. If you can protect the Outpost without abandoning the Fortress, you own the game.</p>` },
+                    { id: "art5", date: "March 15, 2026", cat: "Finance & Strategy", title: "A conversation about Milton Friedman, Impatient Capital, and the 1% Wager.", desc: "Managing Impatient Capital using the 99/1 rule.", socialUrl: "https://www.linkedin.com/pulse/stop-blabbing-innovation-build-your-skunkworks-close-gap-b-sauro-z97ae", full: `<p>Corporate Finance is wired to protect predictable yield. But innovation requires Adam Smith's raw entrepreneurial risk. The solution is the 99/1 Rule: publicly commit 99% to the Fortress and isolate 1% for Smith's Outpost.</p>` },
+                    { id: "art6", date: "March 28, 2026", cat: "Innovation & Governance", title: "Stop blabbing about innovation, build your Skunkworks, and close the Governance Gap.", desc: "How Lockheed Martin guarantees the success of its inventions.", socialUrl: "https://www.linkedin.com/pulse/arr%25C3%25AAtez-de-parler-dinnovation-b%25C3%25A2tissez-votre-et-le-foss%25C3%25A9-b-sauro-8jp1e", full: `<p>Lockheed Martin's Skunkworks model works because of dogfooding: internal teams are forced to be their own first customers. When the core business relies on the Outpost's invention for its daily operations, financial rejection becomes impossible. Bypassing the Impatient Capital trap is the key to corporate survival.</p>` },
+                    { id: "art7", date: "April 14, 2026", cat: "Management & Strategy", title: "From Canvas to Compass: Connecting the Business Model to McKinsey's Three Horizons.", desc: "Connecting the Business Model Canvas to McKinsey's Three Horizons of Growth.", socialUrl: "https://www.linkedin.com/pulse/from-canvas-compass-connecting-business-model-three-marc-b-sauro-wcjwe", full: `<p>A business model is never static. By stretching the Canvas across time, you realize it demands a roadmap. McKinsey's Three Horizons framework provides the structure: Horizon 1 for stabilization, Horizon 2 for optimization, and Horizon 3 for disruptive bets.</p>` }
                 ]
             }
         };
@@ -618,7 +532,10 @@
             if (!grid) return;
             grid.innerHTML = translations[currentLang].articles.map(art => `
                 <div class="glass p-8 cursor-pointer hover:border-[#ee3124] transition-all group" onclick="openReader('${art.id}')">
-                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#ee3124] mb-4 block">${art.cat}</span>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[9px] font-bold uppercase tracking-widest text-[#ee3124]">${art.cat}</span>
+                        <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
+                    </div>
                     <div class="red-line-minor pl-4 mb-4">
                         <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
                     </div>
@@ -660,6 +577,7 @@
             const data = translations[currentLang][id];
             if (!data) return;
             document.getElementById('reader-title').innerText = data.title;
+            document.getElementById('reader-date').innerText = ''; // Pas de date pour les expériences
             document.getElementById('reader-meta').innerText = data.role;
             document.getElementById('reader-body').innerHTML = data.full;
             const footer = document.getElementById('reader-footer');
@@ -673,6 +591,7 @@
             const art = translations[currentLang].articles.find(a => a.id === id);
             if (!art) return;
             document.getElementById('reader-title').innerText = art.title;
+            document.getElementById('reader-date').innerText = art.date;
             document.getElementById('reader-meta').innerText = art.cat;
             document.getElementById('reader-body').innerHTML = art.full;
             const footer = document.getElementById('reader-footer');
