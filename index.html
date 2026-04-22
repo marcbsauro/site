@@ -332,7 +332,7 @@
             }
         };
 
-        let currentLang = 'fr';
+        let currentLang = navigator.language.startsWith('en') ? 'en' : 'fr';
 
         function renderTicker() {
             const container = document.getElementById('ticker-container');
