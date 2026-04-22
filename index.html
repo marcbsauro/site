@@ -362,14 +362,18 @@
             `).join('');
         }
 
-        function toggleLanguage() {
+		function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
             initUI();
         }
 
         function initUI() {
+            // Ligne ajoutée pour le SEO et l'accessibilité
+            document.documentElement.lang = currentLang; 
+
             const toggleBtn = document.getElementById('lang-toggle');
             if (toggleBtn) toggleBtn.innerText = currentLang === 'fr' ? 'EN' : 'FR';
+            
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
