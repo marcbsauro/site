@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 <div class="mt-8 text-center">
-                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" data-key="exp-linkedin"></a>
+                    <a href="https://www.linkedin.com/in/marcbsauro/" target="_blank" class="btn-social" id="exp-linkedin-btn"></a>
                 </div>
             </section>
 
@@ -375,13 +375,14 @@
 		};
         let currentLang = navigator.language.startsWith('en') ? 'en' : 'fr';
 
-        function renderTicker() {
-            const container = document.getElementById('ticker-container');
-            if (!container) return;
-            const data = translations[currentLang].metrics;
-            const content = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
-            container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
-        }
+       function renderTicker() {
+		    const container = document.getElementById('ticker-container');
+		    if (!container) return;
+		    container.innerHTML = ''; // ← AJOUTER ICI
+		    const data = translations[currentLang].metrics;
+		    const content = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
+		    container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
+		}
 
         function renderArticles() {
             const grid = document.getElementById('articles-grid');
@@ -464,10 +465,14 @@
             document.body.classList.add('modal-open');
         }
 
-        function closeReader() {
-            document.getElementById('reader-overlay').style.display = 'none';
-            document.body.classList.remove('modal-open');
-        }
+       function closeReader() {
+		    document.getElementById('reader-overlay').style.display = 'none';
+		    document.body.classList.remove('modal-open');
+		}
+		function closePortrait() {
+		    document.getElementById('portrait-modal').style.display = 'none';
+		    document.body.classList.remove('modal-open');
+		}
 
         function scrollSlider(direction) {
             document.getElementById('logo-slider').scrollBy({ left: direction * 240, behavior: 'smooth' });
@@ -482,14 +487,22 @@
             });
         });
 
-        window.onload = () => {
-            initUI();
-            const slider = document.getElementById('logo-slider');
-            if (slider) {
-                const items = Array.from(slider.children);
-                items.forEach(item => slider.appendChild(item.cloneNode(true)));
-            }
-        };
+		window.onload = () => {
+		    initUI();
+		
+		    // ← AJOUTER CE BLOC ICI
+		    document.querySelectorAll('section').forEach(sec => {
+		        if(sec.getBoundingClientRect().top < window.innerHeight * 0.95) {
+		            sec.classList.add('visible');
+		        }
+		    });
+		
+		    const slider = document.getElementById('logo-slider');
+		    if (slider) {
+		        const items = Array.from(slider.children);
+		        items.forEach(item => slider.appendChild(item.cloneNode(true)));
+		    }
+		};
     </script>
 </body>
 </html>
