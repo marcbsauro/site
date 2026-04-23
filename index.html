@@ -464,15 +464,20 @@
             document.body.classList.add('modal-open');
         }
 
-       function closeReader() {
-		    document.getElementById('reader-overlay').style.display = 'none';
-		    document.body.classList.remove('modal-open');
+		function openPortrait() {
+		    document.getElementById('portrait-modal').style.display = 'block';
+		    document.body.classList.add('modal-open');
 		}
+		
 		function closePortrait() {
 		    document.getElementById('portrait-modal').style.display = 'none';
 		    document.body.classList.remove('modal-open');
 		}
-
+		
+		function closeReader() {
+		    document.getElementById('reader-overlay').style.display = 'none';
+		    document.body.classList.remove('modal-open');
+		}
         function scrollSlider(direction) {
             document.getElementById('logo-slider').scrollBy({ left: direction * 240, behavior: 'smooth' });
         }
