@@ -60,8 +60,8 @@
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(11, 26, 48, 0.3) 0%, var(--brand-bg-dark) 95%); }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 2px; }
         .nav-blur { background: rgba(5, 12, 24, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .red-line-major { border-left: 4px solid var(--brand-baby); }
-        .red-line-minor { border-left: 2px solid var(--brand-accent); }
+       .baby-line-major { border-left: 4px solid var(--brand-baby); }
+       .pink-line-minor { border-left: 2px solid var(--brand-accent); }
         .accent-line-title { border-left: 4px solid var(--brand-baby); padding-left: 1.5rem; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
         section { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
         section.visible { opacity: 1; transform: translateY(0); }
@@ -133,15 +133,15 @@
             <section class="mb-48 scroll-reveal">
                 <h3 class="section-label" data-key="services-label"></h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="space-y-4 red-line-minor pl-6">
+                    <div class="space-y-4 baby-line-major pl-6">
                         <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv1-title"></h4>
                         <p class="text-white/60 text-sm leading-relaxed font-light" data-key="srv1-desc"></p>
                     </div>
-                    <div class="space-y-4 red-line-minor pl-6">
+                    <div class="space-y-4 baby-line-major pl-6">
                         <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv2-title"></h4>
                         <p class="text-white/60 text-sm leading-relaxed font-light" data-key="srv2-desc"></p>
                     </div>
-                    <div class="space-y-4 red-line-minor pl-6">
+                    <div class="space-y-4 baby-line-major pl-6">
                         <h4 class="text-white font-bold text-lg uppercase tracking-wider" data-key="srv3-title"></h4>
                         <p class="text-white/60 text-sm leading-relaxed font-light" data-key="srv3-desc"></p>
                     </div>
@@ -179,27 +179,27 @@
 			    <h3 class="section-label" data-key="testimony-label"></h3>
 			    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 			        
-			        <div class="glass p-10 red-line-minor pl-6">
+			        <div class="glass p-10 pink-line-minor pl-6">
 			            <p class="text-lg italic font-light leading-relaxed mb-6 text-white/90" data-key="test-1-text"></p>
-			            <p class="font-bold text-[#FD2DA7] tracking-widest uppercase text-[11px]">Kevin Degabriele</p>
+			            <p class="font-bold text-[#1458E4] tracking-widest uppercase text-[11px]">Kevin Degabriele</p>
 			            <p class="text-white/40 text-[10px] uppercase tracking-tighter">Senior Business Development Executive</p>
 			        </div>
 			
-			        <div class="glass p-10 red-line-minor pl-6">
+			        <div class="glass p-10 pink-line-minor pl-6">
 			            <p class="text-lg italic font-light leading-relaxed mb-6 text-white/90" data-key="test-2-text"></p>
-			            <p class="font-bold text-[#FD2DA7] tracking-widest uppercase text-[11px]">Brian Sather</p>
+			            <p class="font-bold text-[#1458E4] tracking-widest uppercase text-[11px]">Brian Sather</p>
 			            <p class="text-white/40 text-[10px] uppercase tracking-tighter">Director of Product Marketing</p>
 			        </div>
 			
-			        <div class="glass p-10 red-line-minor pl-6">
+			        <div class="glass p-10 pink-line-minor pl-6">
 			            <p class="text-lg italic font-light leading-relaxed mb-6 text-white/90" data-key="test-3-text"></p>
-			            <p class="font-bold text-[#FD2DA7] tracking-widest uppercase text-[11px]">Bruce Buck</p>
+			            <p class="font-bold text-[#1458E4] tracking-widest uppercase text-[11px]">Bruce Buck</p>
 			            <p class="text-white/40 text-[10px] uppercase tracking-tighter">Technical Sales Engineer</p>
 			        </div>
 			
-			        <div class="glass p-10 red-line-minor pl-6">
+			        <div class="glass p-10 pink-line-minor pl-6">
 			            <p class="text-lg italic font-light leading-relaxed mb-6 text-white/90" data-key="test-4-text"></p>
-			            <p class="font-bold text-[#FD2DA7] tracking-widest uppercase text-[11px]">Gilles Demers</p>
+			            <p class="font-bold text-[#1458E4] tracking-widest uppercase text-[11px]">Gilles Demers</p>
 			            <p class="text-white/40 text-[10px] uppercase tracking-tighter">Sr. Sales Manager</p>
 			        </div>
 			
@@ -395,7 +395,7 @@
                         <span class="text-[9px] font-bold uppercase tracking-widest text-[#1458E4]">${art.cat}</span>
                         <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
                     </div>
-                    <div class="red-line-minor pl-4 mb-4">
+                    <div class="pink-line-minor pl-4 mb-4">
                         <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
                     </div>
                     <p class="text-white/60 text-sm line-clamp-3 leading-relaxed mb-6 font-light">${art.desc}</p>
