@@ -400,9 +400,12 @@
        function renderTicker() {
 		    const container = document.getElementById('ticker-container');
 		    if (!container) return;
-		    container.innerHTML = ''; // ← AJOUTER ICI
+		    
+		    // On récupère les données
 		    const data = translations[currentLang].metrics;
 		    const content = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
+		    
+		    // On injecte le contenu dupliqué pour l'animation CSS
 		    container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
 		}
 
@@ -536,22 +539,20 @@
                 if(sec.getBoundingClientRect().top < window.innerHeight * 0.95) sec.classList.add('visible');
             });
         });
-
+		
 		window.onload = () => {
 		    initUI();
 		
-		    // ← AJOUTER CE BLOC ICI
+		    // Gestion de l'apparition au scroll
 		    document.querySelectorAll('section').forEach(sec => {
 		        if(sec.getBoundingClientRect().top < window.innerHeight * 0.95) {
 		            sec.classList.add('visible');
 		        }
 		    });
 		
-		    const slider = document.getElementById('logo-slider');
-		    if (slider) {
-		        const items = Array.from(slider.children);
-		        items.forEach(item => slider.appendChild(item.cloneNode(true)));
-		    }
+		    // Note : Si vous voulez que le slider de logos soit infini, 
+		    // assurez-vous que cette logique est cohérente avec votre CSS.
+		    // Si ce n'est pas nécessaire, retirez le clonage ici.
 		};
     </script>
 </body>
