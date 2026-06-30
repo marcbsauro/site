@@ -298,8 +298,8 @@
                 "srv2-title": "Architecture de Solutions", "srv2-desc": "Conception de cadres opérationnels et technologiques alignés sur les objectifs de croissance de l'organisation.",
                 "srv3-title": "Accompagnement Exécutif", "srv3-desc": "Transformation de la vision décisionnelle en trajectoires d'exécution concrètes pour les leaders en transition.",
                 "exp-label": "Parcours", "exp-linkedin": "Voyez mon expérience complet sur LinkedIn",
-                "articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", 
-                "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn",
+				"articles-label": "Leadership de Pensée", "read-more": "Lire l'analyse complète", "close-reader": "Fermer", 
+				"latest-badge": "Dernière publication", "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn",
                 "cta-title": "Optimisez votre trajectoire d'affaires.", "cta-desc": "Transformez votre vision exécutive en résultats tangibles.", "cta-btn": "Écrivez-moi",
                 
                 /* Experiences FR */
@@ -354,8 +354,8 @@
                 "srv2-title": "Solution Architecture", "srv2-desc": "Designing operational and technological frameworks aligned with organizational growth objectives.",
                 "srv3-title": "Executive Advisory", "srv3-desc": "Translating executive vision into actionable execution trajectories for leaders in transition.",
                 "exp-label": "Milestones", "exp-linkedin": "View my complete profile on LinkedIn",
-                "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", 
-                "visit-site": "Website", "discuss-social": "Comment on LinkedIn",
+               "articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close", 
+				"latest-badge": "Latest", "visit-site": "Website", "discuss-social": "Comment on LinkedIn",
                 "cta-title": "Optimize your business trajectory.", "cta-desc": "Transform your executive vision into tangible results.", "cta-btn": "Contact me",
 
                 /* Experiences EN */
@@ -407,25 +407,33 @@
 		    container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
 		}
 
-        function renderArticles() {
-            const grid = document.getElementById('articles-grid');
-            if (!grid) return;
-            grid.innerHTML = translations[currentLang].articles.map(art => `
-                <div class="glass p-8 cursor-pointer hover:border-[#77D5E1] transition-all group" onclick="openReader('${art.id}')">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${art.cat}</span>
-                        <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
-                    </div>
-                    <div class="pink-line-minor pl-4 mb-4">
-                        <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
-                    </div>
-                    <p class="text-white/60 text-sm line-clamp-3 leading-relaxed mb-6 font-light">${art.desc}</p>
-                    <span class="text-xs font-bold uppercase tracking-widest border-b border-white/20 pb-1 text-white group-hover:border-white transition-all">
-                        ${translations[currentLang]['read-more']}
-                    </span>
-                </div>
-            `).join('');
-        }
+		function renderArticles() {
+		    const grid = document.getElementById('articles-grid');
+		    if (!grid) return;
+		    
+		    grid.innerHTML = translations[currentLang].articles.slice().reverse().map((art, index) => `
+		        <div class="glass p-8 cursor-pointer hover:border-[#77D5E1] transition-all group relative" onclick="openReader('${art.id}')">
+		            
+		            ${index === 0 ? `
+		                <div class="absolute -top-3 -right-3 bg-[#77D5E1] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10">
+		                    ${translations[currentLang]['latest-badge']}
+		                </div>
+		            ` : ''}
+		
+		            <div class="flex justify-between items-start mb-4">
+		                <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${art.cat}</span>
+		                <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
+		            </div>
+		            <div class="pink-line-minor pl-4 mb-4">
+		                <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
+		            </div>
+		            <p class="text-white/60 text-sm line-clamp-3 leading-relaxed mb-6 font-light">${art.desc}</p>
+		            <span class="text-xs font-bold uppercase tracking-widest border-b border-white/20 pb-1 text-white group-hover:border-white transition-all">
+		                ${translations[currentLang]['read-more']}
+		            </span>
+		        </div>
+		    `).join('');
+		}
 
 		function toggleLanguage() {
 		    currentLang = currentLang === 'fr' ? 'en' : 'fr';
