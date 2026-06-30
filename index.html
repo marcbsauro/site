@@ -411,30 +411,56 @@
 		    const grid = document.getElementById('articles-grid');
 		    if (!grid) return;
 		    
-		    grid.innerHTML = translations[currentLang].articles.slice().reverse().map((art, index) => `
-		        <div class="glass p-8 cursor-pointer hover:border-[#77D5E1] transition-all group relative" onclick="openReader('${art.id}')">
-		            
-		            ${index === 0 ? `
-		                <div class="absolute -top-3 -right-3 bg-[#77D5E1] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10">
-		                    ${translations[currentLang]['latest-badge']}
-		                </div>
-		            ` : ''}
+		    // Étape 1 : Copie et inversion chronologique (Plus récent en premier)
+		    const allArticles = translations[currentLang].articles.slice().reverse();
+		    if (allArticles.length === 0) return;
 		
+		    // Étape 2 : Extraction du premier article (Featured)
+		    const featured = allArticles[0];
+		    
+		    // Étape 3 : Extraction des articles secondaires (Index)
+		    const remainingArticles = allArticles.slice(1);
+		
+		    // Étape 4 : Génération du HTML éditorial
+		    let htmlContent = `
+		        <div class="col-span-1 md:col-span-2 glass p-10 cursor-pointer hover:border-[#77D5E1] transition-all group relative mb-6" onclick="openReader('${featured.id}')">
+		            <div class="absolute -top-3 -right-3 bg-[#77D5E1] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10">
+		                ${translations[currentLang]['latest-badge']}
+		            </div>
 		            <div class="flex justify-between items-start mb-4">
-		                <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${art.cat}</span>
-		                <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
+		                <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${featured.cat || ''}</span>
+		                <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${featured.date}</span>
 		            </div>
-		            <div class="pink-line-minor pl-4 mb-4">
-		                <h4 class="text-xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h4>
+		            <div class="baby-line-major pl-6 mb-6">
+		                <h4 class="text-2xl md:text-3xl font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${featured.title}</h4>
 		            </div>
-		            <p class="text-white/60 text-sm line-clamp-3 leading-relaxed mb-6 font-light">${art.desc}</p>
+		            <p class="text-white/70 text-base md:text-lg max-w-3xl leading-relaxed mb-8 font-light">${featured.desc}</p>
 		            <span class="text-xs font-bold uppercase tracking-widest border-b border-white/20 pb-1 text-white group-hover:border-white transition-all">
 		                ${translations[currentLang]['read-more']}
 		            </span>
 		        </div>
-		    `).join('');
+		    `;
+		
+		    // Étape 5 : Injection de la liste compacte (Index) s'il y a d'autres articles
+		    if (remainingArticles.length > 0) {
+		        htmlContent += `
+		            <div class="col-span-1 md:col-span-2 mt-8 w-full border-t border-white/10 pt-10">
+		                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+		                    ${remainingArticles.map(art => `
+		                        <div class="flex items-baseline justify-between py-3 border-b border-white/5 cursor-pointer group/item hover:border-white/20 transition-all" onclick="openReader('${art.id}')">
+		                            <div class="pink-line-minor pl-4 pr-4">
+		                                <h5 class="text-sm md:text-base font-medium text-white/80 group-hover/item:text-[#77D5E1] transition-colors leading-snug">${art.title}</h5>
+		                            </div>
+		                            <span class="text-[9px] font-bold text-white/20 uppercase tracking-widest flex-shrink-0 align-middle">${art.date}</span>
+		                        </div>
+		                    `).join('')}
+		                </div>
+		            </div>
+		        `;
+		    }
+		
+		    grid.innerHTML = htmlContent;
 		}
-
 		function toggleLanguage() {
 		    currentLang = currentLang === 'fr' ? 'en' : 'fr';
 		    
