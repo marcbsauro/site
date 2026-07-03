@@ -296,7 +296,7 @@
                 "srv3-title": "Accompagnement Exécutif", "srv3-desc": "Transformation de la vision décisionnelle en trajectoires d'exécution concrètes pour les leaders en transition.",
                 "exp-label": "Parcours", "exp-linkedin": "Voyez mon expérience complet sur LinkedIn",
 				"articles-label": "Leadership d’opinion", "read-more": "Lire l'analyse complète", "close-reader": "Fermer",
-				"latest-badge": "Dernière publication", "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn",
+				"latest-badge": "Dernière publication", "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn", "other-articles": "Autres publications", "load-more": "Voir plus",
                 "cta-title": "Optimisez votre trajectoire d'affaires.", "cta-desc": "Transformez votre vision exécutive en résultats tangibles.", "cta-btn": "Écrivez-moi",
                 
                 /* Experiences FR */
@@ -352,7 +352,7 @@
                 "srv3-title": "Executive Advisory", "srv3-desc": "Translating executive vision into actionable execution trajectories for leaders in transition.",
                 "exp-label": "Milestones", "exp-linkedin": "View my complete profile on LinkedIn",
 				"articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close",
-				"latest-badge": "Latest", "visit-site": "Website", "discuss-social": "Comment on LinkedIn",
+				"latest-badge": "Latest", "visit-site": "Website", "discuss-social": "Comment on LinkedIn", "other-articles": "Other publications", "load-more": "Load more",
                 "cta-title": "Optimize your business trajectory.", "cta-desc": "Transform your executive vision into tangible results.", "cta-btn": "Contact me",
 
                 /* Experiences EN */
@@ -403,24 +403,19 @@
 		    const content = data.map(m => `<div class="ticker-segment">${m}</div>`).join('');
 		    container.innerHTML = `<div class="ticker-item">${content}</div><div class="ticker-item">${content}</div>`;
 		}
-
+		
 		function renderArticles() {
 		    const grid = document.getElementById('articles-grid');
 		    if (!grid) return;
 		    
-		    // Étape 1 : Copie et inversion chronologique (Plus récent en premier)
 		    const allArticles = translations[currentLang].articles.slice().reverse();
 		    if (allArticles.length === 0) return;
 		
-		    // Étape 2 : Extraction du premier article (Featured)
 		    const featured = allArticles[0];
-		    
-		    // Étape 3 : Extraction des articles secondaires (Index)
 		    const remainingArticles = allArticles.slice(1);
 		
-		    // Étape 4 : Génération du HTML éditorial
 		    let htmlContent = `
-		        <div class="col-span-1 md:col-span-2 glass p-10 cursor-pointer hover:border-[#77D5E1] transition-all group relative mb-6" onclick="openReader('${featured.id}')">
+		        <div class="col-span-1 md:col-span-2 glass p-10 cursor-pointer hover:border-[#77D5E1] transition-all group relative mb-8" onclick="openReader('${featured.id}')">
 		            <div class="absolute -top-3 -right-3 bg-[#77D5E1] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10">
 		                ${translations[currentLang]['latest-badge']}
 		            </div>
@@ -438,19 +433,34 @@
 		        </div>
 		    `;
 		
-		    // Étape 5 : Injection de la liste compacte (Index) s'il y a d'autres articles
 		    if (remainingArticles.length > 0) {
 		        htmlContent += `
-		            <div class="col-span-1 md:col-span-2 mt-8 w-full border-t border-white/10 pt-10">
-		                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-		                    ${remainingArticles.map(art => `
-		                        <div class="flex items-baseline justify-between py-3 border-b border-white/5 cursor-pointer group/item hover:border-white/20 transition-all" onclick="openReader('${art.id}')">
-		                            <div class="pink-line-minor pl-4 pr-4">
-		                                <h5 class="text-sm md:text-base font-medium text-white/80 group-hover/item:text-[#77D5E1] transition-colors leading-snug">${art.title}</h5>
+		            <div class="col-span-1 md:col-span-2 mt-4">
+		                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#77D5E1] opacity-70 mb-6 pl-2 border-l-2 border-[#77D5E1]">${translations[currentLang]['other-articles']}</h4>
+		                
+		                <div id="remaining-articles-wrapper" class="relative overflow-hidden transition-all duration-700 ease-in-out" style="max-height: 480px;">
+		                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+		                        ${remainingArticles.map(art => `
+		                            <div class="glass p-6 cursor-pointer hover:border-[#77D5E1] transition-all group" onclick="openReader('${art.id}')">
+		                                <div class="flex justify-between items-start mb-3">
+		                                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${art.cat || ''}</span>
+		                                    <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
+		                                </div>
+		                                <div class="pink-line-minor pl-4 mb-3">
+		                                    <h5 class="text-lg font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h5>
+		                                </div>
+		                                <p class="text-white/60 text-xs line-clamp-2 leading-relaxed mb-4 font-light">${art.desc}</p>
 		                            </div>
-		                            <span class="text-[9px] font-bold text-white/20 uppercase tracking-widest flex-shrink-0 align-middle">${art.date}</span>
-		                        </div>
-		                    `).join('')}
+		                        `).join('')}
+		                    </div>
+		                    
+		                    <div id="articles-fade" class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#050c18] to-transparent pointer-events-none transition-opacity duration-500"></div>
+		                </div>
+		
+		                <div class="mt-8 text-center" id="load-more-container">
+		                    <button onclick="expandArticles()" class="btn-ghost">
+		                        ${translations[currentLang]['load-more']}
+		                    </button>
 		                </div>
 		            </div>
 		        `;
@@ -555,6 +565,20 @@
 		function closeReader() {
 		    document.getElementById('reader-overlay').style.display = 'none';
 		    document.body.classList.remove('modal-open');
+		}
+		function expandArticles() {
+		    const wrapper = document.getElementById('remaining-articles-wrapper');
+		    const fade = document.getElementById('articles-fade');
+		    const btnContainer = document.getElementById('load-more-container');
+		
+		    // On donne au conteneur la hauteur réelle de tout son contenu
+		    wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+		    
+		    // On fait disparaître le dégradé en douceur
+		    fade.style.opacity = "0";
+		    
+		    // On cache le bouton "Voir plus" (puisque tout est affiché)
+		    btnContainer.style.display = "none";
 		}
         function scrollSlider(direction) {
             document.getElementById('logo-slider').scrollBy({ left: direction * 240, behavior: 'smooth' });
