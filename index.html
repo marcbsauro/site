@@ -296,7 +296,7 @@
                 "srv3-title": "Accompagnement Exécutif", "srv3-desc": "Transformation de la vision décisionnelle en trajectoires d'exécution concrètes pour les leaders en transition.",
                 "exp-label": "Parcours", "exp-linkedin": "Voyez mon expérience complet sur LinkedIn",
 				"articles-label": "Leadership d’opinion", "read-more": "Lire l'analyse complète", "close-reader": "Fermer",
-				"latest-badge": "Dernière publication", "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn", "other-articles": "Autres publications", "load-more": "Voir plus",
+				"latest-badge": "Dernière publication", "visit-site": "Site web", "discuss-social": "Commentez sur LinkedIn", "other-articles": "Autres publications", "load-more": "Voir plus", "load-less": "Voir moins",
                 "cta-title": "Optimisez votre trajectoire d'affaires.", "cta-desc": "Transformez votre vision exécutive en résultats tangibles.", "cta-btn": "Écrivez-moi",
                 
                 /* Experiences FR */
@@ -352,7 +352,7 @@
                 "srv3-title": "Executive Advisory", "srv3-desc": "Translating executive vision into actionable execution trajectories for leaders in transition.",
                 "exp-label": "Milestones", "exp-linkedin": "View my complete profile on LinkedIn",
 				"articles-label": "Thought Leadership", "read-more": "Read full analysis", "close-reader": "Close",
-				"latest-badge": "Latest", "visit-site": "Website", "discuss-social": "Comment on LinkedIn", "other-articles": "Other publications", "load-more": "Load more",
+				"latest-badge": "Latest", "visit-site": "Website", "discuss-social": "Comment on LinkedIn", "other-articles": "Other publications", "load-more": "Load more", "load-less": "Less",
                 "cta-title": "Optimize your business trajectory.", "cta-desc": "Transform your executive vision into tangible results.", "cta-btn": "Contact me",
 
                 /* Experiences EN */
@@ -438,27 +438,26 @@
 		            <div class="col-span-1 md:col-span-2 mt-4">
 		                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#77D5E1] opacity-70 mb-6 pl-2 border-l-2 border-[#77D5E1]">${translations[currentLang]['other-articles']}</h4>
 		                
-		                <div id="remaining-articles-wrapper" class="relative overflow-hidden transition-all duration-700 ease-in-out" style="max-height: 480px;">
-		                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+		                <div id="remaining-articles-wrapper" class="relative overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 340px;">
+		                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 		                        ${remainingArticles.map(art => `
-		                            <div class="glass p-6 cursor-pointer hover:border-[#77D5E1] transition-all group" onclick="openReader('${art.id}')">
-		                                <div class="flex justify-between items-start mb-3">
+		                            <div class="glass p-5 cursor-pointer hover:border-[#77D5E1] transition-all group flex flex-col justify-between" onclick="openReader('${art.id}')">
+		                                <div class="flex justify-between items-start mb-2">
 		                                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${art.cat || ''}</span>
 		                                    <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
 		                                </div>
-		                                <div class="pink-line-minor pl-4 mb-3">
-		                                    <h5 class="text-lg font-bold group-hover:translate-x-1 transition-transform leading-tight text-white">${art.title}</h5>
+		                                <div class="pink-line-minor pl-4">
+		                                    <h5 class="text-base md:text-lg font-bold group-hover:translate-x-1 transition-transform leading-tight text-white/90 group-hover:text-white">${art.title}</h5>
 		                                </div>
-		                                <p class="text-white/60 text-xs line-clamp-2 leading-relaxed mb-4 font-light">${art.desc}</p>
 		                            </div>
 		                        `).join('')}
 		                    </div>
 		                    
-		                    <div id="articles-fade" class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#050c18] to-transparent pointer-events-none transition-opacity duration-500"></div>
+		                    <div id="articles-fade" class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050c18] to-transparent pointer-events-none transition-opacity duration-300"></div>
 		                </div>
 		
-		                <div class="mt-8 text-center" id="load-more-container">
-		                    <button onclick="expandArticles()" class="btn-ghost">
+		                <div class="mt-8 text-center">
+		                    <button id="toggle-articles-btn" onclick="toggleArticlesVisibility()" class="btn-ghost">
 		                        ${translations[currentLang]['load-more']}
 		                    </button>
 		                </div>
@@ -566,19 +565,25 @@
 		    document.getElementById('reader-overlay').style.display = 'none';
 		    document.body.classList.remove('modal-open');
 		}
-		function expandArticles() {
+		function toggleArticlesVisibility() {
 		    const wrapper = document.getElementById('remaining-articles-wrapper');
 		    const fade = document.getElementById('articles-fade');
-		    const btnContainer = document.getElementById('load-more-container');
+		    const btn = document.getElementById('toggle-articles-btn');
 		
-		    // On donne au conteneur la hauteur réelle de tout son contenu
-		    wrapper.style.maxHeight = wrapper.scrollHeight + "px";
-		    
-		    // On fait disparaître le dégradé en douceur
-		    fade.style.opacity = "0";
-		    
-		    // On cache le bouton "Voir plus" (puisque tout est affiché)
-		    btnContainer.style.display = "none";
+		    // Si le conteneur est actuellement limité, on l'ouvre
+		    if (wrapper.style.maxHeight === "340px" || wrapper.style.maxHeight === "") {
+		        wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+		        fade.style.opacity = "0"; // Cache le dégradé
+		        btn.innerText = translations[currentLang]['load-less']; // Devient "Voir moins"
+		    } else {
+		        // Sinon, on le referme à sa taille condensée
+		        wrapper.style.maxHeight = "340px";
+		        fade.style.opacity = "1"; // Réaffiche le dégradé
+		        btn.innerText = translations[currentLang]['load-more']; // Devient "Voir plus"
+		        
+		        // Remonte doucement l'écran vers le début de la section pour ne pas perdre le fil
+		        document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+		    }
 		}
         function scrollSlider(direction) {
             document.getElementById('logo-slider').scrollBy({ left: direction * 240, behavior: 'smooth' });
