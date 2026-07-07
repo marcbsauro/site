@@ -6,7 +6,6 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Stratégie Data & IA — Talan | Marc B. Sauro</title>
 <style>
-  /* ── Reset & base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --blue:    #2E71B5;
@@ -21,40 +20,24 @@
     --muted:   #5B6B7D;
     --dim:     #97A5B0;
     --line:    #DDE4ED;
-    --font:    'Arial', sans-serif;
+    --font:    Arial, sans-serif;
   }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font);
-    background: var(--off);
-    color: var(--text);
-    line-height: 1.6;
-  }
+  body { font-family: var(--font); background: var(--off); color: var(--text); line-height: 1.6; }
 
-  /* ── Header ── */
+  /* Header */
   header {
     position: sticky; top: 0; z-index: 100;
     background: var(--navy);
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 56px;
+    padding: 0 2.5rem; height: 56px;
     border-bottom: 2px solid var(--blue);
   }
-  .header-brand {
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .header-logo {
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.12em;
-    color: var(--white);
-  }
+  .header-brand { display: flex; align-items: center; gap: 0.75rem; }
+  .header-logo { font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; color: var(--white); }
   .header-logo span { color: var(--blue); }
-  .header-tagline {
-    font-size: 0.7rem; letter-spacing: 0.08em;
-    color: var(--dim); text-transform: uppercase;
-  }
-  nav {
-    display: flex; gap: 0.25rem;
-  }
+  .header-tagline { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--dim); text-transform: uppercase; }
+  nav { display: flex; gap: 0.25rem; }
   nav a {
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
     color: var(--dim); text-decoration: none;
@@ -63,147 +46,65 @@
   }
   nav a:hover { color: var(--white); background: var(--navy2); }
 
-  /* ── Hero ── */
+  /* Progress */
+  .progress-bar { position: fixed; top: 56px; left: 0; right: 0; height: 3px; z-index: 99; }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--blue), var(--magenta)); transition: width 0.1s linear; }
+
+  /* Hero */
   .hero {
-    background: var(--navy);
-    padding: 5rem 2.5rem 4rem;
-    text-align: center;
+    background: var(--navy); padding: 5rem 2.5rem 4rem; text-align: center;
     border-bottom: 1px solid var(--navy2);
   }
-  .hero-eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
-    color: var(--blue); text-transform: uppercase; margin-bottom: 1.25rem;
-  }
-  .hero h1 {
-    font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
-    color: var(--white); line-height: 1.15; margin-bottom: 1.25rem;
-    max-width: 780px; margin-left: auto; margin-right: auto;
-  }
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; color: var(--blue); text-transform: uppercase; margin-bottom: 1.25rem; }
+  .hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1.25rem; max-width: 780px; margin-left: auto; margin-right: auto; }
   .hero h1 em { font-style: normal; color: var(--blue); }
-  .hero-sub {
-    font-size: 1rem; color: #7A9BBF; max-width: 520px;
-    margin: 0 auto 2.5rem;
-  }
-  .hero-pills {
-    display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
-  }
-  .pill {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 0.35rem 0.9rem;
-    border-radius: 20px; border: 1px solid;
-  }
-  .pill-blue   { color: var(--blue);    border-color: var(--blue);    background: rgba(46,113,181,0.12); }
-  .pill-mag    { color: var(--magenta); border-color: var(--magenta); background: rgba(213,37,118,0.10); }
-  .pill-olive  { color: #A8B830;        border-color: #818E24;        background: rgba(129,142,36,0.12); }
+  .hero-sub { font-size: 1rem; color: #7A9BBF; max-width: 520px; margin: 0 auto 2.5rem; }
+  .hero-pills { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+  .pill { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 20px; border: 1px solid; }
+  .pill-blue  { color: var(--blue);    border-color: var(--blue);    background: rgba(46,113,181,0.12); }
+  .pill-mag   { color: var(--magenta); border-color: var(--magenta); background: rgba(213,37,118,0.10); }
+  .pill-olive { color: #A8B830;        border-color: #818E24;        background: rgba(129,142,36,0.12); }
 
-  /* ── Progress bar ── */
-  .progress-bar {
-    position: fixed; top: 56px; left: 0; right: 0;
-    height: 3px; background: transparent; z-index: 99;
-  }
-  .progress-fill {
-    height: 100%; width: 0%;
-    background: linear-gradient(90deg, var(--blue), var(--magenta));
-    transition: width 0.1s linear;
-  }
-
-  /* ── Slide sections ── */
-  .slide-section {
-    padding: 4rem 0;
-    border-bottom: 1px solid var(--line);
-  }
+  /* Sections */
+  .slide-section { padding: 4rem 0; border-bottom: 1px solid var(--line); }
   .slide-section:last-of-type { border-bottom: none; }
   .section-dark  { background: var(--navy); }
   .section-light { background: var(--white); }
   .section-light:nth-of-type(even) { background: var(--off); }
+  .slide-inner { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
 
-  .slide-inner {
-    max-width: 900px; margin: 0 auto; padding: 0 2rem;
-  }
+  .slide-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .slide-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: var(--white); background: var(--blue); padding: 0.25rem 0.6rem; border-radius: 3px; }
+  .slide-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); }
 
-  .slide-meta {
-    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;
-  }
-  .slide-num {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-    color: var(--white); background: var(--blue);
-    padding: 0.25rem 0.6rem; border-radius: 3px;
-  }
-  .section-light .slide-num { background: var(--blue); }
-  .slide-eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .section-dark  .slide-eyebrow { color: var(--blue); }
-  .section-light .slide-eyebrow { color: var(--blue); }
+  .slide-visual { width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 24px rgba(18,40,63,0.18); border: 1px solid rgba(46,113,181,0.15); }
+  .slide-visual img { width: 100%; display: block; }
 
-  /* ── Slide visual ── */
-  .slide-visual {
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 24px rgba(18,40,63,0.18);
-    border: 1px solid rgba(46,113,181,0.15);
-  }
-  .slide-visual img {
-    width: 100%; display: block;
-  }
-
-  /* ── Slide body ── */
-  .slide-title {
-    font-size: clamp(1.3rem, 2.8vw, 1.85rem);
-    font-weight: 700; line-height: 1.2; margin-bottom: 0.6rem;
-  }
+  .slide-title { font-size: clamp(1.3rem, 2.8vw, 1.85rem); font-weight: 700; line-height: 1.2; margin-bottom: 0.6rem; }
   .section-dark  .slide-title { color: var(--white); }
   .section-light .slide-title { color: var(--navy); }
 
-  .slide-sub {
-    font-size: 0.85rem; letter-spacing: 0.04em;
-    margin-bottom: 2rem;
-  }
+  .slide-sub { font-size: 0.85rem; letter-spacing: 0.04em; margin-bottom: 2rem; }
   .section-dark  .slide-sub { color: #7A9BBF; }
   .section-light .slide-sub { color: var(--muted); }
 
-  /* ── Notes block ── */
-  .slide-notes {
-    border-left: 3px solid var(--blue);
-    padding-left: 1.5rem;
-    margin-top: 0.5rem;
-  }
+  /* Notes */
+  .slide-notes { border-left: 3px solid var(--blue); padding-left: 1.5rem; margin-top: 0.5rem; }
   .section-dark .slide-notes { border-left-color: var(--magenta); }
-
-  .notes-label {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; margin-bottom: 0.9rem;
-  }
+  .notes-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.9rem; }
   .section-dark  .notes-label { color: var(--magenta); }
   .section-light .notes-label { color: var(--blue); }
-
-  .notes-content p {
-    font-size: 0.95rem; line-height: 1.75; margin-bottom: 0.85rem;
-  }
+  .notes-content p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.85rem; }
   .notes-content p:last-child { margin-bottom: 0; }
   .section-dark  .notes-content p { color: #A8C0D6; }
   .section-light .notes-content p { color: var(--muted); }
 
-  /* ── Footer ── */
-  footer {
-    background: var(--navy);
-    padding: 2.5rem;
-    text-align: center;
-    border-top: 1px solid var(--navy2);
-  }
-  .footer-brand {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
-    color: var(--dim); text-transform: uppercase; margin-bottom: 0.4rem;
-  }
+  /* Footer */
+  footer { background: var(--navy); padding: 2.5rem; text-align: center; border-top: 1px solid var(--navy2); }
+  .footer-brand { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; color: var(--dim); text-transform: uppercase; margin-bottom: 0.4rem; }
   .footer-brand span { color: var(--blue); }
-  .footer-note {
-    font-size: 0.68rem; color: #3D5570;
-  }
+  .footer-note { font-size: 0.68rem; color: #3D5570; }
 
-  /* ── Responsive ── */
   @media (max-width: 640px) {
     header { padding: 0 1.25rem; }
     nav { display: none; }
@@ -237,7 +138,7 @@
 <div class="hero">
   <div class="hero-eyebrow">Document stratégique confidentiel</div>
   <h1>Transformer <em>l'innovation</em><br>en performance financière prévisible.</h1>
-  <p class="hero-sub">Une stratégie de monétisation pour la pratique Data & IA de Talan — du pipeline à l'industrialisation.</p>
+  <p class="hero-sub">Une stratégie de monétisation pour la pratique Data & IA de Talan, du pipeline à l'industrialisation.</p>
   <div class="hero-pills">
     <span class="pill pill-blue">Stratégie commerciale</span>
     <span class="pill pill-mag">Data & IA</span>
@@ -257,7 +158,7 @@
       </div>
       <div class="slide-body">
         <h2 class="slide-title">Transformer l'innovation en performance financière prévisible.</h2>
-        <p class="slide-sub">Architecte de Valeur — pas juste un intégrateur.</p>
+        <p class="slide-sub">Architecte de Valeur, pas juste un intégrateur.</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
           <div class="notes-content"><p>Mon objectif n'est pas de présenter un plan de prospection standard, mais une stratégie de monétisation pour la pratique Data & IA. Comme le soulignait récemment Fast Company, le marché s'égare dans la frénésie technologique. Le problème actuel n'est plus la capacité des modèles, mais l'incapacité des organisations à les intégrer à leurs processus d'affaires. Mon rôle sera d'imposer Talan non pas comme un simple intégrateur technique de plus, mais comme le tiers de confiance qui traduit la nouveauté technologique en une véritable innovation d'affaires et en croissance organique prévisible.</p></div>
@@ -280,7 +181,7 @@
         <p class="slide-sub">Être vu, entendu et reconnu.</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>Mon plan d'intégration repose sur la vélocité exécutive.</p><p>Les 30 premiers jours sont dédiés à la maîtrise clinique des actifs internes. Pour vendre Talan, je dois savoir exactement quelles briques algorithmiques nos architectes ont déjà industrialisées.</p><p>Le deuxième mois, j'utilise ces briques pour déployer des diagnostics de maturité auprès de notre clientèle cible au Québec. Filtre strict : Go ou No Go. On ne s'éparpille pas.</p><p>À 90 jours, les discussions exploratoires sont derrière nous. On soumet des propositions d'architecture composable à fort ROI — et on jette simultanément les bases de notre expansion canadienne.</p><p>Ces 90 jours ne se vivent pas en silo. Dès le jour 1, je suis sur le terrain : événements, associations professionnelles, réseaux sectoriels. Être vu et entendu, c'est une condition préalable à être reconnu. La crédibilité commerciale se construit en parallèle de la qualification du pipeline, pas après.</p></div>
+          <div class="notes-content"><p>Mon plan d'intégration « 90 jours » repose sur la vélocité exécutive.</p><p>Les 30 premiers jours sont dédiés à une analyse et maîtrise clinique des actifs internes. Pour vendre Talan, je dois savoir exactement quelles briques algorithmiques nos architectes ont déjà industrialisées.</p><p>Le deuxième mois, j'utilise ces briques pour offrir des diagnostics de maturité à notre clientèle cible au Québec. Filtre strict Go / No Go.</p><p>À 90 jours, nous remplaçons les discussions exploratoires par des propositions d'architecture composable à fort ROI, tout en jetant les bases de notre expansion canadienne.</p><p>Ceci dit, dès le jour 1, je suis sur le terrain : événements, associations professionnelles, réseaux sectoriels. Être vu et entendu, c'est une condition préalable à être reconnu. La crédibilité commerciale se construit en parallèle de la qualification du pipeline et non pas après.</p></div>
         </div>
       </div>
     </div>
@@ -317,10 +218,10 @@
       </div>
       <div class="slide-body">
         <h2 class="slide-title">Standardiser. Automatiser.</h2>
-        <p class="slide-sub">PoC : cycle de vente court (1 à 3 mois) · revenus alignés avec l'exercice ($ à $$)</p>
+        <p class="slide-sub">PoC · Cycle de vente court (1 à 3 mois) · Revenus alignés avec l'exercice ($ à $$)</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>L'Horizon 1 standardise les données du client — on fait le ménage et on structure.</p><p>L'Horizon 2 déploie un PoC à haute vélocité pour créer l'urgence financière et valider la scalabilité — on démontre notre savoir-faire et on miroite leurs économies.</p><p>Ces deux horizons forment le PoC. Impossible d'automatiser quoi que ce soit sans gouvernance de données.</p></div>
+          <div class="notes-content"><p>L'Horizon 1 standardise les données du client. On fait le ménage et on structure.</p><p>L'Horizon 2 déploie un PoC à haute vélocité pour créer l'urgence financière et valider la scalabilité. On démontre notre savoir et on miroite leurs économies.</p><p>Ces deux horizons forment le PoC. Impossible d'automatiser quoi que ce soit sans gouvernance de données.</p></div>
         </div>
       </div>
     </div>
@@ -337,10 +238,10 @@
       </div>
       <div class="slide-body">
         <h2 class="slide-title">Industrialiser.</h2>
-        <p class="slide-sub">Scalability : cycle de vente long (3 à 6+ mois) · revenus décuplés par le PoC ($$ à $$$+)</p>
+        <p class="slide-sub">Scalability · Cycle de vente long (3 à 6+ mois) · Revenus décuplés par le PoC ($$ à $$$+)</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>L'Horizon 3 industrialise la solution, assurant des revenus récurrents et une marge protégée par notre savoir-faire — on martèle la prévisibilité.</p><p>Pour boucler la boucle, nous devons nous assurer que le PoC est un succès et qu'il est possible d'étendre les possibilités.</p></div>
+          <div class="notes-content"><p>L'Horizon 3 industrialise la solution, assurant des revenus récurrents et une marge protégée par notre savoir-faire. On martèle la prévisibilité.</p><p>Pour boucler la boucle, nous devons nous assurer que 1) le PoC est un succès et qu'il est possible de 2) d'étendre les possibilités.</p></div>
         </div>
       </div>
     </div>
@@ -360,7 +261,7 @@
         <p class="slide-sub">Cadrage solitaire · Protection technique · Co-design stratégique</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>Comment nous rendre au PoC.</p><p>L'efficience du département technique est ma priorité. Le pire ennemi de la rentabilité est de voir des experts de pointe s'épuiser sur des opportunités non-qualifiées.</p><p>J'applique une discipline stricte :</p><p>— Je réalise l'analyse des processus (le pain) et la qualification financière (ROM) seul.</p><p>— Je mobilise les architectes uniquement lorsque le décideur économique est validé et que les fonds sont confirmés.</p><p>— Ils n'interviennent pas pour faire de la découverte de premier niveau, mais en tant qu'alliés technique/scientifiques pour verrouiller l'architecture et sécuriser la transaction.</p></div>
+          <div class="notes-content"><p>Comment nous rendre au PoC.</p><p>L'efficience du département technique est ma priorité. Le pire ennemi de la rentabilité est de voir des experts de pointe s'épuiser sur des opportunités non-qualifiées.</p><p>J'applique une discipline stricte :</p><p>Je réalise l'analyse des processus (le pain) et, après quelques mois, la qualification financière (ROM) seul.</p><p>Je mobilise les architectes uniquement lorsque le décideur économique est validé et que les fonds sont confirmés.</p><p>Ils n'interviendront pas pour faire de la découverte de premier niveau, mais en tant qu'alliés technique/scientifiques pour verrouiller l'architecture et sécuriser la transaction.</p></div>
         </div>
       </div>
     </div>
@@ -380,7 +281,7 @@
         <p class="slide-sub">Manufacturier · Services complexes</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>Concrétisons avec le tissu industriel québécois.</p><p>Dans le secteur manufacturier, vendre une simple interface conversationnelle n'a aucune pertinence. Mais déployer un modèle de vision industrielle pour auditer la conformité des processus de fabrication en temps réel impacte directement la productivité et la profitabilité.</p><p>Du côté Services, un service-client IA comme première ligne est déjà accessible et surutilisé. Un vrai différentiateur serait une aide dans les cas de litige, en prévision (ex. : météo) et même en campagne marketing.</p><p>Ces deux secteurs pourraient tous deux bénéficier de la prédictibilité des revenus, des dépenses et, dans le cas manufacturier, des approvisionnements chez les fournisseurs.</p><p>La règle d'or demeure : on n'automatise jamais le chaos. Gouverner et standardiser d'abord — injecter les agents autonomes ensuite. C'est ainsi que l'on transforme une dépense technologique en investissement d'affaires.</p></div>
+          <div class="notes-content"><p>Concrétisons cette approche avec le tissu industriel québécois.</p><p>Dans le secteur manufacturier, vendre une simple interface conversationnelle n'a aucune pertinence. Mais déployer un modèle de vision industrielle pour auditer la conformité des processus de fabrication en temps réel impacte sur la productivité et, directement, sur la profitabilité.</p><p>Du côté Services, un service-client IA comme première ligne est déjà accessible et surutilisé. Un vrai différentiateur serait une aide dans le cas de litige, en prévision (ex. : météo) et même en campagne marketing.</p><p>Ces deux secteurs-exemples pourraient tous deux bénéficier de la prédictibilité des revenus, des dépenses et, dans le cas manufacturier, des approvisionnements chez les fournisseurs.</p><p>Toutefois, la règle d'or demeure : on n'automatise jamais le chaos. Nous devons d'abord utiliser l'expertise Talan pour gouverner et standardiser le patrimoine de données du client, avant d'y injecter nos agents autonomes. C'est ainsi que l'on transforme une dépense technologique en investissement d'affaires.</p></div>
         </div>
       </div>
     </div>
@@ -400,7 +301,7 @@
         <p class="slide-sub">Ingénierie · Stratégie · Exécution</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>Je ne conçois pas ce rôle comme une fonction transactionnelle.</p><p>Mon parcours combine la rigueur systémique de l'ingénierie et l'acuité financière de la stratégie d'affaires. Je comprends la différence fondamentale entre vendre du temps facturable et, dans un avenir rapproché, monétiser un actif de propriété intellectuelle.</p><p>Je suis prêt à prendre la responsabilité de ce pipeline, à protéger l'efficacité des équipes techniques, et à positionner Talan comme l'incontournable de l'industrialisation de l'IA — sa mécanisation concrète — au Québec et au Canada.</p></div>
+          <div class="notes-content"><p>Pour conclure, je ne conçois pas ce rôle comme une fonction transactionnelle.</p><p>Mon parcours combine la rigueur systémique de l'ingénierie et l'acuité financière de la stratégie d'affaires. Je comprends la différence fondamentale entre vendre du temps facturable et, dans un avenir rapproché, monétiser un actif de propriété intellectuelle.</p><p>Je suis prêt à prendre la responsabilité de ce pipeline, à protéger l'efficacité des équipes techniques, et à positionner Talan comme l'incontournable de l'industrialisation de l'IA (sa mécanisation concrète) au Québec et au Canada.</p></div>
         </div>
       </div>
     </div>
@@ -408,11 +309,10 @@
 
 <footer>
   <div class="footer-brand"><span>TALAN</span> — POSITIVE INNOVATION</div>
-  <div class="footer-note">Document confidentiel · Non indexé · Marc B. Sauro &nbsp;·&nbsp; marcbsauro.ca</div>
+  <div class="footer-note">Document confidentiel · Non indexé · Marc B. Sauro · marcbsauro.ca</div>
 </footer>
 
 <script>
-  // Progress bar
   window.addEventListener('scroll', () => {
     const doc = document.documentElement;
     const scrolled = doc.scrollTop || document.body.scrollTop;
