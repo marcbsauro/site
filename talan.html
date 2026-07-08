@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="talan.svg">
 <title>Stratégie Data & IA — Talan | Marc B. Sauro</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,23 +127,25 @@
     white-space: nowrap;
     min-width: max-content;
   }
-  .mobile-nav-brand {
-    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
-    color: var(--blue); text-transform: uppercase;
-    padding-right: 0.75rem;
-    border-right: 1px solid var(--navy2);
-    margin-right: 0.5rem;
-    flex-shrink: 0;
-  }
   .mobile-nav a {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
     color: var(--dim); text-decoration: none; text-transform: uppercase;
-    padding: 0 0.6rem; height: 48px;
+    padding: 0 0.75rem; height: 48px;
     display: inline-flex; align-items: center;
     transition: color 0.15s;
     flex-shrink: 0;
+    border-bottom: 2px solid transparent;
   }
-  .mobile-nav a:active { color: var(--white); }
+  .mobile-nav a.active {
+    color: var(--white);
+    border-bottom-color: var(--blue);
+  }
+
+  /* Top nav active */
+  nav a.active {
+    color: var(--white);
+    background: var(--navy2);
+  }
 
   @media (max-width: 640px) {
     header { padding: 0 1.25rem; }
@@ -355,7 +358,6 @@
 
 <nav class="mobile-nav" aria-label="Navigation mobile">
   <div class="mobile-nav-inner">
-    <span class="mobile-nav-brand">TALAN · DATA & IA</span>
     <a href="#slide-01">Vision</a>
     <a href="#slide-02">90 jours</a>
     <a href="#slide-03">Marché</a>
@@ -366,12 +368,53 @@
 </nav>
 
 <script>
-  window.addEventListener('scroll', () => {
+  // Progress bar + active nav highlight
+  const sections = document.querySelectorAll('.slide-section');
+  const topLinks = document.querySelectorAll('nav a');
+  const botLinks = document.querySelectorAll('.mobile-nav a');
+  const mobileNav = document.querySelector('.mobile-nav-inner');
+
+  // Map href anchors to slide IDs
+  function getIdFromHref(a) {
+    return a.getAttribute('href').replace('#', '');
+  }
+
+  function updateNav() {
     const doc = document.documentElement;
     const scrolled = doc.scrollTop || document.body.scrollTop;
     const total = doc.scrollHeight - doc.clientHeight;
+
+    // Progress bar
     document.getElementById('progress').style.width = (scrolled / total * 100) + '%';
-  });
+
+    // Find active section (which section occupies most of the viewport)
+    let activeId = null;
+    const mid = scrolled + window.innerHeight / 2;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= mid) activeId = sec.id;
+    });
+
+    // Update top nav
+    topLinks.forEach(a => {
+      const id = getIdFromHref(a);
+      a.classList.toggle('active', id === activeId);
+    });
+
+    // Update bottom nav + auto-scroll active link into view
+    botLinks.forEach(a => {
+      const id = getIdFromHref(a);
+      const isActive = id === activeId;
+      a.classList.toggle('active', isActive);
+      if (isActive && mobileNav) {
+        // Scroll the mobile nav so the active link is visible near the left
+        const linkLeft = a.offsetLeft;
+        mobileNav.scrollTo({ left: Math.max(0, linkLeft - 16), behavior: 'smooth' });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav(); // run once on load
 </script>
 
 </body>
