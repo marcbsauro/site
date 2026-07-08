@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<link rel="icon" type="image/svg+xml" href="talan.svg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
@@ -106,12 +105,53 @@
   .footer-brand span { color: var(--blue); }
   .footer-note { font-size: 0.68rem; color: #3D5570; }
 
+  /* Mobile bottom nav */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-top: 1px solid var(--navy2);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mobile-nav::-webkit-scrollbar { display: none; }
+  .mobile-nav-inner {
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    height: 48px;
+    white-space: nowrap;
+    min-width: max-content;
+  }
+  .mobile-nav-brand {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--blue); text-transform: uppercase;
+    padding-right: 0.75rem;
+    border-right: 1px solid var(--navy2);
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
+  .mobile-nav a {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--dim); text-decoration: none; text-transform: uppercase;
+    padding: 0 0.6rem; height: 48px;
+    display: inline-flex; align-items: center;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .mobile-nav a:active { color: var(--white); }
+
   @media (max-width: 640px) {
     header { padding: 0 1.25rem; }
     nav { display: none; }
     .hero { padding: 3rem 1.25rem 2.5rem; }
     .slide-inner { padding: 0 1.25rem; }
     .slide-section { padding: 2.5rem 0; }
+    .mobile-nav { display: block; }
+    body { padding-bottom: 48px; }
   }
 </style>
 </head>
@@ -242,7 +282,7 @@
         <p class="slide-sub">Scalability · Cycle de vente long (3 à 6+ mois) · Revenus décuplés par le PoC ($$ à $$$+)</p>
         <div class="slide-notes">
           <div class="notes-label">PERSPECTIVE DE L'ARCHITECTE</div>
-          <div class="notes-content"><p>L'Horizon 3 industrialise la solution, assurant des revenus récurrents et une marge protégée par notre savoir-faire. On martèle la prévisibilité.</p><p>La condition pour passer à l'échelle : un PoC qui livre, et une architecture conçue dès le départ pour grandir.</p></div>
+          <div class="notes-content"><p>L'Horizon 3 industrialise la solution, assurant des revenus récurrents et une marge protégée par notre savoir-faire. On martèle la prévisibilité.</p><p>La condition pour passer à l'échelle : un PoC qui livre, et une architecture conçue dès le départ pour grandir. En gros, le PoC doit prouver deux choses : que ça fonctionne, et que ça peut grandir.</p></div>
         </div>
       </div>
     </div>
@@ -312,6 +352,18 @@
   <div class="footer-brand"><span>TALAN</span> — POSITIVE INNOVATION</div>
   <div class="footer-note">Document confidentiel · Non indexé · Marc B. Sauro · marcbsauro.ca</div>
 </footer>
+
+<nav class="mobile-nav" aria-label="Navigation mobile">
+  <div class="mobile-nav-inner">
+    <span class="mobile-nav-brand">TALAN · DATA & IA</span>
+    <a href="#slide-01">Vision</a>
+    <a href="#slide-02">90 jours</a>
+    <a href="#slide-03">Marché</a>
+    <a href="#slide-06">Expertise</a>
+    <a href="#slide-07">Cas d'usage</a>
+    <a href="#slide-08">Conclusion</a>
+  </div>
+</nav>
 
 <script>
   window.addEventListener('scroll', () => {
