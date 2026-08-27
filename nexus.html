@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS DSP Governance Orchestrator | Marc B. Sauro</title>
     
-    <!-- Directive de non-indexation identique à /talan -->
+    <!-- Directive stricte de non-indexation -->
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Favicon -->
@@ -63,29 +63,82 @@
 
         main {
             flex: 1;
-            padding: 1.5rem;
-            max-width: 1600px;
-            width: 100%;
-            margin: 0 auto;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
-        .app-container {
+        .portal-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            max-width: 640px;
             width: 100%;
-            min-height: 850px;
-            flex: 1;
-            position: relative;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        iframe {
+        .tag-status {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 2.25rem;
+        }
+
+        .launch-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
             width: 100%;
-            height: 88vh;
-            min-height: 800px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5);
+            padding: 1rem 1.75rem;
+            border-radius: 8px;
+            border: none;
+            background: #015687;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .launch-btn:hover {
+            background: #026ba8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(1, 86, 135, 0.5);
+        }
+
+        .footnote {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 1.5rem;
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -97,16 +150,27 @@
     </header>
 
     <main>
-        <div class="app-container">
-            <div style="width: 100%; min-height: 850px; position: relative;">
-              <iframe 
-                src="https://ai.studio/apps/4acfa74c-b984-42b0-a8f2-7ef0005c85be?fullscreenApplet=true" 
-                title="NEXUS DSP Governance Orchestrator"
-                style="width: 100%; height: 90vh; min-height: 800px; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);"
-                allow="clipboard-write; clipboard-read"
-                loading="lazy"
-              ></iframe>
-            </div>
+        <div class="portal-card">
+            <span class="tag-status">Environnement Restreint</span>
+            <h1>NEXUS DSP Governance Orchestrator</h1>
+            <p>
+                L'accès à cette interface décisionnelle est vérifié et protégé par Cloudflare Zero Trust. 
+                Cliquez ci-dessous pour lancer l'orchestrateur dans une session plein écran dédiée.
+            </p>
+            <a 
+                href="https://ai.studio/apps/4acfa74c-b984-42b0-a8f2-7ef0005c85be?fullscreenApplet=true" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="launch-btn"
+            >
+                Ouvrir l'Orchestrateur NEXUS
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
+            <p class="footnote">Identifiant de session : MS-NEXUS-2026</p>
         </div>
     </main>
 
