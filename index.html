@@ -48,6 +48,9 @@
         "addressCountry": "CA"
       }
     }
+</script>
+
+    <script>
 		// Fonction pour gérer le clic sur "Partager"
 	function shareArticle(url, title) {
 	    if (navigator.share) {
@@ -546,6 +549,7 @@
                 `<a href="${data.url}" target="_blank" class="btn-ghost">${translations[currentLang]['visit-site']}</a>` : '';
             document.getElementById('reader-overlay').style.display = 'block';
             document.body.classList.add('modal-open');
+		}
 	    function openReader(id) {
 		    const art = translations[currentLang].articles.find(a => a.id === id);
 		    if (!art) return;
