@@ -51,16 +51,50 @@
 </script>
 
     <script>
-		// Fonction pour gérer le clic sur "Partager"
-	function shareArticle(url, title) {
-	    if (navigator.share) {
-	        navigator.share({ title: title, url: url }).catch(() => {});
-	    } else {
-	        navigator.clipboard.writeText(url).then(() => {
-	            alert(currentLang === 'fr' ? 'Lien copié dans le presse-papier !' : 'Link copied to clipboard!');
-	        });
-	    }
-	}
+async function shareArticle(articleId) {
+    const art = translations[currentLang].articles.find(a => a.id === articleId);
+    if (!art) return;
+
+    const shareUrl = `${window.location.origin}${window.location.pathname}#${art.id}`;
+    const shareData = {
+        title: art.title,
+        text: art.title,
+        url: shareUrl
+    };
+
+    // Vérifie si le partage natif mobile est supporté pour ces données précises
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        try {
+            await navigator.share(shareData);
+            return;
+        } catch (err) {
+            // Si l'utilisateur annule le menu de partage, on ne fait rien
+            if (err.name === 'AbortError') return;
+        }
+    }
+
+    // Solution de repli (copie dans le presse-papier)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            alert(currentLang === 'fr' ? 'Lien copié dans le presse-papier !' : 'Link copied to clipboard!');
+        }).catch(() => {
+            copyFallback(shareUrl);
+        });
+    } else {
+        copyFallback(shareUrl);
+    }
+}
+
+// Secours pour les anciens navigateurs mobiles
+function copyFallback(text) {
+    const input = document.createElement('input');
+    input.value = text;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    alert(currentLang === 'fr' ? 'Lien copié dans le presse-papier !' : 'Link copied to clipboard!');
+}
 	
 	// Ouvre automatiquement l'article si quelqu'un arrive avec un lien direct (ex: #art1)
 	window.addEventListener('DOMContentLoaded', () => {
@@ -574,13 +608,12 @@
 		    const shareUrl = `${window.location.origin}${window.location.pathname}#${art.id}`;
 		    
 		    // Bouton de partage (utilise le partage natif sur mobile, ou copie le lien)
-		    const shareBtnHtml = `
-		        <button onclick="shareArticle('${shareUrl}', '${art.title.replace(/'/g, "\\'")}')" class="btn-social">
-		            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-		            Partager
-		        </button>
-		    `;
-		
+			const shareBtnHtml = `
+			    <button onclick="shareArticle('${art.id}')" class="btn-social" type="button">
+			        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+			        Partager
+			    </button>
+			`;
 		    const socialBtnHtml = art.socialUrl ? `
 		        <a href="${art.socialUrl}" target="_blank" class="btn-social">
 		            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
