@@ -170,10 +170,10 @@ function copyFallback(text) {
     <nav class="fixed top-0 w-full z-50 nav-blur">
         <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex justify-between items-center">
             <div class="nav-identity flex items-center gap-4 cursor-pointer" onclick="openPortrait()">
-                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#77D5E1] bg-slate-900 shadow-lg">
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#00874E] bg-slate-900 shadow-lg">
                     <img src="portrait.jpg" alt="M." class="w-full h-full object-cover">
                 </div>
-                <div class="text-xl font-bold tracking-tighter text-white">M<span class="text-[#77D5E1]">.</span></div>
+                <div class="text-xl font-bold tracking-tighter text-white">M<span class="text-[#00874E]">.</span></div>
             </div>
             <div class="flex items-center gap-8">
                 <button id="lang-toggle" onclick="toggleLanguage()" class="text-[10px] font-bold tracking-[0.2em] border border-white/20 px-4 py-2 text-white hover:bg-white hover:text-black transition-all">EN</button>
@@ -276,10 +276,10 @@ function copyFallback(text) {
                 <div class="red-line-major pl-8">
                     <p class="text-xl md:text-2xl font-light leading-relaxed mb-10 text-white" data-key="summary"></p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#77D5E1] rounded-full"></span><span data-key="skill1"></span></div>
-                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#77D5E1] rounded-full"></span><span data-key="skill2"></span></div>
-                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#77D5E1] rounded-full"></span><span data-key="skill3"></span></div>
-                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#77D5E1] rounded-full"></span><span data-key="skill4"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#00874E] rounded-full"></span><span data-key="skill1"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#00874E] rounded-full"></span><span data-key="skill2"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#00874E] rounded-full"></span><span data-key="skill3"></span></div>
+                        <div class="flex items-center gap-3 text-white/80 font-bold"><span class="w-1.5 h-1.5 bg-[#00874E] rounded-full"></span><span data-key="skill4"></span></div>
                     </div>
                 </div>
             </section>
@@ -287,12 +287,12 @@ function copyFallback(text) {
             <section class="glass p-8 md:p-12 mb-48 text-center scroll-reveal">
                 <h3 class="text-2xl md:text-4xl font-bold tracking-tight mb-8 text-white" data-key="cta-title"></h3>
                 <p class="text-white/60 max-w-xl mx-auto mb-12 font-light text-lg" data-key="cta-desc"></p>
-                <a href="mailto:info@marcbsauro.ca" class="inline-block bg-[#77D5E1] text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
+                <a href="mailto:info@marcbsauro.ca" class="inline-block bg-[#00874E] text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all" data-key="cta-btn"></a>
             </section>
 
             <footer class="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-center gap-10 pb-12 text-white">
                 <div>
-                    <p class="text-3xl font-bold tracking-tighter mb-2">marcbsauro<span class="text-[#77D5E1]">.ca</span></p>
+                    <p class="text-3xl font-bold tracking-tighter mb-2">marcbsauro<span class="text-[#00874E]">.ca</span></p>
                     <div class="flex flex-col gap-1">
                         <p class="text-[10px] text-white/30 uppercase tracking-[0.4em]">© 2026 Marc Bournival-Sauro</p>
                         <p class="text-[9px] text-white/20 uppercase tracking-widest">
@@ -479,12 +479,12 @@ function copyFallback(text) {
 		    const remainingArticles = allArticles.slice(1);
 		
 		    let htmlContent = `
-		        <div class="col-span-1 md:col-span-2 glass p-10 cursor-pointer hover:border-[#77D5E1] transition-all group relative mb-8" onclick="openReader('${featured.id}')">
-		            <div class="absolute -top-3 -right-3 bg-[#77D5E1] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10">
+		        <div class="col-span-1 md:col-span-2 glass p-10 cursor-pointer hover:border-[#00874E] transition-all group relative mb-8" onclick="openReader('${featured.id}')">
+		            <div class="absolute -top-3 -right-3 bg-[#00874E] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10">
 		                ${translations[currentLang]['latest-badge']}
 		            </div>
 		            <div class="flex justify-between items-start mb-4">
-		                <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${featured.cat || ''}</span>
+		                <span class="text-[9px] font-bold uppercase tracking-widest text-[#00874E]">${featured.cat || ''}</span>
 		                <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${featured.date}</span>
 		            </div>
 		            <div class="baby-line-major pl-6 mb-6">
@@ -500,14 +500,14 @@ function copyFallback(text) {
 		    if (remainingArticles.length > 0) {
 		        htmlContent += `
 		            <div class="col-span-1 md:col-span-2 mt-4">
-		                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#77D5E1] opacity-70 mb-6 pl-2 border-l-2 border-[#77D5E1]">${translations[currentLang]['other-articles']}</h4>
+		                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#00874E] opacity-70 mb-6 pl-2 border-l-2 border-[#00874E]">${translations[currentLang]['other-articles']}</h4>
 		                
 		                <div id="remaining-articles-wrapper" class="relative overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 340px;">
 		                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 		                        ${remainingArticles.map(art => `
-		                            <div class="glass p-5 cursor-pointer hover:border-[#77D5E1] transition-all group flex flex-col justify-between" onclick="openReader('${art.id}')">
+		                            <div class="glass p-5 cursor-pointer hover:border-[#00874E] transition-all group flex flex-col justify-between" onclick="openReader('${art.id}')">
 		                                <div class="flex justify-between items-start mb-2">
-		                                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#77D5E1]">${art.cat || ''}</span>
+		                                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#00874E]">${art.cat || ''}</span>
 		                                    <span class="text-[8px] font-bold text-white/30 uppercase tracking-widest">${art.date}</span>
 		                                </div>
 		                                <div class="pink-line-minor pl-4">
